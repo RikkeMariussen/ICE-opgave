@@ -1,0 +1,30 @@
+@startuml
+object StartMenu
+object Games
+object Snake
+object BrickBreaker
+object PacMan
+object Levels
+object StartGame
+object HighScore
+
+
+StartMenu <-- Games
+
+Games <-- Snake
+Games <-- BrickBreaker
+Games <-- PacMan
+
+Snake <-- Levels
+BrickBreaker <-- Levels
+PacMan <-- Levels
+
+Levels <-- StartGame
+
+StartGame <-- HighScore
+
+HighScore <-- StartMenu
+
+
+
+@enduml

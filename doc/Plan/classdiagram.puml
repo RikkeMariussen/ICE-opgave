@@ -1,0 +1,80 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class main
+
+class startMenu{
++ runDialog()
+}
+
+interface IGames{
++ String playGame()
++ String setHighScore()
+}
+
+abstract class AGames
+
+package Games <<Folder>> {
+class BrickBreaker{
+- bricks
+- balls
+- lives
++ String bottom()
++ String ball()
++ String getBall
++ String move()
++ String getRandomBricks()
++ String lives()
+}
+
+class BallDrop{
+- dots
+- ghosts
+- lives
++ String pacMan()
++ String move()
++ String getRandomGhosts()
++ String lives()
+}
+
+class PacMan{
+- dots
+- ghosts
+- lives
++ String pacMan()
++ String move()
++ String getRandomGhosts()
++ String lives()
+}
+
+class Snake{
+- moves
+- apples
+- lives
++ String snake()
++ String move()
++ String getRandomApples()
++ String lives()
+}
+}
+
+package Utility <<Folder>> {
+class GUI
+class TextUI
+class FileIO
+}
+
+
+main <-- startMenu
+startMenu <-- IGames
+
+IGames <|-- AGames
+AGames <|-- Snake
+AGames <|-- BrickBreaker
+AGames <|-- BallDrop
+AGames <|-- PacMan
+
+startMenu <-- GUI
+startMenu <-- TextUI
+startMenu <-- FileIO
+@enduml
