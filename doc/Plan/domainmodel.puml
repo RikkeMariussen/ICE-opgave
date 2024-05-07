@@ -4,26 +4,34 @@ object Games
 object Snake
 object BrickBreaker
 object PacMan
-object Levels
+object BallDrop
+object Difficulties
 object StartGame
 object HighScore
+object viewHighScore
 
+StartMenu <.. Games
 
-StartMenu <-- Games
+Games o-- Snake
+Games o-- BrickBreaker
+Games o-- PacMan
+Games o-- BallDrop
 
-Games <-- Snake
-Games <-- BrickBreaker
-Games <-- PacMan
+BallDrop o-- Difficulties
+Snake o-- Difficulties
+BrickBreaker o-- Difficulties
+PacMan o-- Difficulties
 
-Snake <-- Levels
-BrickBreaker <-- Levels
-PacMan <-- Levels
+BallDrop <.. viewHighScore
+Snake <.. viewHighScore
+BrickBreaker <.. viewHighScore
+PacMan <.. viewHighScore
 
-Levels <-- StartGame
+Difficulties <-- StartGame
 
 StartGame <-- HighScore
 
-HighScore <-- StartMenu
+StartMenu <-- HighScore
 
 
 

@@ -10,11 +10,22 @@ class startMenu{
 interface IGames{
 + String playGame()
 + String setHighScore()
++ String getHighScore()
 }
 
 abstract class AGames
 
 package Games <<Folder>> {
+
+class PacMan{
+- dots
+- ghosts
+- lives
++ String pacMan()
++ String move()
++ String getRandomGhosts()
++ String lives()
+}
 class BrickBreaker{
 - bricks
 - balls
@@ -28,22 +39,12 @@ class BrickBreaker{
 }
 
 class BallDrop{
-- dots
-- ghosts
+- bottomPlate
+- balls
 - lives
-+ String pacMan()
++ String bottomPlate()
 + String move()
-+ String getRandomGhosts()
-+ String lives()
-}
-
-class PacMan{
-- dots
-- ghosts
-- lives
-+ String pacMan()
-+ String move()
-+ String getRandomGhosts()
++ String getBalls()
 + String lives()
 }
 
@@ -65,8 +66,8 @@ class FileIO
 }
 
 
-main <-- startMenu
-startMenu <-- IGames
+main <- startMenu
+startMenu <- IGames
 
 IGames <|-- AGames
 AGames <|-- Snake
