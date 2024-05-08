@@ -101,7 +101,11 @@ class Balls{
 class Bombs{
 - size
 - int x, y, w, h;
+- float speed;
 - color
++ void update()
++ void display()
++ void boom()
 + String drawBombs()
 }
 
@@ -131,6 +135,7 @@ class PointObject{
 - size
 - color
 + String drawPointObject()
+
 }
 
 class Bricks{
