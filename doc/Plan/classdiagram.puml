@@ -92,6 +92,7 @@ class Input{
 
 class Balls{
 - size
+- int x, y, w, h;
 - color
 + String drawBalls()
 + String ballsColor()
@@ -99,14 +100,24 @@ class Balls{
 
 class Bombs{
 - size
+- int x, y, w, h;
 - color
 + String drawBombs()
 }
 
+class Timer{
+- int startTimer
+- int interval
++ void startTimer()
++ boolean complete()}
+
 class PlayerPlate{
 - size
+- float x, y, w, h;
 - color
 + String playerPlate()
++ void update()
++ void displayPlayerPlate()
 }
 
 class SnakeObject{
