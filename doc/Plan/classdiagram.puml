@@ -1,81 +1,180 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class main
-
+class main{
++ static void main(String[] args)
+}
 class startMenu{
 + runDialog()
 }
 
 interface IGames{
-+ String playGame()
-+ String setHighScore()
-+ String getHighScore()
+String getTitle()
+String playGame()
+String setHighScore()
+String getHighScore()
+String keyPressed()
+String howToPlay()
+String youDied()
+String difficulties()
+String lives()
 }
 
-abstract class AGames
+abstract class AGames{
+- title
+- score
+- lives
+}
 
 package Games <<Folder>> {
 
-class PacMan{
-- dots
-- ghosts
-- lives
-+ String pacMan()
-+ String move()
-+ String getRandomGhosts()
-+ String lives()
-}
 class BrickBreaker{
+- playerPlate
 - bricks
 - balls
-- lives
-+ String bottom()
-+ String ball()
++ String playerPlate()
 + String getBall
 + String move()
 + String getRandomBricks()
-+ String lives()
 }
 
 class BallDrop{
-- bottomPlate
+- playerPlate
 - balls
-- lives
-+ String bottomPlate()
-+ String move()
+- timer
+- bombs
++ String playerPlate()
 + String getBalls()
-+ String lives()
++ String getBombs()
++ String timer()
 }
 
 class Snake{
-- moves
+- snake
 - apples
-- lives
+- ArrayList(whereSnakeAtX)
+- ArrayList(whereSnakeAtY)
 + String snake()
-+ String move()
 + String getRandomApples()
-+ String lives()
++ String eatenApple()
++ String eatenSnake()
+}
+
+class PacMan{
+- title
+- dots
+- ghosts
+- lives
+- score
++ String pacMan()
++ String move()
++ String getRandomGhosts()
 }
 }
 
 package Utility <<Folder>> {
-class GUI
-class TextUI
-class FileIO
+class GUI{
+}
+class TextUI{
+- Scanner scanner
++ void displayList(ArrayList<String> list, String msg)
++ String promptText(String msg)
++ boolean promptBinary(String msg, String accept, String reject)
++ int promptNumeric(String msg)
++ int promptChoice(ArrayList<String> optionslist, String msg)
++ static void displayMsg(String s)
+}
+class FileIO{
+}
+class Input{
+}
 }
 
+class Balls{
+- size
+- color
++ String drawBalls()
++ String ballsColor()
+}
 
-main <- startMenu
+class Bombs{
+- size
+- color
++ String drawBombs()
+}
+
+class PlayerPlate{
+- size
+- color
++ String playerPlate()
+}
+
+class SnakeObject{
+- size
+- color
++ String drawSnake()
+}
+
+class PointObject{
+'Apples, cheese and cherries for Snake and PacMan
+- size
+- color
++ String drawPointObject()
+}
+
+class Bricks{
+- size
+- durability
+- color
++ String drawBricks()
++ String bricksColor()
++ String bricksDurability()
+}
+
+class PacManObject{
+- size
+- color
++ String drawPacMan()
++ String pacManColor()
+}
+
+class Ghosts{
+- size
+- color
++ void drawGhosts()
++ String ghostsColor()
++ Boolean ghostsKillable()
+}
+
+main <-- startMenu
 startMenu <- IGames
 
 IGames <|-- AGames
-AGames <|-- Snake
-AGames <|-- BrickBreaker
-AGames <|-- BallDrop
-AGames <|-- PacMan
 
-startMenu <-- GUI
-startMenu <-- TextUI
-startMenu <-- FileIO
+AGames <-- Games
+'AGames <|-- Snake
+'AGames <|-- BrickBreaker
+'AGames <|-- BallDrop
+'AGames <|-- PacMan
+
+startMenu <-- Utility
+'startMenu <-- GUI
+'startMenu <-- TextUI
+'startMenu <-- FileIO
+
+BrickBreaker <-- Bricks
+BrickBreaker <-- PlayerPlate
+BrickBreaker <-- Balls
+
+BallDrop <-- PlayerPlate
+BallDrop <-- PointObject
+BallDrop <-- Bombs
+
+Snake <-- SnakeObject
+Snake <-- PointObject
+
+PacMan <-- PacManObject
+PacMan <-- Ghosts
+PacMan <-- PointObject
+
 @enduml

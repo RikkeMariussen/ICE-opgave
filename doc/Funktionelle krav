@@ -1,0 +1,14 @@
+Funktionelle krav til ICE
+- Startside med forskellige spil
+- Knap til at skifte side - til flere spil
+- Når man trykker på et spil på startsiden skal man have mulighed for at vælge mellem start spil,
+"how to play", se high score for de tre difficulties eller go back to menu.
+- Hvis man vælger start spil skal den komme op med tre forskellige sværhedsgrader, let, mellem eller svær.
+Brugeren vælger ved at trykke op og ned via piltasterne og så enter.
+- Når de starter et spil skal der stå score op i højre hjørne og eventuelle liv i venstre.
+- Når spilleren dør, så skal der vises en skærm med "You died" og score nedenunder, samt best score under dette.
+Der skal endvidere være to knapper "Try Again" "Menu", hvor spilleren enten kan gå tilbage til startmenuen
+ eller spille igen på samme sværhedsgrad.
+- Vores mål er at have snake, ball drop og brickBreaker klar, og PacMan undervejs.
+Såfremt vi når at lave PacMan og de andre spil, skal der laves en pil i start menuen som går hen
+ og viser en anden side af spil "Coming soon..." med en pil tilbage.
