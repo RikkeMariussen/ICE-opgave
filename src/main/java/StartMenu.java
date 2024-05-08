@@ -24,7 +24,7 @@ public class StartMenu extends PApplet {
 
     public void draw() {
         background(0);
-
+/*
         //For-each loop der kalder på array/metode
         for (IGames shape : shapes) {
             //For at få dem til at bevæge sig fra venstre til højre
@@ -35,7 +35,7 @@ public class StartMenu extends PApplet {
 
             shape.displayShape();
         }
-
+*/
 
     }
 
