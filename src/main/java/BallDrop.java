@@ -1,4 +1,4 @@
-public class BallDrop implements IGames{
+public class BallDrop extends AGames{
 
     @Override
     public String getTitle() {

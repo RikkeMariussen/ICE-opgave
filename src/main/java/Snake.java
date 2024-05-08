@@ -1,4 +1,4 @@
-public class Snake implements IGames {
+public class Snake extends AGames{
     @Override
     public String getTitle() {
         return null;
