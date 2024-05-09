@@ -1,4 +1,7 @@
-public class PacMan extends AGames{
+package PacMan;
+import MainPack.AGames;
+
+public class PacMan extends AGames {
     @Override
     public String getTitle() {
         return null;

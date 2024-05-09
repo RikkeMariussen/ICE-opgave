@@ -1,4 +1,6 @@
-public class BallDrop extends AGames{
+import MainPack.AGames;
+
+public class BallDrop extends AGames {
 
     @Override
     public String getTitle() {

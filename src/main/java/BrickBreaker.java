@@ -1,4 +1,6 @@
-public class BrickBreaker extends AGames{
+import MainPack.AGames;
+
+public class BrickBreaker extends AGames {
     @Override
     public String getTitle() {
         return null;

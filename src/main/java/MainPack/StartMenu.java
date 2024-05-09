@@ -1,3 +1,5 @@
+package MainPack;
+
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -12,12 +14,12 @@ public class StartMenu extends PApplet {
         background(0);
 
         //  this.ellipse(50, 50, 100, 50);
-        IGames circle = new Snake();
-        IGames rectangle = new Snake();
+       // IGames circle = new Snake();
+        //IGames rectangle = new Snake();
 
         //Tilføjer former til arraylisten:
-        shapes.add(circle);
-        shapes.add(rectangle);
+       // shapes.add(circle);
+       // shapes.add(rectangle);
 
 
     }
@@ -26,7 +28,7 @@ public class StartMenu extends PApplet {
         background(0);
 /*
         //For-each loop der kalder på array/metode
-        for (IGames shape : shapes) {
+        for (MainPack.IGames shape : shapes) {
             //For at få dem til at bevæge sig fra venstre til højre
             shape.xPos = frameCount * shape.speed;
             //For at få dem til at bevæge sig nedad

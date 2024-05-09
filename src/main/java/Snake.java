@@ -1,4 +1,6 @@
-public class Snake extends AGames{
+import MainPack.AGames;
+
+public class Snake extends AGames {
     @Override
     public String getTitle() {
         return null;
