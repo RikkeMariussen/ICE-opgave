@@ -1,4 +1,17 @@
-public class BallDrop extends AGames{
+import processing.core.PApplet;
+
+import static java.lang.Math.random;
+
+public class BallDrop extends AGames {
+    private PApplet parent;
+    public BallDrop(PApplet parent) {
+        this.parent = parent;
+    }
+/*
+    PointObject ballDropEasy = new PointObject(,50, 50, 50, 50, 5,10, 75);
+    PointObject ballDropMedium = new PointObject(this,50, 50, 50, 50, 7,12, 75);
+    PointObject ballDropHard = new PointObject(this,50, 50, 50, 50, 9,14, 75);
+*/
 
     @Override
     public String getTitle() {
