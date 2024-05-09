@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 public class PlayerPlate{
     private PApplet parent;
@@ -19,14 +20,30 @@ public class PlayerPlate{
         this.color = parent.color(175);
         //, int size, int x, int y, int w, int h, int color
     }
-
     public void update() {
         x = parent.mouseX;
     }
 
     public void display() {
         parent.fill(color);
+        parent.rectMode(PConstants.CENTER);
         parent.rect(x, y, w, h); //Rect for avoiding
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return w;
+    }
+
+    public int getHeight() {
+        return h;
     }
 
 }
