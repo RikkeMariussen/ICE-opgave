@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class StartMenu {
     GUI gui;
+    FileIO fileIO;
     GamesButton gameButton;
     ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
     ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
@@ -14,6 +15,7 @@ public class StartMenu {
     GamesButton butt3 = new GamesButton(250, 100, 525, 160, "Ball drop");
     GamesButton butt4 = new GamesButton(250, 100, 525, 310, "PacMan");
     GamesButton butt5 = new GamesButton(250, 100, 375, 460, "NEXT PAGE");
+
     GamesButton playGame = new GamesButton(250, 100, 225, 160, "Choose difficulty");
     GamesButton highScore = new GamesButton(250, 100, 225, 310, "See high scores");
     GamesButton goBack = new GamesButton(250, 100, 525, 460, "Go back to the main menu");
@@ -22,8 +24,10 @@ public class StartMenu {
     GamesButton hard = new GamesButton(250, 100, 525, 160, "Hard");
     GamesButton goBack2 = new GamesButton(250, 100, 525, 310, "Go back to the main menu");
 
-    public StartMenu(){
-       //Added the buttons to use in the method chooseGame
+    GamesButton moreGamesComingSoon = new GamesButton(250, 250, 375, 160, "More games, are coming soon");
+
+    public StartMenu() {
+        //Added the buttons to use in the method chooseGame
         buttonsFrontPage.add(butt1);
         buttonsFrontPage.add(butt2);
         buttonsFrontPage.add(butt3);
@@ -42,7 +46,7 @@ public class StartMenu {
         buttonsDifficulties.add(goBack2);
     }
 
-    public int showGames(){
+    public int showGames() {
         butt1.gamesDisplay();
         butt2.gamesDisplay();
         butt3.gamesDisplay();
@@ -51,18 +55,22 @@ public class StartMenu {
         return 1;
     }
 
-    public int showOptions(){
+    public int showOptions() {
         playGame.gamesDisplay();
         highScore.gamesDisplay();
         goBack.gamesDisplay();
         return 1;
     }
 
-    public int showDifficulties(){
+    public int showDifficulties() {
         easy.gamesDisplay();
         medium.gamesDisplay();
         hard.gamesDisplay();
         return 1;
+    }
+
+    public void showMoreGamesComingSoon() {
+        moreGamesComingSoon.gamesDisplay();
     }
 
     public void runDialog() {
@@ -96,15 +104,15 @@ public class StartMenu {
                     nextStep();
                     break;
                 case 5: //Next Page
-                    //todo: make it so it shows 4 new games
                     butt5.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
+                    showMoreGamesComingSoon();
+                    chooseGame();
                     break;
             }
         }
     }
 
-    public void nextStep(){
+    public void nextStep() {
         int action = 0;
         while (action != buttonGameOption.size()) {// the quit action is the last action
             action = showOptions();
@@ -115,6 +123,7 @@ public class StartMenu {
                     break;
                 case 2: //See highscore
                     //todo: call the method for seeing the high scores
+
                     break;
                 case 3: //Go back to main menu
                     runDialog();
@@ -123,7 +132,7 @@ public class StartMenu {
         }
     }
 
-    public void chooseDifficulty(){
+    public void chooseDifficulty() {
         int action = 0;
         while (action != buttonsDifficulties.size()) {// the quit action is the last action
             action = showDifficulties();
@@ -147,5 +156,4 @@ public class StartMenu {
             }
         }
     }
-
 }
