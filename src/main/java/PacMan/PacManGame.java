@@ -16,6 +16,7 @@ public class PacManGame {
         for (int[] ints : map) {
             Arrays.fill(ints, CHEESE);
         }
+        clearGhostPit();
     }
     public static void printMap() { //just for testing array population.
         for (int[] ints : map) {
@@ -24,5 +25,17 @@ public class PacManGame {
             }
             System.out.println();
         }
+    }
+    public static void clearGhostPit(){
+        map[8][9] = EMPTY;
+        map[8][10] = EMPTY;
+        map[9][8] = EMPTY;
+        map[9][9] = EMPTY;
+        map[9][10] = EMPTY;
+        map[9][11] = EMPTY;
+        map[10][8] = EMPTY;
+        map[10][9] = EMPTY;
+        map[10][10] = EMPTY;
+        map[10][11] = EMPTY;
     }
 }
