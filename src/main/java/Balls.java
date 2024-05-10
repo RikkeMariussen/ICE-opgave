@@ -8,7 +8,6 @@ public class Balls extends PApplet {
     float radius = 10;
     Bricks bricks;
     // int numBricks = 4;
-    int score = 0;
 
     public void settings() {
         size(800, 600); // Set the size of the window
@@ -39,7 +38,6 @@ public class Balls extends PApplet {
         bricks.display(); // Display bricks
         if (bricks.checkCollision(position, radius)) { // Check collision with ball
             velocity.y *= -1; // Reverse direction if colliding with a brick
-            score++;
             bricks.decreaseDurability(); // Decrease brick durability
             if (bricks.getDurability() == 0) {
                 bricks.remove(); // Remove brick if durability is 0
