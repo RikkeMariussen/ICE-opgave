@@ -1,24 +1,54 @@
+import processing.core.PApplet;
+import processing.core.PVector;
+
 public class Bricks {
-
-    private int size; // = rect(x,y,80,15);
-
+    private PApplet brick;
+    private int size;
+    private int brickX;
+    private int brickY;
+    private int width;
+    private int height;
     private int color;
-
     private int durability;
 
-    public String drawBrick;
-    public String brickColor;
-    public String brickDurability;
-
-    public void Bricks(int size, int color, int durability) {
-        this.size = size;
+    public Bricks(PApplet brick, int brickX, int brickY, int width, int height, int color, int durability) {
+        this.brick = brick;
+        this.brickX = brickX;
+        this.brickY = brickY;
+        this.width = width;
+        this.height = height;
         this.color = color;
         this.durability = durability;
     }
 
-    private void display() {
-        private void rect(50, 50, 80, 15);
-
+    public void display() {
+        if (durability > 0) {
+            brick.fill(color);
+            brick.rect(brickX, brickY, width, height);
+        }
     }
-    Bricks bricks = new Bricks(50,255,1);
+
+    public boolean checkCollision(PVector ballPosition, float ballRadius) {
+        if (durability > 0) {
+            float distX = ballPosition.x - brickX - width / 2;
+            float distY = ballPosition.y - brickY - height / 2;
+
+            if (Math.abs(distX) <= width / 2 + ballRadius && Math.abs(distY) <= height / 2 + ballRadius) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void decreaseDurability() {
+        durability--;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
+    public void remove() {
+        durability = 0;
+    }
 }
