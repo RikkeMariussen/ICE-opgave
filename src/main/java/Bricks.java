@@ -11,6 +11,7 @@ public class Bricks {
     private int color;
     private int durability;
 
+
     public Bricks(PApplet brick, int brickX, int brickY, int width, int height, int color, int durability) {
         this.brick = brick;
         this.brickX = brickX;
@@ -30,15 +31,25 @@ public class Bricks {
 
     public boolean checkCollision(PVector ballPosition, float ballRadius) {
         if (durability > 0) {
-            float distX = ballPosition.x - brickX - width / 2;
-            float distY = ballPosition.y - brickY - height / 2;
+            // Calculate the closest point on the brick's perimeter to the ball's center
+            float closestX = clamp(ballPosition.x, brickX - width / 2, brickX + width / 2);
+            float closestY = clamp(ballPosition.y, brickY - height / 2, brickY + height / 2);
 
-            if (Math.abs(distX) <= width / 2 + ballRadius && Math.abs(distY) <= height / 2 + ballRadius) {
-                return true;
-            }
+            // Calculate the distance between the closest point and the ball's center
+            float distX = ballPosition.x - closestX;
+            float distY = ballPosition.y - closestY;
+
+            // Check if the distance is within the ball's radius
+            return distX * distX + distY * distY <= ballRadius * ballRadius;
         }
         return false;
     }
+
+    // Helper function to clamp a value within a range
+    private float clamp(float value, float min, float max) {
+        return Math.max(min, Math.min(value, max));
+    }
+
 
     public void decreaseDurability() {
         durability--;
@@ -50,5 +61,14 @@ public class Bricks {
 
     public void remove() {
         durability = 0;
+    }
+    public int getBrickX(){
+        return brickX;
+    }
+    public int getBrickY(){
+        return brickY;
+    }
+    public int getColor() {
+        return color;
     }
 }
