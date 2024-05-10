@@ -20,4 +20,12 @@ public class GUI extends PApplet {
     }
 
 
+
+    public void youLose(String s){
+        fill(0);
+        textSize(25);
+        textAlign(CENTER);
+        text(s,screen/2,screen/2);
+    }
+
 }
