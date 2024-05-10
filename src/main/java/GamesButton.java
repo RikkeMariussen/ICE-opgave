@@ -40,20 +40,23 @@ public class GamesButton {
         return coins;
     }
 
-    void check_click() {
-        if ((parent.mouseX < (buttonLocation.x + buttonSize.x) && parent.mouseX > buttonLocation.x) && (parent.mouseY < (buttonLocation.y + buttonSize.y) && parent.mouseY > buttonLocation.y) && ((bought == 0) || (inf_buys == true))) {
+    public boolean check_click() {
+        if ((parent.mouseX < (buttonLocation.x + buttonSize.x) && parent.mouseX > buttonLocation.x) && (parent.mouseY < (buttonLocation.y + buttonSize.y) && parent.mouseY > buttonLocation.y)) {
             parent.fill(200, 200, 50);
             parent.rect(buttonLocation.x, buttonLocation.y, buttonSize.x, buttonSize.y);
             parent.fill(0, 0, 0);
             parent.text("Play?", buttonLocation.x + buttonSize.x / 2, buttonLocation.y + buttonSize.y / 2);
             if (parent.mousePressed) {
-                //todo: call method for
+                //todo: call method for next part
+                return true;
             }
-
-
+        }else {
+            parent.strokeWeight(1);
         }
-        parent.strokeWeight(1);
+        return false;
     }
+
+
 }
 
 
