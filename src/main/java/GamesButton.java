@@ -6,10 +6,6 @@ public class GamesButton {
     private PApplet parent;
     PVector buttonSize, buttonLocation;
     String nameOfGame;
-    int price;
-    int bought = 0;
-    int coins;
-    Boolean inf_buys;
 
     GamesButton(float w, float h, float x, float y, String z) {
         buttonLocation = new PVector(x, y);
@@ -28,18 +24,6 @@ public class GamesButton {
         parent.text(nameOfGame, buttonLocation.x + buttonSize.x / 2 - 2, buttonLocation.y + buttonSize.y / 2);
         parent.pop();
     }
-
-
-    int click(int a) {
-        coins = a;
-        if ((parent.mouseX < (buttonLocation.x + buttonSize.x) && parent.mouseX > buttonLocation.x) && (parent.mouseY < (buttonLocation.y + buttonSize.y) && parent.mouseY > buttonLocation.y)) {
-            if ((coins >= price) && ((inf_buys == true || bought == 0))) {
-                bought += 1;
-            }
-        }
-        return coins;
-    }
-
     public boolean check_click() {
         if ((parent.mouseX < (buttonLocation.x + buttonSize.x) && parent.mouseX > buttonLocation.x) && (parent.mouseY < (buttonLocation.y + buttonSize.y) && parent.mouseY > buttonLocation.y)) {
             parent.fill(200, 200, 50);
@@ -55,8 +39,6 @@ public class GamesButton {
         }
         return false;
     }
-
-
 }
 
 
