@@ -1,46 +1,135 @@
 import processing.core.PApplet;
 
+import java.io.File;
 import java.util.ArrayList;
 
-public class StartMenu extends PApplet {
+public class StartMenu {
+    GUI gui;
+    GamesButton gameButton;
+    ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
+    ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
+    ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
+    GamesButton butt1 = new GamesButton(250, 100, 225, 160, "Snake");
+    GamesButton butt2 = new GamesButton(250, 100, 225, 310, "Brick Breaker");
+    GamesButton butt3 = new GamesButton(250, 100, 525, 160, "Ball drop");
+    GamesButton butt4 = new GamesButton(250, 100, 525, 310, "PacMan");
+    GamesButton butt5 = new GamesButton(250, 100, 375, 460, "NEXT PAGE");
+    GamesButton playGame = new GamesButton(250, 100, 225, 160, "Choose difficulty");
+    GamesButton highScore = new GamesButton(250, 100, 225, 310, "See high scores");
+    GamesButton goBack = new GamesButton(250, 100, 525, 460, "Go back to the main menu");
+    GamesButton easy = new GamesButton(250, 100, 225, 160, "Easy");
+    GamesButton medium = new GamesButton(250, 100, 225, 310, "Medium");
+    GamesButton hard = new GamesButton(250, 100, 525, 160, "Hard");
+    GamesButton goBack2 = new GamesButton(250, 100, 525, 310, "Go back to the main menu");
 
-    //For at vise dem i et array
-    ArrayList<IGames> shapes = new ArrayList<>();
+    public StartMenu(){
+       //Added the buttons to use in the method chooseGame
+        buttonsFrontPage.add(butt1);
+        buttonsFrontPage.add(butt2);
+        buttonsFrontPage.add(butt3);
+        buttonsFrontPage.add(butt4);
+        buttonsFrontPage.add(butt5);
 
-    public void setup() {
-//Background:
-        background(0);
+        //Buttons for when the user has chosen a game
+        buttonGameOption.add(playGame);
+        buttonGameOption.add(highScore);
+        buttonGameOption.add(goBack);
 
-        //  this.ellipse(50, 50, 100, 50);
-        IGames circle = new Snake();
-        IGames rectangle = new Snake();
-
-        //Tilføjer former til arraylisten:
-        shapes.add(circle);
-        shapes.add(rectangle);
-
-
+        //Buttons for when the user has chosen to start the game
+        buttonsDifficulties.add(easy);
+        buttonsDifficulties.add(medium);
+        buttonsDifficulties.add(hard);
+        buttonsDifficulties.add(goBack2);
     }
 
-    public void draw() {
-        background(0);
-/*
-        //For-each loop der kalder på array/metode
-        for (IGames shape : shapes) {
-            //For at få dem til at bevæge sig fra venstre til højre
-            shape.xPos = frameCount * shape.speed;
-            //For at få dem til at bevæge sig nedad
-            shape.yPos = frameCount * shape.speed;
+    public int showGames(){
+        butt1.gamesDisplay();
+        butt2.gamesDisplay();
+        butt3.gamesDisplay();
+        butt4.gamesDisplay();
+        butt5.gamesDisplay();
+        return 1;
+    }
 
+    public int showOptions(){
+        playGame.gamesDisplay();
+        highScore.gamesDisplay();
+        goBack.gamesDisplay();
+        return 1;
+    }
 
-            shape.displayShape();
+    public int showDifficulties(){
+        easy.gamesDisplay();
+        medium.gamesDisplay();
+        hard.gamesDisplay();
+        return 1;
+    }
+
+    public void runDialog() {
+        gui.startScreen();
+    }
+
+    public void chooseGame() {
+        int action = 0;
+        while (action != buttonsFrontPage.size()) {// the quit action is the last action
+            action = showGames();
+
+            switch (action) {
+                case 1: //Snake
+                    //todo: run snake game
+                    break;
+                case 2: //Brick Breaker
+                    //todo: run Brick breaker game
+                    break;
+                case 3: //Ball drop
+                    //todo: run ball drop game
+                    break;
+                case 4: //PacMan
+                    //todo: run PacMan game
+                    break;
+                case 5: //Next Page
+                    //todo: make it so it shows 4 new games
+                    break;
+            }
         }
-*/
-
     }
 
+    public void nextStep(){
+        int action = 0;
+        while (action != buttonGameOption.size()) {// the quit action is the last action
+            action = showGames();
 
-    public void settings() {
-        size(760, 900);
+            switch (action) {
+                case 1: //Start the game/choose difficulty
+                    //todo: call the method for choosing difficulties
+                    break;
+                case 2: //See highscore
+                    //todo: call the method for seeing the high scores
+                    break;
+                case 3: //Go back to main menu
+                    //todo: run ball drop game
+                    break;
+            }
+        }
     }
+
+    public void chooseDifficulty(){
+        int action = 0;
+        while (action != buttonsFrontPage.size()) {// the quit action is the last action
+            action = showGames();
+
+            switch (action) {
+                case 1: //Easy
+                    //todo: run snake game
+                    break;
+                case 2: //Medium
+                    //todo: run Brick breaker game
+                    break;
+                case 3: //Hard
+                    //todo: run ball drop game
+                    break;
+            }
+        }
+    }
+
 }
