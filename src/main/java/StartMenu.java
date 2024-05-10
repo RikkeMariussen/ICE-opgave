@@ -77,18 +77,28 @@ public class StartMenu {
             switch (action) {
                 case 1: //Snake
                     //todo: run snake game
+                    butt1.check_click(); //Checks if the buttons was clicked by the mouse
+                    nextStep();
                     break;
                 case 2: //Brick Breaker
                     //todo: run Brick breaker game
+                    butt2.check_click(); //Checks if the buttons was clicked by the mouse
+                    nextStep();
                     break;
                 case 3: //Ball drop
                     //todo: run ball drop game
+                    butt3.check_click(); //Checks if the buttons was clicked by the mouse
+                    nextStep();
                     break;
                 case 4: //PacMan
                     //todo: run PacMan game
+                    butt4.check_click(); //Checks if the buttons was clicked by the mouse
+                    nextStep();
                     break;
                 case 5: //Next Page
                     //todo: make it so it shows 4 new games
+                    butt5.check_click(); //Checks if the buttons was clicked by the mouse
+                    nextStep();
                     break;
             }
         }
@@ -97,7 +107,7 @@ public class StartMenu {
     public void nextStep(){
         int action = 0;
         while (action != buttonGameOption.size()) {// the quit action is the last action
-            action = showGames();
+            action = showOptions();
 
             switch (action) {
                 case 1: //Start the game/choose difficulty
@@ -107,7 +117,7 @@ public class StartMenu {
                     //todo: call the method for seeing the high scores
                     break;
                 case 3: //Go back to main menu
-                    //todo: run ball drop game
+                    runDialog();
                     break;
             }
         }
@@ -115,18 +125,24 @@ public class StartMenu {
 
     public void chooseDifficulty(){
         int action = 0;
-        while (action != buttonsFrontPage.size()) {// the quit action is the last action
-            action = showGames();
+        while (action != buttonsDifficulties.size()) {// the quit action is the last action
+            action = showDifficulties();
 
             switch (action) {
                 case 1: //Easy
-                    //todo: run snake game
+                    //todo: run game on easy
+                    easy.check_click();
                     break;
                 case 2: //Medium
-                    //todo: run Brick breaker game
+                    //todo: run game on medium
+                    medium.check_click();
                     break;
                 case 3: //Hard
-                    //todo: run ball drop game
+                    //todo: run game on hard
+                    hard.check_click();
+                    break;
+                case 4: // Go back to main menu
+                    runDialog();
                     break;
             }
         }
