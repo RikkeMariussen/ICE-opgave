@@ -77,6 +77,7 @@ class GUI{
 }
 class TextUI{
 - Scanner scanner
++ void displayList(ArrayList<String> list)
 + void displayList(ArrayList<String> list, String msg)
 + String promptText(String msg)
 + boolean promptBinary(String msg, String accept, String reject)
@@ -85,6 +86,17 @@ class TextUI{
 + static void displayMsg(String s)
 }
 class FileIO{
+- ArrayList<String> gameList
+- String highScorePath
++ ArrayList<String[]> getGameHighScore(String gameTitle)
++ void loadHighScoreCSV()
+- void loadFromCSV()
++ void saveHighScore(String gameTitle, int score, String playerName)
+- void saveGameHighScore(String gameTitle, int score, String playerName)
+- List<String> modifyScore(String gameTitle, int score, String playerName, List<String> gameData)
+- List<String> isGamePresent(List<String> data, String gameTitle)
+
+
 }
 class Input{
 }
