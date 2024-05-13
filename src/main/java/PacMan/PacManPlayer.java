@@ -66,7 +66,6 @@ public class PacManPlayer {
                 @Override
                 public void run() {
                     god = false;
-                    System.out.println("Boolean set to false after 10 seconds.");
                 }
             }, 10000);
             drawPacMan();
