@@ -7,6 +7,7 @@ public class Main extends PApplet{
     Cherry cherry = new Cherry(this);
     Cheese cheese = new Cheese(this);
     PacManPlayer pacManPlayer = new PacManPlayer(this,3,9,9,false);
+    Highscore highscore = new Highscore(this,0);
 
 
     public void settings(){
@@ -15,7 +16,8 @@ public class Main extends PApplet{
 
     public void setup() {
         PacManGame.populateMap();
-        //PacManGame.printMap();
+        highscore.setCurrentAmountOfCheese();
+
     }
     public void draw(){
         map.createMap();
@@ -23,6 +25,8 @@ public class Main extends PApplet{
         cheese.spawnCheese();
         pacManPlayer.movePacMan();
         pacManPlayer.drawPacMan();
+        highscore.checkScore();
+        highscore.drawScore();
 
     }
 

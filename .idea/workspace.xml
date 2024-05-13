@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="PacMan movement" />
+    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="PacMan movement">
+      <change afterPath="$PROJECT_DIR$/src/main/java/PacMan/Highscore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Cheese.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Cheese.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,6 +95,8 @@
       <workItem from="1715155520521" duration="15359000" />
       <workItem from="1715215370777" duration="317000" />
       <workItem from="1715249636478" duration="12211000" />
+      <workItem from="1715359930311" duration="1851000" />
+      <workItem from="1715579389887" duration="4725000" />
     </task>
     <task id="LOCAL-00001" summary="PacMan movement">
       <option name="closed" value="true" />

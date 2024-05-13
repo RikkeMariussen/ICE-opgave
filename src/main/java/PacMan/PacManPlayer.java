@@ -49,7 +49,8 @@ public class PacManPlayer {
             //System.out.println(" ");
             //PacManGame.printMap();
         } else {
-            // System.out.println("We didn't move maaaaaan");
+             //System.out.println("We didn't move maaaaaan");
+            return;
         }
 
         parent.keyPressed = false;
