@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 public class PacManPlayer {
 
-    private static boolean god;
+    private boolean god;
     private PApplet parent;
     private int hp;
     private Score score;
