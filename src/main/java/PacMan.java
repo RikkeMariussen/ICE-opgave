@@ -43,4 +43,14 @@ public class PacMan extends AGames{
     public String lives() {
         return null;
     }
+
+    @Override
+    public void updateGame() {
+
+    }
+
+    @Override
+    public void displayGame() {
+
+    }
 }

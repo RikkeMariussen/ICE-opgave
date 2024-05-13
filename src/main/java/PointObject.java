@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 
-public class PointObject extends PApplet {
+public class PointObject {
 
     private PApplet parent;
     private int x;
@@ -22,15 +22,15 @@ public class PointObject extends PApplet {
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
         this.color = color;
-        this.speed = random(minSpeed, maxSpeed);
+        this.speed = parent.random(minSpeed, maxSpeed);
 
     }
 
 
     //Methods for displaying the point objects
     public void displayRoundObject() {
-        fill(color);
-        ellipse(x, y, w, h);
+        parent.fill(color);
+        parent.ellipse(x, y, w, h);
     }
 
 
@@ -51,5 +51,21 @@ public class PointObject extends PApplet {
     public float getSpeed() {
         return speed;
     }
+    public boolean isCaught(int snakeX, int snakeY) {
+        float distance = PApplet.dist(snakeX, snakeY, x, y);
+        return distance < w / 2;  // Assuming the snake's head is about the same width as the apple
+    }
 
+    public void resetPosition() {
+        this.x = (int)(parent.random(parent.width));
+        this.y = (int)(parent.random(parent.height));
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void incrementScore() {
+        score++;
+    }
 }

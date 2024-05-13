@@ -6,7 +6,7 @@ public class StartMenu extends PApplet{
     GUI gui = new GUI();
     FileIO fileIO;
     GamesButton gameButton;
-    IGames snake = new Snake();
+    IGames snake = new Snake(this);
     //IGames brickBreaker = new BrickBreaker(); virker ikke grundet forket extension
     //IGames ballDrop = new BallDrop(); virker ikke grundet forket extension
     IGames pacman = new PacMan();
@@ -218,11 +218,11 @@ public class StartMenu extends PApplet{
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake();
+                    snake = new Snake(this);
                     snake.playGame();
                 }
-                //snake.updateGame();
-                //snake.displayGame();
+                snake.updateGame();
+                snake.displayGame();
                 break;
 
             case BRICKBREAKER:
@@ -249,8 +249,8 @@ public class StartMenu extends PApplet{
 
             case PACMAN:
                 if (pacman == null) {
-                    pacman = new Snake();
-                    pacman.playGame();
+                    //pacman = new Pacman();
+                    //pacman.playGame();
                 }
                 //pacman.updateGame();
                 //snake.displayGame();
