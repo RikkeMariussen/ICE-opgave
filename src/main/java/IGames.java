@@ -8,4 +8,8 @@ public interface IGames {
     String youDied();
     String difficulties();
     String lives();
+
+    void updateGame();
+
+    void displayGame();
 }
