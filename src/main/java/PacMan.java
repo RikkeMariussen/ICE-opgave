@@ -1,4 +1,4 @@
-public class PacMan extends AGames{
+public class PacMan extends AGames {
     @Override
     public String getTitle() {
         return null;
@@ -42,5 +42,11 @@ public class PacMan extends AGames{
     @Override
     public String lives() {
         return null;
+    }
+
+    public void updateGame() {
+    }
+
+    public void displayGame() {
     }
 }

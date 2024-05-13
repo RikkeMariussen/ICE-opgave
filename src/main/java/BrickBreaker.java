@@ -95,8 +95,8 @@ public class BrickBreaker extends PApplet {
 
     PlayerPlate playerPlate = new PlayerPlate(this, width / 2, height + 670, 80, 20);
 
-    public void draw() {
-        background(0);
+    public void brickBreakerDraw() {
+       // background(0);
         if (!gameOver) {
             drawGame();
         } else {
@@ -201,7 +201,9 @@ public class BrickBreaker extends PApplet {
         text(text, x, y);
     }
 
+    public void updateGame(){}
 
+    public void displayGame(){}
     public static void main(String[] args) {
         PApplet.main("BrickBreaker");
     }
