@@ -10,6 +10,7 @@ public class Bricks {
     private int height;
     private int color;
     private int durability;
+    private int initialDurability;
 
 
     public Bricks(PApplet brick, int brickX, int brickY, int width, int height, int color, int durability) {
@@ -20,6 +21,7 @@ public class Bricks {
         this.height = height;
         this.color = color;
         this.durability = durability;
+        initialDurability = durability;
     }
 
     public void display() {
@@ -70,5 +72,8 @@ public class Bricks {
     }
     public int getColor() {
         return color;
+    }
+    public void reset() {
+        durability = initialDurability;
     }
 }
