@@ -1,24 +1,26 @@
 import processing.core.PApplet;
 import processing.core.PVector;
-import processing.core.*;
-
-import java.awt.*;
 
 public class Snake extends AGames {
     private PApplet parent;
     private SnakeObject snake;
     private PointObject apple;
+    private int snakeScore;
 
     public Snake(PApplet parent) {
         this.parent = parent;
         snake = new SnakeObject();
         snake.addSegment(20, 20);
-        apple = new PointObject(parent, 100, 100, 10, 10, 0, 0, parent.color(255, 0, 0));
+        apple = new PointObject(parent, 100, 100, 15, 15, 0, 0, parent.color(255, 0, 0));
     }
     @Override
     public void updateGame() {
         snake.move();
         checkCollisions();
+        keyPressed();
+        //if (isCaught((int) snake.getHead().x,(int)snake.getHead().y)){
+        //    apple
+        //}
     }
 
     @Override
@@ -29,15 +31,31 @@ public class Snake extends AGames {
             parent.rect(segment.x, segment.y, 10, 10);
         }
         apple.displayRoundObject();
+
     }
+
 
     private void checkCollisions() {
         PVector head = snake.getSegments().getFirst();
-        if (apple.isCaught((int)head.x, (int)head.y)) {
-            apple.incrementScore();
-            apple.resetPosition();  // Reset apple position
+        if (isCaught((int)head.x, (int)head.y)) {
+            incrementScore();
+            resetPosition();  // Reset apple position
             snake.addSegment((int)head.x, (int)head.y);  // Grow the snake
         }
+    }
+
+    public boolean isCaught(int snakeX, int snakeY) {
+        float distance = PApplet.dist(snakeX, snakeY, apple.getX(), apple.getY());
+        return distance < (float) apple.getW() / 2;  // Assuming the snake's head is about the same width as the apple
+    }
+
+    public void resetPosition() {
+        //apple.setX() = (int)(parent.random(parent.width));
+        //this.y = (int)(parent.random(parent.height));
+    }
+
+    public void incrementScore() {
+        snakeScore++;
     }
 
     @Override
@@ -62,7 +80,11 @@ public class Snake extends AGames {
 
     @Override
     public String keyPressed() {
-        return "";
+        if (parent.keyCode == parent.UP) snake.setDir(0, -1);
+        else if (parent.keyCode == parent.DOWN) snake.setDir(0, 1);
+        else if (parent.keyCode == parent.LEFT) snake.setDir(-1, 0);
+        else if (parent.keyCode == parent.RIGHT) snake.setDir(1, 0);
+        return null;
     }
 
     @Override

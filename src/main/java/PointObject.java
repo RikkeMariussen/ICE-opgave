@@ -1,9 +1,11 @@
 import processing.core.PApplet;
 
-public class PointObject {
+public class PointObject extends PApplet {
 
     private PApplet parent;
+
     private int x;
+
     private int y;
     private int w;
     private int h;
@@ -12,7 +14,6 @@ public class PointObject {
     private float maxSpeed;
     private int color;
     protected int score;
-
     public PointObject(PApplet parent, int x, int y, int w, int h, float minSpeed, float maxSpeed, int color) {
         this.parent = parent;
         this.x = x;
@@ -22,50 +23,65 @@ public class PointObject {
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
         this.color = color;
-        this.speed = parent.random(minSpeed, maxSpeed);
+        this.speed = random(minSpeed, maxSpeed);
 
     }
 
 
     //Methods for displaying the point objects
+
     public void displayRoundObject() {
         parent.fill(color);
         parent.ellipse(x, y, w, h);
     }
 
-
     //Methods for catching the point objects
+
     public void catchRoundObject(){
-        speed = 0;
+        y = -10;
+        x = (int)random(0,800);
+        if(speed < 7) {
+            speed++;
+        }else{ speed--;}
         score++;
     }
-
+    public void updateRoundObject() {
+        y += speed;
+    }
 
     //Setter
+
     public void setSpeed(float speed) {
         this.speed += speed;
     }
 
-
     //Getter
+
     public float getSpeed() {
         return speed;
     }
-    public boolean isCaught(int snakeX, int snakeY) {
-        float distance = PApplet.dist(snakeX, snakeY, x, y);
-        return distance < w / 2;  // Assuming the snake's head is about the same width as the apple
+
+    public int getX() {
+        return x;
     }
 
-    public void resetPosition() {
-        this.x = (int)(parent.random(parent.width));
-        this.y = (int)(parent.random(parent.height));
+    public int getY() {
+        return y;
     }
 
-    public int getScore() {
-        return score;
+    public void setX(int newX) {
+        this.x = newX;
     }
 
-    public void incrementScore() {
-        score++;
+    public void setY(int newY) {
+        this.y = newY;
+    }
+
+    public int getW() {
+        return w;
+    }
+
+    public int getH() {
+        return h;
     }
 }
