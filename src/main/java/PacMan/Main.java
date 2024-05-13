@@ -6,7 +6,7 @@ public class Main extends PApplet{
     Map map = new Map(this);
     Cherry cherry = new Cherry(this);
     Cheese cheese = new Cheese(this);
-    PacManPlayer pacManPlayer = new PacManPlayer(this,3,9,9,false);
+    PacManPlayer pacManPlayer = new PacManPlayer(this,3,9,9,false,new Score(this,0));
     Score score = new Score(this,0);
 
 
