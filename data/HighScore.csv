@@ -1,20 +1,40 @@
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Space Invaders; 0; ...
-Pacman; 9999; Daniel
-Pacman; 7000; Daniel
-Pacman; 2940; Christoffer
-Pacman; 850; Rikke
-Pacman; 600; Lasse
-Pacman; 400; Lasse
-Pacman; 190; Christoffer
-Pacman; 100; Rikke
-Pacman; 0; ...
-Pacman; 0; ...
+Snake; 450; Lasse
+Snake; 400; Rikke
+Snake; 350; Christoffer
+Snake; 300; Daniel
+Snake; 250; Lukas
+Snake; 200; Lasse
+Snake; 150; Rikke
+Snake; 100; Christoffer
+Snake; 50; Daniel
+Snake; 25; Lukas
+Pacman; 300; Lasse
+Pacman; 275; Rikke
+Pacman; 250; Christoffer
+Pacman; 225; Daniel
+Pacman; 200; Lukas
+Pacman; 175; Lasse
+Pacman; 150; Rikke
+Pacman; 125; Christoffer
+Pacman; 100; Daniel
+Pacman; 75; Lukas
+BrickBreaker; 500; Christoffer
+BrickBreaker; 450; Daniel
+BrickBreaker; 400; Lasse
+BrickBreaker; 350; Rikke
+BrickBreaker; 300; Lukas
+BrickBreaker; 250; Christoffer
+BrickBreaker; 200; Daniel
+BrickBreaker; 150; Lasse
+BrickBreaker; 100; Rikke
+BrickBreaker; 50; Lukas
+BallDrop; 600; Daniel
+BallDrop; 550; Lukas
+BallDrop; 500; Lasse
+BallDrop; 450; Rikke
+BallDrop; 400; Christoffer
+BallDrop; 350; Daniel
+BallDrop; 300; Lukas
+BallDrop; 250; Lasse
+BallDrop; 200; Rikke
+BallDrop; 150; Christoffer

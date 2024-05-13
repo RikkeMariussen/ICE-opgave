@@ -11,7 +11,7 @@ public class FileIO {
     public ArrayList<String[]> getGameHighScore(String gameTitle) {
         ArrayList<String[]> data = new ArrayList<>();
         for (String[] element : gameList) {
-            if (element[0].equals(gameTitle)) {
+            if (element[0].equalsIgnoreCase(gameTitle)) {
                 data.add(element);
             }
         }
@@ -63,7 +63,7 @@ public class FileIO {
 
             // Læser hele filen igennem
             while ((line = br.readLine()) != null) {
-                if(line.split(";")[0].trim().equals(gameTitle)){
+                if(line.split(";")[0].trim().equalsIgnoreCase(gameTitle)){
                     highScoreToEdit.add(line);
                     gamePresent = true;
                 }else{
@@ -147,7 +147,7 @@ public class FileIO {
 
     private List<String> isGamePresent(List<String> data, String gameTitle){
         for(int i = 0; i < data.size(); i++){
-            if(data.get(i).split(";")[0].trim().equals(gameTitle)){
+            if(data.get(i).split(";")[0].trim().equalsIgnoreCase(gameTitle)){
                 return data;
             }
         }

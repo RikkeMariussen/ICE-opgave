@@ -2,30 +2,29 @@ import processing.core.PApplet;
 
 public class GUI extends PApplet {
 
-    protected final float screen = 800;
 
-    public void startScreen(){
-        fill(0);
-        textSize(25);
-        textAlign(CENTER);
-        text("Welcome to BoredomGames!",screen/2,screen/2);
-        text("Choose a game",screen/2,screen/3);
+    public void startScreen(int height, int width, PApplet app) {
+        app.fill(0);
+        app.textSize(25);
+        app.textAlign(CENTER);
+        app.text("Welcome to BoredomGames!", (float) width / 2, (float) height / 3);
+        //app.text("Choose a game", (float) width / 2, (float) height / 2);
+        app.textSize(16);
+        app.text("(click anywhere to continue)", (float) width / 2, (float) height / 2);
     }
 
-    public void displayMsg(String s){
-        fill(0);
-        textSize(25);
-        textAlign(CENTER);
-        text(s,screen/2,screen/2);
+    public void displayMsg(PApplet app, String s, int height, int width) {
+        app.fill(0);
+        app.textSize(25);
+        app.textAlign(CENTER);
+        app.text(s, (float) width / 2, (float) height / 2);
     }
 
 
-
-    public void youLose(String s){
-        fill(0);
-        textSize(25);
-        textAlign(CENTER);
-        text(s,screen/2,screen/2);
+    public void youLose(PApplet app, String s, int height, int width) {
+        app.fill(0);
+        app.textSize(25);
+        app.textAlign(CENTER);
+        app.text(s, (float) width / 2, (float) height / 2);
     }
-
 }
