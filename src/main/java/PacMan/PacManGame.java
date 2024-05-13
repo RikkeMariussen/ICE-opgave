@@ -26,6 +26,12 @@ public class PacManGame {
             System.out.println();
         }
     }
+    public static void PopulateMapCherry(){
+        map[1][1] = CHERRY;
+        map[1][18] = CHERRY;
+        map[18][1] = CHERRY;
+        map[18][18] = CHERRY;
+    }
     public static void clearGhostPit(){
         map[8][9] = EMPTY;
         map[8][10] = EMPTY;

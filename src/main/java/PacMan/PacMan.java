@@ -4,7 +4,7 @@ import MainPack.AGames;
 public class PacMan extends AGames {
     @Override
     public String getTitle() {
-        return null;
+        return "PacMan";
     }
 
     @Override

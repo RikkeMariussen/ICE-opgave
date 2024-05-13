@@ -21,6 +21,11 @@ public class PacManPlayer {
     }
 
     public void drawPacMan() {
+        if (god == true){
+            parent.fill(111);
+            PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
+            parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55, 55);
+        }
         PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
         parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55, 55);
     }
@@ -46,16 +51,24 @@ public class PacManPlayer {
             xPos = nextX;
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
             drawPacMan();
-            //System.out.println(" ");
-            //PacManGame.printMap();
-        } else {
-             //System.out.println("We didn't move maaaaaan");
+            System.out.println(" ");
+            PacManGame.printMap();
+        } else if(PacManGame.map[nextY][nextX] == PacManGame.CHERRY) {
+            PacManGame.map[yPos][xPos] = PacManGame.EMPTY;
+            yPos = nextY;
+            xPos = nextX;
+            PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
+            god = true;
+            drawPacMan();
+            System.out.println(" ");
+            PacManGame.printMap();
+
+        }else {
             return;
         }
 
         parent.keyPressed = false;
     }
-
 
     public void setHP ( int HP){
             this.HP = HP;
