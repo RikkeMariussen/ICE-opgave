@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="Score implementation.">
+    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="Removed sout.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MainPack/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Cherry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Cherry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Highscore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Score.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacMan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacManGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacManGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,7 +93,7 @@
       <workItem from="1715215370777" duration="317000" />
       <workItem from="1715249636478" duration="12211000" />
       <workItem from="1715359930311" duration="1851000" />
-      <workItem from="1715579389887" duration="12112000" />
+      <workItem from="1715579389887" duration="13428000" />
     </task>
     <task id="LOCAL-00001" summary="PacMan movement">
       <option name="closed" value="true" />
@@ -117,7 +111,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715584287644</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Eat Cherries">
+      <option name="closed" value="true" />
+      <created>1715593572445</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715593572445</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removed sout.">
+      <option name="closed" value="true" />
+      <created>1715593607249</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715593607249</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +137,8 @@
     <MESSAGE value="Start PacMan" />
     <MESSAGE value="PacMan movement" />
     <MESSAGE value="Score implementation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Score implementation." />
+    <MESSAGE value="Eat Cherries" />
+    <MESSAGE value="Removed sout." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed sout." />
   </component>
 </project>

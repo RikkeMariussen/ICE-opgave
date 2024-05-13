@@ -1,16 +1,19 @@
 package PacMan;
 
 import processing.core.PApplet;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PacManPlayer {
 
-    private boolean god;
+    private static boolean god;
     private PApplet parent;
     private int hp;
     int start = 9;
     private int xPos = start;
     private int yPos = start;
     private int HP;
+    Timer timer = new Timer();
 
     public PacManPlayer(PApplet parent, int hp, int xPos, int yPos,boolean god) {
         this.parent = parent;
@@ -21,7 +24,7 @@ public class PacManPlayer {
     }
 
     public void drawPacMan() {
-        if (god == true){
+        if (god){
             parent.fill(111);
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
             parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55, 55);
@@ -59,6 +62,13 @@ public class PacManPlayer {
             xPos = nextX;
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
             god = true;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    god = false;
+                    System.out.println("Boolean set to false after 10 seconds.");
+                }
+            }, 10000);
             drawPacMan();
             //System.out.println(" ");
             //PacManGame.printMap();
