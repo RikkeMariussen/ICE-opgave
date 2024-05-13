@@ -2,13 +2,14 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
-public class StartMenu extends PApplet{
+public class StartMenu extends PApplet {
     GUI gui = new GUI();
     FileIO fileIO;
     GamesButton gameButton;
     IGames snake = new Snake();
-    //IGames brickBreaker = new BrickBreaker(); virker ikke grundet forket extension
-    //IGames ballDrop = new BallDrop(); virker ikke grundet forket extension
+    //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
+    IGames ballDrop;
+
     IGames pacman = new PacMan();
 
     ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
@@ -32,7 +33,15 @@ public class StartMenu extends PApplet{
     }
 
     enum Difficulty {
-        NONE, EASY, MEDIUM, HARD, DEFAULT
+        NONE(0), EASY(1), MEDIUM(2), HARD(3), DEFAULT(4);
+        private final int value;
+        Difficulty(int value){
+            this.value = value;
+        }
+
+        public int getValue(){
+            return value;
+        }
     }
 
     // Deklarering af "state" variablerne
@@ -41,29 +50,32 @@ public class StartMenu extends PApplet{
     Difficulty selectedDifficulty;
 
 
+    //Games
+    BrickBreaker brickBreaker = new BrickBreaker();
 
-    public void settings(){
-        size(800,600);
+
+    public void settings() {
+        size(800, 600);
         currentState = AppState.START_MENU;
     }
 
-    public void setup(){
+    public void setup() {
         this.fileIO = new FileIO();
         fileIO.loadHighScoreCSV();
 
         //buttons flyttet hertil for at kunne bruge width og height til placering
-        butt1 = new GamesButton(250, 100, (float) (width * 3) /10 , (float) (height * 2) /5, "Snake", this);
-        butt2 = new GamesButton(250, 100, (float) (width * 7) /10, (float) (height * 2) /5, "Brick Breaker", this);
-        butt3 = new GamesButton(250, 100, (float) (width * 3) /10, (float) (height * 3) /5, "Ball drop", this);
-        butt4 = new GamesButton(250, 100, (float) (width * 7) /10, (float) (height * 3) /5, "PacMan", this);
-        butt5 = new GamesButton(250, 100, (float) (width * 5) /10, (float) (height * 4) /5, "NEXT PAGE", this);
+        butt1 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 2) / 5, "Snake", this);
+        butt2 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 2) / 5, "Brick Breaker", this);
+        butt3 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 3) / 5, "Ball drop", this);
+        butt4 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 3) / 5, "PacMan", this);
+        butt5 = new GamesButton(250, 100, (float) (width * 5) / 10, (float) (height * 4) / 5, "NEXT PAGE", this);
 
-        playGame = new GamesButton(250, 100, (float) width/2, 160, "Choose difficulty", this);
-        highScore = new GamesButton(250, 100, (float) width/2, 310, "See high scores", this);
-        goBack = new GamesButton(250, 100, (float) width/2, 460, "Go back to the main menu", this);
-        easy = new GamesButton(250, 100, (float) width*3/10, (float) (height * 1) /3, "Easy", this);
-        medium = new GamesButton(250, 100, (float) width*7/10, (float) (height * 1) /3, "Medium", this);
-        hard = new GamesButton(250, 100, (float) width/2, (float) (height * 2) /3, "Hard", this);
+        playGame = new GamesButton(250, 100, (float) width / 2, 160, "Choose difficulty", this);
+        highScore = new GamesButton(250, 100, (float) width / 2, 310, "See high scores", this);
+        goBack = new GamesButton(250, 100, (float) width / 2, 460, "Go back to the main menu", this);
+        easy = new GamesButton(250, 100, (float) width * 3 / 10, (float) (height * 1) / 3, "Easy", this);
+        medium = new GamesButton(250, 100, (float) width * 7 / 10, (float) (height * 1) / 3, "Medium", this);
+        hard = new GamesButton(250, 100, (float) width / 2, (float) (height * 2) / 3, "Hard", this);
         goBack2 = new GamesButton(250, 100, 525, 310, "Go back to the main menu", this);
 
         moreGamesComingSoon = new GamesButton(250, 250, 375, 160, "More games, are coming soon", this);
@@ -85,10 +97,17 @@ public class StartMenu extends PApplet{
         buttonsDifficulties.add(medium);
         buttonsDifficulties.add(hard);
         buttonsDifficulties.add(goBack2);
+
+        // ballDrop = new BallDrop(this, width, height); //virker ikke grundet forket extension
     }
 
     public void draw() {
-        background(100);
+
+        if(currentState != AppState.GAMING){
+            background(100);
+        }
+
+
         switch (currentState) {
             case START_MENU:
                 runDialog();
@@ -137,28 +156,33 @@ public class StartMenu extends PApplet{
     }
 
     private void checkGameSelection() {
+            //Snake
         if (butt1.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.SNAKE;
 
+            //This is BrickBreaker
         } else if (butt2.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.BRICKBREAKER;
 
+            //Ball Drop
         } else if (butt3.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.BALLDROP;
 
+            //PacMan
         } else if (butt4.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.PACMAN;
 
+            //Next page
         } else if (butt5.check_click()) {
             currentState = AppState.GAME_OPTIONS;
         }
     }
 
-    private void checkOptionSelection(){
+    private void checkOptionSelection() {
         if (playGame.check_click()) {
             currentState = AppState.DIFFICULTY_SELECTION;
 
@@ -171,7 +195,7 @@ public class StartMenu extends PApplet{
         }
     }
 
-    private void checkDifficultySelection(){
+    private void checkDifficultySelection() {
         if (easy.check_click()) {
             selectedDifficulty = Difficulty.EASY;
             currentState = AppState.GAMING;
@@ -187,7 +211,7 @@ public class StartMenu extends PApplet{
         }
     }
 
-    private void checkHighScoreSelection(){
+    private void checkHighScoreSelection() {
         if (goBack.check_click()) {
             currentState = AppState.GAME_OPTIONS;
         }
@@ -237,15 +261,13 @@ public class StartMenu extends PApplet{
                 */
 
             case BALLDROP:
-                /*
-                if (balldrop == null) {
-                    balldrop = new Snake();
-                    balldrop.playGame();
+                if (ballDrop == null) {
+                    ballDrop = new BallDrop(this, width,height, selectedDifficulty.getValue());
+                    ballDrop.playGame();
                 }
-                //balldrop.updateGame();
-                //balldrop.displayGame();
+                ballDrop.displayGame();
+                ballDrop.updateGame();
                 break;
-                */
 
             case PACMAN:
                 if (pacman == null) {
