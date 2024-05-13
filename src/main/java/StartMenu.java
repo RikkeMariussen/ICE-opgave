@@ -281,7 +281,7 @@ public class StartMenu extends PApplet {
     }
 
 
-    private void endCurrentGame() {
+    public void endCurrentGame() {
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;
