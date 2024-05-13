@@ -51,8 +51,8 @@ public class PacManPlayer {
             xPos = nextX;
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
             drawPacMan();
-            System.out.println(" ");
-            PacManGame.printMap();
+            //System.out.println(" ");
+            //PacManGame.printMap();
         } else if(PacManGame.map[nextY][nextX] == PacManGame.CHERRY) {
             PacManGame.map[yPos][xPos] = PacManGame.EMPTY;
             yPos = nextY;
@@ -60,8 +60,8 @@ public class PacManPlayer {
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
             god = true;
             drawPacMan();
-            System.out.println(" ");
-            PacManGame.printMap();
+            //System.out.println(" ");
+            //PacManGame.printMap();
 
         }else {
             return;
