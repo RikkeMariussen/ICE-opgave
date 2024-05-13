@@ -54,6 +54,7 @@ public class BrickBreaker extends PApplet {
     Bricks[] bricks;
     int numBricks = 50;
     int score = 0;
+    boolean gameOver = false;
 
     public void settings() {
         size(800, 800);
@@ -81,10 +82,10 @@ public class BrickBreaker extends PApplet {
 
             // Check if it's the 3rd row
             if (i / 10 == 2) {
-                // Check if it's the 3rd or 7th brick
-                if (i % 10 == 2 || i % 10 == 6) {
+                // Check if it's the 3rd or 8th brick
+                if (i % 10 == 2 || i % 10 == 7) {
                     brickColor = color(255, 165, 0); // Orange color
-                    durability = 2; // Double durability
+                    durability = 3; // Double durability
                 }
             }
 
@@ -92,11 +93,18 @@ public class BrickBreaker extends PApplet {
         }
     }
 
-
     PlayerPlate playerPlate = new PlayerPlate(this, width / 2, height + 670, 80, 20);
 
     public void draw() {
         background(0);
+        if (!gameOver) {
+            drawGame();
+        } else {
+            drawGameOverScreen();
+        }
+    }
+
+    public void drawGame() {
         drawText("Score: " + score, width / 2, height - 775);
         playerPlate.display();
         playerPlate.update();
@@ -112,6 +120,9 @@ public class BrickBreaker extends PApplet {
         if (ballPosition.y < ballRadius) {
             // Reverse y-component of velocity
             ballVelocity.y *= -1;
+        }
+        if (ballPosition.y > height + ballRadius) {
+            gameOver = true; // Set gameOver to true if the ball goes below the bottom of the screen
         }
         // Check collision with the player plate
         if (ballPosition.y + ballRadius >= playerPlate.getY() &&
@@ -134,10 +145,9 @@ public class BrickBreaker extends PApplet {
 
                 // Calculate the direction vector from the center of the brick to the ball
                 PVector direction = PVector.sub(ballPosition, new PVector(bricks[i].getBrickX(), bricks[i].getBrickY()));
-                // Introduce randomness to the direction vector
-                direction.rotate(random(degrees(-25), degrees(25))); // Rotate the direction vector by a random angle between -45 and 45 degrees
+                direction.rotate(random(degrees(-15), degrees(15)));
 
-                // Reflect the velocity vector symmetrically with respect to the direction vector
+                // Reflects ball backwards depending on direction hit
                 ballVelocity = PVector.sub(ballVelocity, PVector.mult(PVector.mult(direction, 2 * ballVelocity.dot(direction) / direction.magSq()), 1));
 
                 bricks[i].decreaseDurability();
@@ -148,16 +158,40 @@ public class BrickBreaker extends PApplet {
                 break;
             }
         }
-
-// Check if collision was detected with any brick, if not reset the variable.
+        // Check collision with brick
         if (!collisionDetected) {
             collisionDetected = false;
         }
-
-
-        // Draw the ball
         fill(0, 150, 255);
         ellipse(ballPosition.x, ballPosition.y, ballRadius * 2, ballRadius * 2);
+    }
+
+
+    void drawGameOverScreen() {
+        fill(255, 0, 0);
+        textSize(50);
+        textAlign(CENTER, CENTER);
+        text("Game Over", width / 2, height / 2);
+        textSize(32);
+        text("Press 'R' to restart", width / 2, height / 2 + 50);
+        textSize(60);
+        text("Your score: " + score, width / 2, height / 2 + -100);
+    }
+
+    public void keyPressed() {
+        if (key == 'r' || key == 'R') {
+            restartGame();
+        }
+    }
+
+    void restartGame() {
+        score = 0;
+        ballPosition = new PVector(width / 2, height - 50);
+        ballVelocity = new PVector(0, -5);
+        for (int i = 0; i < numBricks; i++) {
+            bricks[i].reset();
+        }
+        gameOver = false;
     }
 
     void drawText(String text, float x, float y) {
