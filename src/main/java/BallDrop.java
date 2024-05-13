@@ -89,7 +89,6 @@ public class BallDrop extends AGames {
         parent.text("Game Over", parent.width / 2, parent.height / 2);
         parent.textSize(32);
         parent.text("Press 'R' to restart \n or ENTER to go back to the menu", parent.width / 2, parent.height / 2 + 75);
-
         parent.textSize(60);
         parent.text("Your score: " + score, parent.width / 2, parent.height / 2 + -100);
         keyPressed();
@@ -181,7 +180,9 @@ public class BallDrop extends AGames {
 
         if (parent.key == 'r' || parent.key == 'R') {
             restartGame();
-        } else if(parent.keyCode == parent.ENTER);
+        } else if(parent.keyCode == parent.ENTER){
+            //StartMenu.endCurrentGame();
+        }
 
         return null;
     }
