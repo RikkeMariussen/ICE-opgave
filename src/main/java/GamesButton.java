@@ -4,8 +4,8 @@ import processing.core.PVector;
 
 public class GamesButton {
     private PApplet app;
-    PVector buttonSize, buttonLocation, defaultLocation;
-    String nameOfGame, defaultName;
+    protected PVector buttonSize, buttonLocation, defaultLocation;
+    protected String nameOfGame, defaultName;
 
     GamesButton(float w, float h, float x, float y, String z, PApplet app) {
         this.app = app;
@@ -18,7 +18,7 @@ public class GamesButton {
         app.rectMode(PConstants.CENTER); // This makes position calculations easier
     }
 
-    void gamesDisplay() {
+    public void gamesDisplay() {
         app.textSize(20);
         app.strokeWeight(7);
         app.fill(255, 255, 50);
