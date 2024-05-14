@@ -1,5 +1,3 @@
-package MainPack;
-
 public interface IGames {
     String getTitle();
     String playGame();

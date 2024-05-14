@@ -180,10 +180,10 @@ startMenu <- IGames
 IGames <|-- AGames
 
 AGames <-- Games
-'MainPack.AGames <|-- Snake
-'MainPack.AGames <|-- BrickBreaker
-'MainPack.AGames <|-- BallDrop
-'MainPack.AGames <|-- PacMan.PacMan
+'AGames <|-- Snake
+'AGames <|-- BrickBreaker
+'AGames <|-- BallDrop
+'AGames <|-- PacMan.PacMan
 
 startMenu <-- Utility
 'startMenu <-- MainPack.GUI

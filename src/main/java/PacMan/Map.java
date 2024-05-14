@@ -11,8 +11,8 @@ public class Map {
         this.parent = parent;
     }
 
-public void setup(){
-    parent.background(0);
+public void setupUp(){
+    parent.background(0,0,0);
     parent.blendMode(parent.REPLACE);
     parent.strokeWeight(3);
     parent.noStroke();
@@ -20,10 +20,11 @@ public void setup(){
     parent.rectMode(parent.CENTER);
 
 
+
 }
 
     public void createMap() {
-        setup();
+        setupUp();
         createBorder();
         createUpperWallSkeleton();
         createLowerWallSkeleton();

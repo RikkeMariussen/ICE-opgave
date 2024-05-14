@@ -4,23 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="Added 10 sec god mode after eating cherry" />
+    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_05_2024_11_34__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_05_2024_11_34__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/Plan/classdiagram.puml" beforeDir="false" afterPath="$PROJECT_DIR$/doc/Plan/classdiagram.puml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/AGames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AGames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/IGames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IGames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/MainPack/TextUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/TextUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Cheese.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Cheese.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Cherry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Cherry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Ghosts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Ghosts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/DefNotMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacMan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacManGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacManGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/PacManPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Score.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="PacManDev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -34,36 +47,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PacMan&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/lukas/OneDrive/Skrivebord/processing-4.3/core/library/core.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "PacManDev2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lukas/Desktop/processing-4.3/core/library/core.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\lukas\OneDrive\Skrivebord\ICE-opgave" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunManager">
-    <configuration name="Run PacMan" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="PacMan.Main" />
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="ICE-opgave" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -86,81 +92,44 @@
       <option name="presentableId" value="Default" />
       <updated>1714993357746</updated>
       <workItem from="1714993358834" duration="3000" />
-      <workItem from="1715155520521" duration="15359000" />
-      <workItem from="1715215370777" duration="317000" />
-      <workItem from="1715249636478" duration="12211000" />
-      <workItem from="1715359930311" duration="1851000" />
-      <workItem from="1715579389887" duration="14819000" />
+      <workItem from="1715674281494" duration="6468000" />
     </task>
-    <task id="LOCAL-00001" summary="PacMan movement">
-      <option name="closed" value="true" />
-      <created>1715356693281</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1715356693281</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Score implementation.">
-      <option name="closed" value="true" />
-      <created>1715584287644</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1715584287644</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Eat Cherries">
-      <option name="closed" value="true" />
-      <created>1715593572445</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1715593572445</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Removed sout.">
-      <option name="closed" value="true" />
-      <created>1715593607249</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1715593607249</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Added 10 sec god mode after eating cherry">
-      <option name="closed" value="true" />
-      <created>1715594666757</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1715594666757</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added 10 sec god mode after eating cherry">
-      <option name="closed" value="true" />
-      <created>1715594680476</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1715594680476</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added 10 sec god mode after eating cherry">
-      <option name="closed" value="true" />
-      <created>1715595806569</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1715595806569</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Start PacMan" />
-    <MESSAGE value="PacMan movement" />
-    <MESSAGE value="Score implementation." />
-    <MESSAGE value="Eat Cherries" />
-    <MESSAGE value="Removed sout." />
-    <MESSAGE value="Added 10 sec god mode after eating cherry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 10 sec god mode after eating cherry" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="PacManDev2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

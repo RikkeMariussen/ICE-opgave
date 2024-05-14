@@ -2,6 +2,7 @@ package PacMan;
 
 import java.util.Arrays;
 
+
 public class PacManGame {
     public static int EMPTY =  0;
     public static int WALL =   1;

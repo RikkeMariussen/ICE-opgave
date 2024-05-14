@@ -4,6 +4,7 @@ import processing.core.PApplet;
 public class Cheese {
     private PApplet parent;
 
+
     public Cheese(PApplet parent) {
         this.parent = parent;
     }
