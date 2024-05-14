@@ -16,5 +16,4 @@ public abstract class AGames implements IGames {
     public abstract String difficulties();
 
     public abstract String lives();
-
 }

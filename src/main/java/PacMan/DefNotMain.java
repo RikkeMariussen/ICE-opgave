@@ -5,7 +5,6 @@ import processing.core.PApplet;
 public class DefNotMain extends PApplet{
     boolean gameStart = true;
 
-
     Map map = new Map(this);
     Cherry cherry = new Cherry(this);
     Cheese cheese = new Cheese(this);

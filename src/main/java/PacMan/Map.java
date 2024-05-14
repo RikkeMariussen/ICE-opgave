@@ -18,9 +18,6 @@ public void setupUp(){
     parent.noStroke();
     parent.fill(135, 206, 250);
     parent.rectMode(parent.CENTER);
-
-
-
 }
 
     public void createMap() {

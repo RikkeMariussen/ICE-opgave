@@ -2,7 +2,6 @@ package PacMan;
 
 import processing.core.PApplet;
 
-
 public class Score {
     private PApplet parent;
     private static int currentAmountOfCheese;
