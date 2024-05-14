@@ -41,11 +41,12 @@ public class StartMenu extends PApplet {
     enum Difficulty {
         NONE(0), EASY(1), MEDIUM(2), HARD(3), DEFAULT(4);
         private final int value;
-        Difficulty(int value){
+
+        Difficulty(int value) {
             this.value = value;
         }
 
-        public int getValue(){
+        public int getValue() {
             return value;
         }
     }
@@ -97,10 +98,12 @@ public class StartMenu extends PApplet {
 
     public void draw() {
 
-        if(currentState != AppState.GAMING){
+        if (currentState != AppState.GAMING) {
             background(100);
         }
-
+        if (currentState != AppState.GAMING && selectedGame == SelectedGame.NONE && selectedDifficulty == Difficulty.NONE) {
+            windowResize(800, 600);
+        }
 
         switch (currentState) {
             case START_MENU:
@@ -150,7 +153,7 @@ public class StartMenu extends PApplet {
     }
 
     private void checkGameSelection() {
-            //Snake
+        //Snake
         if (butt1.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.SNAKE;
@@ -257,7 +260,7 @@ public class StartMenu extends PApplet {
             case BALLDROP:
 
                 if (ballDrop == null) {
-                    ballDrop = new BallDrop(this, width,height, selectedDifficulty.getValue());
+                    ballDrop = new BallDrop(this, width, height, selectedDifficulty.getValue());
                     ballDrop.playGame();
                 }
                 ballDrop.displayGame();
