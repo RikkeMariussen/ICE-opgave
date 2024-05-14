@@ -19,6 +19,7 @@ public class GamesButton {
     }
 
     void gamesDisplay() {
+        app.textSize(20);
         app.strokeWeight(7);
         app.fill(255, 255, 50);
         app.rect(buttonLocation.x, buttonLocation.y, buttonSize.x, buttonSize.y);
@@ -40,13 +41,7 @@ public class GamesButton {
             app.text(nameOfGame, buttonLocation.x, buttonLocation.y);
             app.pop();
 
-
-            //app.fill(200, 200, 50);
-            //app.rect(buttonLocation.x, buttonLocation.y, buttonSize.x, buttonSize.y);
-            //app.fill(0, 0, 0);
-            //app.text("Play?", buttonLocation.x, buttonLocation.y);
             if (app.mousePressed) {
-                //todo: call method for next part
                 return true;
             }
         }else {

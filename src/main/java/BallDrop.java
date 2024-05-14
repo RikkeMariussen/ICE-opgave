@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BallDrop extends AGames {
 
     private PApplet parent;
+    FileIO io;
     GUI gui;
     String name;
     int numberOfPointObject;
@@ -149,8 +150,10 @@ public class BallDrop extends AGames {
 
     public void restartGame() {
         startGame = true;
+        gameOverBallDrop = false;
         score = 0;
-
+        dropBalls.clear();
+        ballDropSettings();
     }
 
     @Override
@@ -160,7 +163,6 @@ public class BallDrop extends AGames {
 
     @Override
     public String playGame() {
-
 
         return null;
     }
@@ -178,12 +180,15 @@ public class BallDrop extends AGames {
     @Override
     public String keyPressed() {
 
-        if (parent.key == 'r' || parent.key == 'R') {
+        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
             restartGame();
         } else if(parent.keyCode == parent.ENTER){
-            //StartMenu.endCurrentGame();
+            parent.keyCode = parent.RETURN;
+            this.gameOverBallDrop = false;
+            this.startGame = true;
+            restartGame();
+            StartMenu.endCurrentGame();
         }
-
         return null;
     }
 

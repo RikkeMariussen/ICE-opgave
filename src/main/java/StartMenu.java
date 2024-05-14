@@ -3,13 +3,19 @@ import processing.core.PApplet;
 import java.util.ArrayList;
 
 public class StartMenu extends PApplet {
+
+    private static AppState currentState = AppState.START_MENU;
+    private static SelectedGame selectedGame = SelectedGame.NONE;
+    private static Difficulty selectedDifficulty = Difficulty.NONE;
+
+
     GUI gui = new GUI();
     FileIO fileIO;
     GamesButton gameButton;
     IGames snake = new Snake();
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
+    BrickBreaker brickBreaker = new BrickBreaker();
     IGames ballDrop;
-
     IGames pacman = new PacMan();
 
     ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
@@ -44,19 +50,8 @@ public class StartMenu extends PApplet {
         }
     }
 
-    // Deklarering af "state" variablerne
-    AppState currentState;
-    SelectedGame selectedGame;
-    Difficulty selectedDifficulty;
-
-
-    //Games
-    BrickBreaker brickBreaker = new BrickBreaker();
-
-
     public void settings() {
         size(800, 600);
-        currentState = AppState.START_MENU;
     }
 
     public void setup() {
@@ -98,7 +93,6 @@ public class StartMenu extends PApplet {
         buttonsDifficulties.add(hard);
         buttonsDifficulties.add(goBack2);
 
-        // ballDrop = new BallDrop(this, width, height); //virker ikke grundet forket extension
     }
 
     public void draw() {
@@ -261,6 +255,7 @@ public class StartMenu extends PApplet {
                 */
 
             case BALLDROP:
+
                 if (ballDrop == null) {
                     ballDrop = new BallDrop(this, width,height, selectedDifficulty.getValue());
                     ballDrop.playGame();
@@ -281,10 +276,11 @@ public class StartMenu extends PApplet {
     }
 
 
-    public void endCurrentGame() {
+    public static synchronized void endCurrentGame() {
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;
+
     }
 
     public void showHighScores(SelectedGame game) {
@@ -298,7 +294,7 @@ public class StartMenu extends PApplet {
         text("High Scores for " + game, (float) width / 2, 10);
         textSize(20);
         for (String[] scoreEntry : scores) {
-            String scoreText = scoreEntry[2] + " - " + scoreEntry[1]; // playerName - score
+            String scoreText = scoreEntry[1] + " - " + scoreEntry[2]; // playerName - score
             text(scoreText, (float) width / 2, y);
             y += 20; // Increment y for the next score
         }
@@ -310,101 +306,4 @@ public class StartMenu extends PApplet {
     public void runDialog() {
         gui.startScreen(height, width, this);
     }
-
-
-
-    /*
-
-    //todo: -----------------------------------------------------------------------------------
-    //todo: -----------------------------------------------------------------------------------
-    //todo: Alle Metoder nedenfor gør ikke noget funktionelt ind til videre (måske unødvendigt)
-    //todo: -----------------------------------------------------------------------------------
-    //todo: -----------------------------------------------------------------------------------
-
-    public void showMoreGamesComingSoon() {
-        moreGamesComingSoon.gamesDisplay();
-    }
-
-
-    public void chooseGame() {
-        int action = 0;
-        while (action != buttonsFrontPage.size()) {// the quit action is the last action
-            action = showGames();
-
-            switch (action) {
-                case 1: //Snake
-                    //todo: run snake game
-                    butt1.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 2: //Brick Breaker
-                    //todo: run Brick breaker game
-                    butt2.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 3: //Ball drop
-                    //todo: run ball drop game
-                    butt3.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 4: //PacMan
-                    //todo: run PacMan game
-                    butt4.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 5: //Next Page
-                    butt5.check_click(); //Checks if the buttons was clicked by the mouse
-                    showMoreGamesComingSoon();
-                    chooseGame();
-                    break;
-            }
-        }
-    }
-
-    public void nextStep() {
-        int action = 0;
-        while (action != buttonGameOption.size()) {// the quit action is the last action
-            action = showOptions();
-
-            switch (action) {
-                case 1: //Start the game/choose difficulty
-                    //todo: call the method for choosing difficulties
-                    break;
-                case 2: //See highscore
-                    //todo: call the method for seeing the high scores
-
-                    break;
-                case 3: //Go back to main menu
-                    runDialog();
-                    break;
-            }
-        }
-    }
-
-    public void chooseDifficulty() {
-        int action = 0;
-        while (action != buttonsDifficulties.size()) {// the quit action is the last action
-            action = showDifficulties();
-
-            switch (action) {
-                case 1: //Easy
-                    //todo: run game on easy
-                    easy.check_click();
-                    break;
-                case 2: //Medium
-                    //todo: run game on medium
-                    medium.check_click();
-                    break;
-                case 3: //Hard
-                    //todo: run game on hard
-                    hard.check_click();
-                    break;
-                case 4: // Go back to main menu
-                    runDialog();
-                    break;
-            }
-        }
-    }
-    */
-
 }
