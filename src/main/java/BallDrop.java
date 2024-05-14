@@ -16,6 +16,7 @@ public class BallDrop extends AGames {
     private boolean gameOver;
     private boolean startGame = true;
     private int diff;
+    private String type = "";
 
     //Objects used for the game:
     private PlayerPlate playerPlate;
@@ -27,6 +28,8 @@ public class BallDrop extends AGames {
     public BallDrop(PApplet parent, int width, int height, int diff) {
         this.parent = parent;
         this.diff = diff;
+        this.gui = new GUI();
+        this.ui = new TextUI();
     }
 
     public void gameSettings() {
@@ -94,9 +97,9 @@ public class BallDrop extends AGames {
                 score++; //Counts the score with +1 when the user catches a ball.
                 dropBalls.get(i).setY(-10); //Gives the ball a new Y coordinate when it is caught.
                 dropBalls.get(i).setX((int) parent.random(0, parent.width)); //Gives the ball a new X coordinate when it is caught, so it does not run in a loop.
-                if (dropBalls.get(i).getSpeed() >= (5*diff)) { //This if/else statement changes the speed of the ball so it is not constant
-                    dropBalls.get(i).setSpeed(-(parent.random(1, 3.5f)*diff));
-                } else if (dropBalls.get(i).getSpeed() < (5*diff)) {
+                if (dropBalls.get(i).getSpeed() >= (5 * diff)) { //This if/else statement changes the speed of the ball so it is not constant
+                    dropBalls.get(i).setSpeed(-(parent.random(1, 3.5f) * diff));
+                } else if (dropBalls.get(i).getSpeed() < (5 * diff)) {
                     dropBalls.get(i).setSpeed((parent.random(0.5f, 1f)));
                 }
 
@@ -132,10 +135,18 @@ public class BallDrop extends AGames {
         parent.textAlign(parent.RIGHT);
         parent.text("Score: " + score, parent.width - 50, parent.height - 50);
     }
+    public void typeName() {
+        parent.fill(0);
+        parent.textSize(25);
+        parent.textAlign(parent.RIGHT);
+        parent.text("Type your name here:", parent.width - 50, parent.height - 50);
+        parent.text(type,parent.width - 75, parent.height - 75);
+        type += parent.key;
+    }
+
 
     @Override
     public String keyPressed() {
-
         if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
             restartGame();
         } else if (parent.keyCode == parent.ENTER) {
@@ -144,7 +155,11 @@ public class BallDrop extends AGames {
             this.startGame = true;
             restartGame();
             StartMenu.endCurrentGame();
+        } else if((parent.key == 'h' || parent.key == 'H') && parent.keyPressed){
+            typeName();
+           // type += parent.key;
         }
+
         return null;
     }
 
@@ -196,9 +211,17 @@ public class BallDrop extends AGames {
 
     @Override
     public String setHighScore() {
-     //   gui.highScoreMsg(parent,parent.height,parent.width);
-     //   ui.promptText(null);
-     //   youDied();
+        parent.fill(0);
+        parent.textSize(25);
+        parent.textAlign(parent.CENTER);
+        parent.text("Type your name to add it to the high score list:", (float) parent.width / 2, (float) parent.height / 2);
+        gui.highScoreMsg(parent,parent.height,parent.width);
+        ui.promptText(null);
+        if (parent.keyCode == parent.ENTER) {
+            parent.keyCode = parent.RETURN;
+            youDied();
+        }
+
         return null;
     }
 }
