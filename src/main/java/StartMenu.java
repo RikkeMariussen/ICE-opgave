@@ -9,22 +9,22 @@ public class StartMenu extends PApplet {
     private static Difficulty selectedDifficulty = Difficulty.NONE;
 
 
-    GUI gui = new GUI();
-    FileIO fileIO;
-    GamesButton gameButton;
-    IGames snake = new Snake();
+    private GUI gui = new GUI();
+    private FileIO fileIO;
+    private GamesButton gameButton;
+    private IGames snake = new Snake();
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
-    IGames brickBreaker;
-    IGames ballDrop;
-    IGames pacman = new PacMan();
+    private IGames brickBreaker;
+    private IGames ballDrop;
+    private IGames pacman = new PacMan();
 
-    ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
-    ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
-    ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
+    private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
+    private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
+    private ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
 
     // Initialisering af variablerne i setup metoden
-    GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
+    private GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
 
     // Enums til at styre programmet
     // Enum er "states" som programmet kan være i, fx starter vi i state "START_MENU", hvor vi bliver vist en velkommen
