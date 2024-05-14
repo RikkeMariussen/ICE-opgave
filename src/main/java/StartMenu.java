@@ -102,7 +102,7 @@ public class StartMenu extends PApplet {
             background(100);
         }
         if(selectedGame==SelectedGame.PACMAN && currentState == AppState.GAMING){
-            windowResize(1140,1140);
+            windowResize(1140/2,1140/2);
         }
 
         switch (currentState) {

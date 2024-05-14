@@ -10,7 +10,7 @@ public class Cherry {
     }
 
     private void createCherry(int xPos,int yPos){
-        parent.ellipse(xPos*Map.getWallSpacing(),yPos*Map.getWallSpacing(),40,40);
+        parent.ellipse(xPos*Map.getWallSpacing(),yPos*Map.getWallSpacing(),40/2,40/2);
         PacManGame.map[yPos][xPos] = PacManGame.CHERRY;
     }
     public void spawnCherry(){

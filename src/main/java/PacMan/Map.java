@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public class Map {
 
-    static int wallSpacing = 60;
+    static int wallSpacing = 30;
     private PApplet parent;
 
     public Map(PApplet parent) {

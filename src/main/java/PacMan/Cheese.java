@@ -21,6 +21,6 @@ public class Cheese {
     private void createCheese(int yPos, int xPos){
         parent.fill(252, 241, 194);
         parent.ellipseMode(parent.CENTER);
-        parent.ellipse(xPos*Map.getWallSpacing(),yPos*Map.getWallSpacing(),20,20);
+        parent.ellipse(xPos*Map.getWallSpacing(),yPos*Map.getWallSpacing(),10,10);
     }
 }

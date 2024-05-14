@@ -29,10 +29,10 @@ public class PacManPlayer {
         if (god){
             parent.fill(20,65,244);
             PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
-            parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55, 55);
+            parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55/2, 55/2);
         }
         PacManGame.map[yPos][xPos] = PacManGame.PLAYER;
-        parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55, 55);
+        parent.ellipse(xPos * Map.getWallSpacing(), yPos * Map.getWallSpacing(), 55/2, 55/2);
     }
 
 
