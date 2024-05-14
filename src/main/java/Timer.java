@@ -2,8 +2,8 @@ import processing.core.PApplet;
 
 public class Timer extends PApplet {
 
-    int startTime; //For the dropBalls
-    int interval;
+    private int startTime; //For the dropBalls
+    private int interval;
 
     //Constructor
     Timer(int timeInterval) {
@@ -16,7 +16,7 @@ public class Timer extends PApplet {
     }
 
 
-    boolean complete() {
+    public boolean complete() {
         int elapsedTime = millis() - startTime;
         if (elapsedTime > interval) {
             return true;
