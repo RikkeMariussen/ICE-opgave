@@ -14,6 +14,7 @@ public class PointObject extends PApplet {
     private float maxSpeed;
     private int color;
     protected int score;
+
     public PointObject(PApplet parent, int x, int y, int w, int h, float minSpeed, float maxSpeed, int color) {
         this.parent = parent;
         this.x = x;
@@ -35,28 +36,11 @@ public class PointObject extends PApplet {
         parent.ellipse(x, y, w, h);
     }
 
-    public void displaySquareObject(){
-        parent.fill(color);
-        parent.stroke(0);
-        parent.strokeWeight(0);
-        parent.rect(x, y, w, h);
-    }
-
-    //Methods for catching the point objects
-
-    public void catchRoundObject(){
-        y = -10;
-        x = (int)random(0,800);
-        if(speed < 7) {
-            speed++;
-        }else{ speed--;}
-        score++;
-    }
     public void updateRoundObject() {
         y += speed;
     }
 
-    //Setter
+        //Setter
 
     public void setSpeed(float speed) {
         this.speed += speed;

@@ -1,9 +1,7 @@
 import processing.core.PApplet;
 
-public class Main extends PApplet {
+public class Main {
     public static void main(String[] args) {
-        //   StartMenu startMenu = new StartMenu();
-        //   startMenu.runDialog();
-       PApplet.main("StartMenu");
+        PApplet.main("StartMenu");
     }
 }

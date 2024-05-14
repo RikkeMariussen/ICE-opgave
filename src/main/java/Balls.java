@@ -28,10 +28,10 @@ public class Balls extends PApplet {
 
         // Checkker om bolden rammer kanten af skærmen
         if (position.x > width - radius || position.x < radius) {
-            velocity.x *= -1; // Ændre retning hvis den rammer siderne ad skærmen
+            velocity.x *= -1; // Ændre retning hvis den rammer siderne af skærmen
         }
         if (position.y < radius) {
-            velocity.y *= -1; //Ændre retning hvis den rammer toppen
+            velocity.y *= -1; // Ændre retning hvis den rammer toppen
         }
 
         // Draw and check collision with bricks

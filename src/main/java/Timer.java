@@ -11,7 +11,7 @@ public class Timer extends PApplet {
     }
 
     //Methods
-    void startTimer() {
+    public void startTimer() {
         startTime = millis();
     }
 

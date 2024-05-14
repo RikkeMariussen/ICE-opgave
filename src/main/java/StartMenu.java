@@ -2,13 +2,21 @@ import processing.core.PApplet;
 
 import java.util.ArrayList;
 
-public class StartMenu extends PApplet{
+public class StartMenu extends PApplet {
+
+    private static AppState currentState = AppState.START_MENU;
+    private static SelectedGame selectedGame = SelectedGame.NONE;
+    private static Difficulty selectedDifficulty = Difficulty.NONE;
+
+
     GUI gui = new GUI();
     FileIO fileIO;
     GamesButton gameButton;
-    IGames snake = new Snake(this);
-    //IGames brickBreaker = new BrickBreaker(); virker ikke grundet forket extension
-    //IGames ballDrop = new BallDrop(); virker ikke grundet forket extension
+    IGames snake = new Snake();
+    //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
+
+    IGames brickBreaker;
+    IGames ballDrop;
     IGames pacman = new PacMan();
 
     ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
@@ -32,38 +40,39 @@ public class StartMenu extends PApplet{
     }
 
     enum Difficulty {
-        NONE, EASY, MEDIUM, HARD, DEFAULT
+        NONE(0), EASY(1), MEDIUM(2), HARD(3), DEFAULT(4);
+        private final int value;
+
+        Difficulty(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
-    // Deklarering af "state" variablerne
-    private static AppState currentState = AppState.START_MENU;
-    private static SelectedGame selectedGame = SelectedGame.NONE;
-    private static Difficulty selectedDifficulty = Difficulty.NONE;
-
-
-
-    public void settings(){
-        size(800,600);
-        currentState = AppState.START_MENU;
+    public void settings() {
+        size(800, 600);
     }
 
-    public void setup(){
+    public void setup() {
         this.fileIO = new FileIO();
         fileIO.loadHighScoreCSV();
 
         //buttons flyttet hertil for at kunne bruge width og height til placering
-        butt1 = new GamesButton(250, 100, (float) (width * 3) /10 , (float) (height * 2) /5, "Snake", this);
-        butt2 = new GamesButton(250, 100, (float) (width * 7) /10, (float) (height * 2) /5, "Brick Breaker", this);
-        butt3 = new GamesButton(250, 100, (float) (width * 3) /10, (float) (height * 3) /5, "Ball drop", this);
-        butt4 = new GamesButton(250, 100, (float) (width * 7) /10, (float) (height * 3) /5, "PacMan", this);
-        butt5 = new GamesButton(250, 100, (float) (width * 5) /10, (float) (height * 4) /5, "NEXT PAGE", this);
+        butt1 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 2) / 5, "Snake", this);
+        butt2 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 2) / 5, "Brick Breaker", this);
+        butt3 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 3) / 5, "Ball drop", this);
+        butt4 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 3) / 5, "PacMan", this);
+        butt5 = new GamesButton(250, 100, (float) (width * 5) / 10, (float) (height * 4) / 5, "NEXT PAGE", this);
 
-        playGame = new GamesButton(250, 100, (float) width/2, 160, "Choose difficulty", this);
-        highScore = new GamesButton(250, 100, (float) width/2, 310, "See high scores", this);
-        goBack = new GamesButton(250, 100, (float) width/2, 460, "Go back to the main menu", this);
-        easy = new GamesButton(250, 100, (float) width*3/10, (float) (height * 1) /3, "Easy", this);
-        medium = new GamesButton(250, 100, (float) width*7/10, (float) (height * 1) /3, "Medium", this);
-        hard = new GamesButton(250, 100, (float) width/2, (float) (height * 2) /3, "Hard", this);
+        playGame = new GamesButton(250, 100, (float) width / 2, 160, "Choose difficulty", this);
+        highScore = new GamesButton(250, 100, (float) width / 2, 310, "See high scores", this);
+        goBack = new GamesButton(250, 100, (float) width / 2, 460, "Go back to the main menu", this);
+        easy = new GamesButton(250, 100, (float) width * 3 / 10, (float) (height * 1) / 3, "Easy", this);
+        medium = new GamesButton(250, 100, (float) width * 7 / 10, (float) (height * 1) / 3, "Medium", this);
+        hard = new GamesButton(250, 100, (float) width / 2, (float) (height * 2) / 3, "Hard", this);
         goBack2 = new GamesButton(250, 100, 525, 310, "Go back to the main menu", this);
 
         moreGamesComingSoon = new GamesButton(250, 250, 375, 160, "More games, are coming soon", this);
@@ -85,10 +94,18 @@ public class StartMenu extends PApplet{
         buttonsDifficulties.add(medium);
         buttonsDifficulties.add(hard);
         buttonsDifficulties.add(goBack2);
+
     }
 
     public void draw() {
-        background(100);
+
+        if (currentState != AppState.GAMING) {
+            background(100);
+        }
+        if (currentState != AppState.GAMING && selectedGame == SelectedGame.NONE && selectedDifficulty == Difficulty.NONE) {
+            windowResize(800, 600);
+        }
+
         switch (currentState) {
             case START_MENU:
                 runDialog();
@@ -137,28 +154,33 @@ public class StartMenu extends PApplet{
     }
 
     private void checkGameSelection() {
+        //Snake
         if (butt1.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.SNAKE;
 
+            //This is BrickBreaker
         } else if (butt2.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.BRICKBREAKER;
 
+            //Ball Drop
         } else if (butt3.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.BALLDROP;
 
+            //PacMan
         } else if (butt4.check_click()) {
             currentState = AppState.GAME_OPTIONS;
             selectedGame = SelectedGame.PACMAN;
 
+            //Next page
         } else if (butt5.check_click()) {
             currentState = AppState.GAME_OPTIONS;
         }
     }
 
-    private void checkOptionSelection(){
+    private void checkOptionSelection() {
         if (playGame.check_click()) {
             currentState = AppState.DIFFICULTY_SELECTION;
 
@@ -171,7 +193,7 @@ public class StartMenu extends PApplet{
         }
     }
 
-    private void checkDifficultySelection(){
+    private void checkDifficultySelection() {
         if (easy.check_click()) {
             selectedDifficulty = Difficulty.EASY;
             currentState = AppState.GAMING;
@@ -187,7 +209,7 @@ public class StartMenu extends PApplet{
         }
     }
 
-    private void checkHighScoreSelection(){
+    private void checkHighScoreSelection() {
         if (goBack.check_click()) {
             currentState = AppState.GAME_OPTIONS;
         }
@@ -218,43 +240,42 @@ public class StartMenu extends PApplet{
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake(this);
+                    snake = new Snake();
                     snake.playGame();
                 }
-                snake.updateGame();
-                snake.displayGame();
+                //snake.updateGame();
+                //snake.displayGame();
                 break;
 
             case BRICKBREAKER:
-                /*
-                if (brickbreaker == null) {
-                    brickbreaker = new Snake();
-                    brickbreaker.playGame();
+
+                if (brickBreaker == null) {
+                    brickBreaker = new BrickBreaker(this,width,height, selectedDifficulty.getValue());
+                    brickBreaker.playGame();
                 }
-                //brickbreaker.updateGame();
-                //brickbreaker.displayGame();
+                brickBreaker.updateGame();
+                brickBreaker.displayGame();
                 break;
-                */
+
 
             case BALLDROP:
-                /*
-                if (balldrop == null) {
-                    balldrop = new Snake();
-                    balldrop.playGame();
+
+                if (ballDrop == null) {
+                    ballDrop = new BallDrop(this, width, height, selectedDifficulty.getValue());
+                    ballDrop.playGame();
                 }
-                //balldrop.updateGame();
-                //balldrop.displayGame();
+                ballDrop.displayGame();
+                ballDrop.updateGame();
                 break;
-                */
 
             case PACMAN:
-                /*if (pacman == null) {
-                    //pacman = new Pacman();
-                    //pacman.playGame();
+                if (pacman == null) {
+                    pacman = new Snake();
+                    pacman.playGame();
                 }
                 //pacman.updateGame();
                 //snake.displayGame();
-                break; */
+                break;
         }
     }
 
@@ -263,6 +284,7 @@ public class StartMenu extends PApplet{
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;
+
     }
 
     public void showHighScores(SelectedGame game) {
@@ -276,7 +298,7 @@ public class StartMenu extends PApplet{
         text("High Scores for " + game, (float) width / 2, 10);
         textSize(20);
         for (String[] scoreEntry : scores) {
-            String scoreText = scoreEntry[2] + " - " + scoreEntry[1]; // playerName - score
+            String scoreText = scoreEntry[1] + " - " + scoreEntry[2]; // playerName - score
             text(scoreText, (float) width / 2, y);
             y += 20; // Increment y for the next score
         }
@@ -288,101 +310,4 @@ public class StartMenu extends PApplet{
     public void runDialog() {
         gui.startScreen(height, width, this);
     }
-
-
-
-    /*
-
-    //todo: -----------------------------------------------------------------------------------
-    //todo: -----------------------------------------------------------------------------------
-    //todo: Alle Metoder nedenfor gør ikke noget funktionelt ind til videre (måske unødvendigt)
-    //todo: -----------------------------------------------------------------------------------
-    //todo: -----------------------------------------------------------------------------------
-
-    public void showMoreGamesComingSoon() {
-        moreGamesComingSoon.gamesDisplay();
-    }
-
-
-    public void chooseGame() {
-        int action = 0;
-        while (action != buttonsFrontPage.size()) {// the quit action is the last action
-            action = showGames();
-
-            switch (action) {
-                case 1: //Snake
-                    //todo: run snake game
-                    butt1.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 2: //Brick Breaker
-                    //todo: run Brick breaker game
-                    butt2.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 3: //Ball drop
-                    //todo: run ball drop game
-                    butt3.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 4: //PacMan
-                    //todo: run PacMan game
-                    butt4.check_click(); //Checks if the buttons was clicked by the mouse
-                    nextStep();
-                    break;
-                case 5: //Next Page
-                    butt5.check_click(); //Checks if the buttons was clicked by the mouse
-                    showMoreGamesComingSoon();
-                    chooseGame();
-                    break;
-            }
-        }
-    }
-
-    public void nextStep() {
-        int action = 0;
-        while (action != buttonGameOption.size()) {// the quit action is the last action
-            action = showOptions();
-
-            switch (action) {
-                case 1: //Start the game/choose difficulty
-                    //todo: call the method for choosing difficulties
-                    break;
-                case 2: //See highscore
-                    //todo: call the method for seeing the high scores
-
-                    break;
-                case 3: //Go back to main menu
-                    runDialog();
-                    break;
-            }
-        }
-    }
-
-    public void chooseDifficulty() {
-        int action = 0;
-        while (action != buttonsDifficulties.size()) {// the quit action is the last action
-            action = showDifficulties();
-
-            switch (action) {
-                case 1: //Easy
-                    //todo: run game on easy
-                    easy.check_click();
-                    break;
-                case 2: //Medium
-                    //todo: run game on medium
-                    medium.check_click();
-                    break;
-                case 3: //Hard
-                    //todo: run game on hard
-                    hard.check_click();
-                    break;
-                case 4: // Go back to main menu
-                    runDialog();
-                    break;
-            }
-        }
-    }
-    */
-
 }
