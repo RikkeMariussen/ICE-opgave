@@ -54,7 +54,7 @@ public class Bricks {
 
 
     public void decreaseDurability() {
-        durability--;
+        durability +=-1;
     }
 
     public int getDurability() {
