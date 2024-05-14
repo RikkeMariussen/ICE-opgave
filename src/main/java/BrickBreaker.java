@@ -1,102 +1,57 @@
-/* @Override
- public String getTitle() {
-     return null;
- }
-
- @Override
- public String playGame() {
-     return null;
- }
-
- @Override
- public String setHighScore() {
-     return null;
- }
-
- @Override
- public String getHighScore() {
-     return null;
- }
-
- @Override
- public String keyPressed() {
-     return null;
- }
-
- @Override
- public String howToPlay() {
-     return null;
- }
-
- @Override
- public String youDied() {
-     return null;
- }
-
- @Override
- public String difficulties() {
-     return null;
- }
-
- @Override
- public String lives() {
-     return null;
- }*/
-
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class BrickBreaker extends PApplet {
+public class BrickBreaker extends AGames {
 
+    private PApplet parent;
     PVector ballPosition;
     PVector ballVelocity;
+    float ballBaseSpeed = 5;
     float ballRadius = 10;
     Bricks[] bricks;
     int numBricks = 50;
     int score = 0;
-    boolean gameOver = false;
+    boolean gameOver;
+    int diff;
+    PlayerPlate playerPlate;
+    private boolean gameStart = true;
 
-    public void settings() {
-        size(800, 800);
+    public BrickBreaker(PApplet parent, int width, int height, int diff) {
+        this.parent = parent;
+        this.diff = diff;
     }
 
-    /*public void setup() {
-        ballPosition = new PVector(width / 2, height - 50);
-        ballVelocity = new PVector(0, -5);
-
-        bricks = new Bricks[numBricks];
-        for (int i = 0; i < numBricks; i++) {
-            bricks[i] = new Bricks(this, ((i % 10) * 82) + 40, (i / 10) * 30 + 50, 80, 15, color(255), 1);
-        }
-    }*/
-    public void setup() {
-        ballPosition = new PVector(width / 2, height - 50);
-        ballVelocity = new PVector(0, -5);
-
+    public void logic() {
+        playerPlate = new PlayerPlate(parent, parent.width / 2, parent.height-75, 80, 20);
+        ballPosition = new PVector(parent.width / 2, parent.height - 50);
+        ballVelocity = new PVector(0, (float) -((ballBaseSpeed - 1) * diff));
         bricks = new Bricks[numBricks];
         for (int i = 0; i < numBricks; i++) {
             int x = ((i % 10) * 82) + 40;
             int y = (i / 10) * 30 + 50;
-            int brickColor = color(255);
+            int brickColor = parent.color(255);
             int durability = 1;
 
             // Check if it's the 3rd row
             if (i / 10 == 2) {
                 // Check if it's the 3rd or 8th brick
                 if (i % 10 == 2 || i % 10 == 7) {
-                    brickColor = color(255, 165, 0); // Orange color
-                    durability = 3; // Double durability
+                    brickColor = parent.color(255, 165, 0);
+                    durability = 5;
                 }
             }
 
-            bricks[i] = new Bricks(this, x, y, 80, 15, brickColor, durability);
+            bricks[i] = new Bricks(parent, x, y, 80, 15, brickColor, durability);
         }
     }
 
-    PlayerPlate playerPlate = new PlayerPlate(this, width / 2, height + 670, 80, 20);
-
-    public void brickBreakerDraw() {
-       // background(0);
+    @Override
+    public void updateGame() {
+        if (gameStart) {
+            logic();
+            gameStart = false;
+        }
+        parent.background(75);
         if (!gameOver) {
             drawGame();
         } else {
@@ -105,7 +60,7 @@ public class BrickBreaker extends PApplet {
     }
 
     public void drawGame() {
-        drawText("Score: " + score, width / 2, height - 775);
+        drawText("Score: " + score, parent.width / 2, parent.height -25);
         playerPlate.display();
         playerPlate.update();
 
@@ -113,7 +68,7 @@ public class BrickBreaker extends PApplet {
         ballPosition.add(ballVelocity);
 
         // Check if the ball hits the wall
-        if (ballPosition.x > width - ballRadius || ballPosition.x < ballRadius) {
+        if (ballPosition.x > parent.width - ballRadius || ballPosition.x < ballRadius) {
             // Reverse x-component of velocity
             ballVelocity.x *= -1;
         }
@@ -121,7 +76,7 @@ public class BrickBreaker extends PApplet {
             // Reverse y-component of velocity
             ballVelocity.y *= -1;
         }
-        if (ballPosition.y > height + ballRadius) {
+        if (ballPosition.y > parent.height + ballRadius) {
             gameOver = true; // Set gameOver to true if the ball goes below the bottom of the screen
         }
         // Check collision with the player plate
@@ -145,7 +100,7 @@ public class BrickBreaker extends PApplet {
 
                 // Calculate the direction vector from the center of the brick to the ball
                 PVector direction = PVector.sub(ballPosition, new PVector(bricks[i].getBrickX(), bricks[i].getBrickY()));
-                direction.rotate(random(degrees(-15), degrees(15)));
+                direction.rotate(parent.random(parent.degrees(-15), parent.degrees(15)));
 
                 // Reflects ball backwards depending on direction hit
                 ballVelocity = PVector.sub(ballVelocity, PVector.mult(PVector.mult(direction, 2 * ballVelocity.dot(direction) / direction.magSq()), 1));
@@ -162,31 +117,41 @@ public class BrickBreaker extends PApplet {
         if (!collisionDetected) {
             collisionDetected = false;
         }
-        fill(0, 150, 255);
-        ellipse(ballPosition.x, ballPosition.y, ballRadius * 2, ballRadius * 2);
+        parent.fill(0, 150, 255);
+        parent.ellipse(ballPosition.x, ballPosition.y, ballRadius * 2, ballRadius * 2);
     }
 
 
     void drawGameOverScreen() {
-        fill(255, 0, 0);
-        textSize(50);
-        textAlign(CENTER, CENTER);
-        text("Game Over", width / 2, height / 2);
-        textSize(32);
-        text("Press 'R' to restart", width / 2, height / 2 + 50);
-        textSize(60);
-        text("Your score: " + score, width / 2, height / 2 + -100);
+        parent.fill(255, 0, 0);
+        parent.textSize(50);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.text("Game Over", parent.width / 2, parent.height / 2);
+        parent.textSize(32);
+        parent.text("Your score: " + score, parent.width / 2, parent.height / 2 + -100);
+        parent.text("Press 'R' to restart \n or ENTER to go back to the menu", parent.width / 2, parent.height / 2 + 75);
+        parent.textSize(60);
+        keyPressed();
     }
 
-    public void keyPressed() {
-        if (key == 'r' || key == 'R') {
+    @Override
+    public String keyPressed() {
+        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
             restartGame();
+        } else if (parent.keyCode == parent.ENTER) {
+            parent.keyCode = parent.RETURN;
+            this.gameOver = false;
+            this.gameStart = true;
+            restartGame();
+            StartMenu.endCurrentGame();
         }
+            return null;
     }
 
     void restartGame() {
+        gameStart = true;
         score = 0;
-        ballPosition = new PVector(width / 2, height - 50);
+        ballPosition = new PVector(parent.width / 2, parent.height - 50);
         ballVelocity = new PVector(0, -5);
         for (int i = 0; i < numBricks; i++) {
             bricks[i].reset();
@@ -195,16 +160,53 @@ public class BrickBreaker extends PApplet {
     }
 
     void drawText(String text, float x, float y) {
-        textSize(32);
-        textAlign(CENTER, CENTER);
-        fill(255);
-        text(text, x, y);
+        parent.textSize(32);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.fill(255);
+        parent.text(text, x, y);
     }
 
-    public void updateGame(){}
-
-    public void displayGame(){}
-    public static void main(String[] args) {
-        PApplet.main("BrickBreaker");
+    public void displayGame() {
     }
+
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public String playGame() {
+        return null;
+    }
+
+    @Override
+    public String setHighScore() {
+        return null;
+    }
+
+    @Override
+    public String getHighScore() {
+        return null;
+    }
+
+    @Override
+    public String howToPlay() {
+        return null;
+    }
+
+    @Override
+    public String youDied() {
+        return null;
+    }
+
+    @Override
+    public String difficulties() {
+        return null;
+    }
+
+    @Override
+    public String lives() {
+        return null;
+    }
+
 }

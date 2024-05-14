@@ -14,7 +14,8 @@ public class StartMenu extends PApplet {
     GamesButton gameButton;
     IGames snake = new Snake();
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
-    BrickBreaker brickBreaker = new BrickBreaker();
+
+    IGames brickBreaker;
     IGames ballDrop;
     IGames pacman = new PacMan();
 
@@ -247,15 +248,15 @@ public class StartMenu extends PApplet {
                 break;
 
             case BRICKBREAKER:
-                /*
-                if (brickbreaker == null) {
-                    brickbreaker = new Snake();
-                    brickbreaker.playGame();
+
+                if (brickBreaker == null) {
+                    brickBreaker = new BrickBreaker(this,width,height, selectedDifficulty.getValue());
+                    brickBreaker.playGame();
                 }
-                //brickbreaker.updateGame();
-                //brickbreaker.displayGame();
+                brickBreaker.updateGame();
+                brickBreaker.displayGame();
                 break;
-                */
+
 
             case BALLDROP:
 
