@@ -4,16 +4,16 @@ import processing.core.PVector;
 public class BrickBreaker extends AGames {
 
     private PApplet parent;
-    PVector ballPosition;
-    PVector ballVelocity;
-    float ballBaseSpeed = 5;
-    float ballRadius = 10;
-    Bricks[] bricks;
-    int numBricks = 50;
-    int score = 0;
-    boolean gameOver;
-    int diff;
-    PlayerPlate playerPlate;
+    private PVector ballPosition;
+    private PVector ballVelocity;
+    private float ballBaseSpeed = 5;
+    private float ballRadius = 10;
+    private Bricks[] bricks;
+    private int numBricks = 50;
+    private int score = 0;
+    private boolean gameOver;
+    private int diff;
+    private PlayerPlate playerPlate;
     private boolean gameStart = true;
 
     public BrickBreaker(PApplet parent, int width, int height, int diff) {
@@ -122,7 +122,7 @@ public class BrickBreaker extends AGames {
     }
 
 
-    void drawGameOverScreen() {
+    public void drawGameOverScreen() {
         parent.fill(255, 0, 0);
         parent.textSize(50);
         parent.textAlign(parent.CENTER, parent.CENTER);
@@ -148,7 +148,7 @@ public class BrickBreaker extends AGames {
             return null;
     }
 
-    void restartGame() {
+    public void restartGame() {
         gameStart = true;
         score = 0;
         ballPosition = new PVector(parent.width / 2, parent.height - 50);
@@ -159,7 +159,7 @@ public class BrickBreaker extends AGames {
         gameOver = false;
     }
 
-    void drawText(String text, float x, float y) {
+    public void drawText(String text, float x, float y) {
         parent.textSize(32);
         parent.textAlign(parent.CENTER, parent.CENTER);
         parent.fill(255);
