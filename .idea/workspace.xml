@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/BallDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BallDrop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PointObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PointObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/StartMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/StartMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +35,9 @@
     "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Rikke-tirsdag",
+    "git-widget-placeholder": "Snake-Daniel",
     "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }

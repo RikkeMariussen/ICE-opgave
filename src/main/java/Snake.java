@@ -82,7 +82,7 @@ public class Snake extends AGames {
         gameover = false;
         snakeScore = 0;
         snake.body.clear();
-        snake.body.add(0, new SnakeSegment(parent, 1,1));
+        snake.body.add(0, new SnakeSegment(parent, 0,0));
     }
 
     @Override
