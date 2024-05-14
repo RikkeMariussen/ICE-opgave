@@ -1,5 +1,3 @@
-import MainPack.AGames;
-
 public class Snake extends AGames {
     @Override
     public String getTitle() {
@@ -44,5 +42,11 @@ public class Snake extends AGames {
     @Override
     public String lives() {
         return null;
+    }
+
+    public void updateGame() {
+    }
+
+    public void displayGame() {
     }
 }
