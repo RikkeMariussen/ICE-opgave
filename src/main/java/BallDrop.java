@@ -8,18 +8,9 @@ public class BallDrop extends AGames {
     FileIO io;
     GUI gui;
     String name;
-    int numberOfPointObject;
-    int numberOfBombs;
-    int pointObjectInterval;
-    int bombsInterval;
-    int activePointObject;
     int score;
     int difficulty = 1;
     int difficultyBombs = 6;
-    int easy;
-    int medium;
-    int hard;
-    int activeBalls;
     int numberOfBalls = 3;
     int ballsInterval;
     boolean gameOverBallDrop;
@@ -38,10 +29,10 @@ public class BallDrop extends AGames {
         this.diff = diff;
     }
 
-    public void ballDropSettings() {
+    public void gameSettings() {
         if (startGame) {
             for (int i = 0; i < setNumberOfBalls(); i++) {
-                ball = new PointObject(parent, (int) parent.random(parent.width), parent.height - 800, 20, 20, 2*diff, 4*diff, parent.color(255, 105, 105));
+                ball = new PointObject(parent, (int) parent.random(parent.width), parent.height - 800, 20, 20, 2 * diff, 4 * diff, parent.color(255, 105, 105));
                 dropBalls.add(ball);
             }
         }
@@ -83,6 +74,11 @@ public class BallDrop extends AGames {
         }
     }
 
+    @Override
+    public String youDied() {
+        return null;
+    }
+
     public void gameOverDraw() {
         parent.fill(255, 0, 0);
         parent.textSize(50);
@@ -100,7 +96,7 @@ public class BallDrop extends AGames {
         playerPlate.update();
         playerPlate.display();
         displayScore();
-        ballDropSettings();
+        gameSettings();
 
         //Timer management:
         if (ballsTimer.complete()) {
@@ -117,10 +113,12 @@ public class BallDrop extends AGames {
             if (intersect(playerPlate, dropBalls.get(i))) {
                 score++; //Counts the score with +1 when the user catches a ball.
                 dropBalls.get(i).setY(-10); //Gives the ball a new Y coordinate when it is caught.
-                dropBalls.get(i).setX((int)parent.random(0,parent.width)); //Gives the ball a new X coordinate when it is caught, so it does not run in a loop.
-                    if(dropBalls.get(i).getSpeed() < 6) { //This if/else statement changes the speed of the ball so it is not constant
-                        dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed()+1);
-                    }else{ dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed()-1);}
+                dropBalls.get(i).setX((int) parent.random(0, parent.width)); //Gives the ball a new X coordinate when it is caught, so it does not run in a loop.
+                if (dropBalls.get(i).getSpeed() < 6) { //This if/else statement changes the speed of the ball so it is not constant
+                    dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed() + 1);
+                } else {
+                    dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed() - 1);
+                }
 
             }
             if (dropBalls.get(i).getY() > parent.height) {
@@ -157,7 +155,7 @@ public class BallDrop extends AGames {
         gameOverBallDrop = false;
         score = 0;
         dropBalls.clear();
-        ballDropSettings();
+        gameSettings();
     }
 
     @Override
@@ -186,7 +184,7 @@ public class BallDrop extends AGames {
 
         if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
             restartGame();
-        } else if(parent.keyCode == parent.ENTER){
+        } else if (parent.keyCode == parent.ENTER) {
             parent.keyCode = parent.RETURN;
             this.gameOverBallDrop = false;
             this.startGame = true;
@@ -198,11 +196,6 @@ public class BallDrop extends AGames {
 
     @Override
     public String howToPlay() {
-        return null;
-    }
-
-    @Override
-    public String youDied() {
         return null;
     }
 
