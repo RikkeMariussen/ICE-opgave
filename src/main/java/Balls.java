@@ -3,10 +3,10 @@ import processing.core.PVector;
 
 public class Balls extends PApplet {
 
-    PVector position;
-    PVector velocity;
-    float radius = 10;
-    Bricks bricks;
+    protected PVector position;
+    protected PVector velocity;
+    protected float radius = 10;
+    protected Bricks bricks;
     // int numBricks = 4;
 
     public void settings() {
@@ -46,9 +46,5 @@ public class Balls extends PApplet {
 
         fill(0, 150, 255);
         ellipse(position.x, position.y, radius * 2, radius * 2);
-    }
-
-    public static void main(String[] args) {
-        PApplet.main("Balls"); // Run the sketch
     }
 }
