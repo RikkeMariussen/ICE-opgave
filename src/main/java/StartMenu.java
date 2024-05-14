@@ -36,9 +36,9 @@ public class StartMenu extends PApplet{
     }
 
     // Deklarering af "state" variablerne
-    AppState currentState;
-    SelectedGame selectedGame;
-    Difficulty selectedDifficulty;
+    private static AppState currentState = AppState.START_MENU;
+    private static SelectedGame selectedGame = SelectedGame.NONE;
+    private static Difficulty selectedDifficulty = Difficulty.NONE;
 
 
 
@@ -248,18 +248,18 @@ public class StartMenu extends PApplet{
                 */
 
             case PACMAN:
-                if (pacman == null) {
+                /*if (pacman == null) {
                     //pacman = new Pacman();
                     //pacman.playGame();
                 }
                 //pacman.updateGame();
                 //snake.displayGame();
-                break;
+                break; */
         }
     }
 
 
-    private void endCurrentGame() {
+    public static synchronized void endCurrentGame() {
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;

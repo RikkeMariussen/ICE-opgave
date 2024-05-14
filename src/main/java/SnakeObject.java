@@ -1,37 +1,63 @@
-import processing.core.PVector;
-import java.util.LinkedList;
+import processing.core.PApplet;
+import java.util.ArrayList;
 
 public class SnakeObject {
-    LinkedList<PVector> segments = new LinkedList<>();
-    PVector direction = new PVector(1, 0);  // Initial direction to the right
-    PVector head;
 
+    private PApplet parent;
+    ArrayList<SnakeSegment> body;
+    private int xDir, yDir;
+    private int scl;
 
-    private int xdir;
-    private int ydir;
-
-
-    public void addSegment(int x, int y) {
-        segments.addFirst(new PVector(x, y));
+    public SnakeObject(PApplet p){
+        parent = p;
+        scl = 20;
+        body = new ArrayList<>();
+        body.add(new SnakeSegment(parent, 0, 0));
+        xDir = 1;
+        yDir = 0;
     }
 
-    public void move() {
-        head = segments.getFirst().copy();  // Copy the head to create a new head in the next cell
-        head.add(direction);  // Move the head in the current direction
-        segments.addFirst(head);  // Add new head
-        segments.removeLast();  // Remove the last segment
+    public void setDirection(int x, int y){
+        xDir = x;
+        yDir = y;
     }
 
-    public PVector getHead(){
-        return head;
+    public void update(){
+        SnakeSegment head = body.get(0);
+        int newX = head.x + xDir * scl;
+        int newY = head.y + yDir * scl;
+
+        // Screen wrap
+        newX = (newX + parent.width) % parent.width;
+        newY = (newY + parent.height) % parent.height;
+
+        // add new head and remove last bodypart
+        body.add(0, new SnakeSegment(parent, newX, newY));
+        body.remove(body.size() - 1);
     }
 
-    public void setDir(int x, int y) {
-        xdir = x;
-        ydir = y;
+    public void show(){
+        for (SnakeSegment snakeSegment : body){
+            snakeSegment.show();
+        }
     }
 
-    public LinkedList<PVector> getSegments() {
-        return segments;
+    public boolean eat(int foodX, int foodY){
+        SnakeSegment head = body.get(0);
+        if (head.x == foodX && head.y == foodY){
+            body.add(new SnakeSegment(parent, head.x, head.y));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkSelfCollision(int headX, int headY, ArrayList<SnakeSegment> body){
+        for (int i = 1; i<body.size(); i++){
+            SnakeSegment segment = body.get(i);
+            if (headX == segment.x && headY == segment.y){
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -35,6 +35,13 @@ public class PointObject extends PApplet {
         parent.ellipse(x, y, w, h);
     }
 
+    public void displaySquareObject(){
+        parent.fill(color);
+        parent.stroke(0);
+        parent.strokeWeight(0);
+        parent.rect(x, y, w, h);
+    }
+
     //Methods for catching the point objects
 
     public void catchRoundObject(){
