@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class BallDrop extends AGames {
 
     private PApplet parent;
-    FileIO io;
-    TextUI ui;
-    GUI gui;
-    String name;
-    int score;
-    int difficulty = 1;
-    int numberOfBalls = 3;
-    int ballsInterval;
-    boolean gameOver;
-    boolean startGame = true;
-    int diff;
+    private FileIO io;
+    private TextUI ui;
+    private GUI gui;
+    private String name;
+    private int score;
+    private int difficulty = 1;
+    private int numberOfBalls = 3;
+    private int ballsInterval;
+    private boolean gameOver;
+    private boolean startGame = true;
+    private int diff;
 
     //Objects used for the game:
-    PlayerPlate playerPlate;
-    Bombs bombs;
-    PointObject ball;
-    ArrayList<PointObject> dropBalls = new ArrayList<>();
-    Timer ballsTimer = new Timer(ballsInterval); //Calls the method/class
+    private PlayerPlate playerPlate;
+    private Bombs bombs;
+    private PointObject ball;
+    private ArrayList<PointObject> dropBalls = new ArrayList<>();
+    private Timer ballsTimer = new Timer(ballsInterval); //Calls the method/class
 
     public BallDrop(PApplet parent, int width, int height, int diff) {
         this.parent = parent;
@@ -109,7 +109,7 @@ public class BallDrop extends AGames {
         }
     }
 
-    boolean intersect(PlayerPlate playerPlate, PointObject pointObject) {
+    public boolean intersect(PlayerPlate playerPlate, PointObject pointObject) {
         float distance = parent.dist(playerPlate.getX(), playerPlate.getY(), pointObject.getX(), pointObject.getY());
         if (distance < (playerPlate.getWidth() / 2 + pointObject.getW() / 2)) {
             return true;
