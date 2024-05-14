@@ -36,16 +36,6 @@ public class PointObject extends PApplet {
         parent.ellipse(x, y, w, h);
     }
 
-    //Methods for catching the point objects
-
-    public void catchRoundObject(){
-        y = -10;
-        x = (int)random(0,800);
-        if(speed < 8) {
-            speed++;
-        }else{ speed--;}
-        score++;
-    }
     public void updateRoundObject() {
         y += speed;
     }
