@@ -115,10 +115,14 @@ public class BallDrop extends AGames {
 
             //check collisions
             if (intersect(playerPlate, dropBalls.get(i))) {
-                dropBalls.get(i).catchRoundObject();
                 score++; //Counts the score with +1 when the user catches a ball.
-            }
+                dropBalls.get(i).setY(-10); //Gives the ball a new Y coordinate when it is caught.
+                dropBalls.get(i).setX((int)parent.random(0,parent.width)); //Gives the ball a new X coordinate when it is caught, so it does not run in a loop.
+                    if(dropBalls.get(i).getSpeed() < 6) { //This if/else statement changes the speed of the ball so it is not constant
+                        dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed()+1);
+                    }else{ dropBalls.get(i).setSpeed(dropBalls.get(i).getSpeed()-1);}
 
+            }
             if (dropBalls.get(i).getY() > parent.height) {
                 gameOverBallDrop = true;
             } else {
