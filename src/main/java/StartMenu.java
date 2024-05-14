@@ -17,7 +17,7 @@ public class StartMenu extends PApplet {
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
     BrickBreaker brickBreaker = new BrickBreaker();
     IGames ballDrop;
-    DefNotMain pacman = new DefNotMain();
+    DefNotMain pacman;
 
     ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
     ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
@@ -101,7 +101,7 @@ public class StartMenu extends PApplet {
         if(currentState != AppState.GAMING){
             background(100);
         }
-        if(selectedGame==SelectedGame.PACMAN){
+        if(selectedGame==SelectedGame.PACMAN && currentState == AppState.GAMING){
             windowResize(1140,1140);
         }
 
@@ -269,10 +269,8 @@ public class StartMenu extends PApplet {
 
             case PACMAN:
                 if (pacman == null) {
-                    pacman = new DefNotMain();
-                    //pacman.playGame();
+                    pacman = new DefNotMain(this);
                 }
-                //pacman.updateGame();
                 pacman.PacManDraw();
                 break;
         }
