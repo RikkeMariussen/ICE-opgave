@@ -37,27 +37,12 @@ public class BallDrop extends AGames {
         }
     }
 
-    public void displayScore() {
-        parent.fill(0);
-        parent.textSize(25);
-        parent.textAlign(parent.RIGHT);
-        parent.text("Score: " + score, parent.width - 50, parent.height - 50);
-    }
-
     public void displayGame() {
         parent.background(255, 255, 237);
         // score = 0;
         setNumberOfBombs();
         ballsTimer.startTimer();
 
-    }
-
-    public int setNumberOfBalls() {
-        return numberOfBalls * difficulty;
-    }
-
-    public void setNumberOfBombs() {
-        //bombs.update();
     }
 
     public void updateGame() {
@@ -124,17 +109,6 @@ public class BallDrop extends AGames {
         }
     }
 
-
-    void setBallSpeed(PointObject ball) {
-        //Makes the balls go across the screen
-        ball.setSpeed(ball.getSpeed());
-
-        //todo: Right now it is not incorporated that if the person does not catch the ball (see if statement), they need to lose a life
-       /* if (y > height + h/2) {
-            y = -h/2;
-        }*/
-    }
-
     boolean intersect(PlayerPlate playerPlate, PointObject pointObject) {
         float distance = parent.dist(playerPlate.getX(), playerPlate.getY(), pointObject.getX(), pointObject.getY());
         if (distance < (playerPlate.getWidth() / 2 + pointObject.getW() / 2)) {
@@ -144,7 +118,6 @@ public class BallDrop extends AGames {
         }
     }
 
-
     public void restartGame() {
         startGame = true;
         gameOver = false;
@@ -153,25 +126,11 @@ public class BallDrop extends AGames {
         gameSettings();
     }
 
-    @Override
-    public String getTitle() {
-        return null;
-    }
-
-    @Override
-    public String playGame() {
-
-        return null;
-    }
-
-    @Override
-    public String setHighScore() {
-        return null;
-    }
-
-    @Override
-    public String getHighScore() {
-        return null;
+    public void displayScore() {
+        parent.fill(0);
+        parent.textSize(25);
+        parent.textAlign(parent.RIGHT);
+        parent.text("Score: " + score, parent.width - 50, parent.height - 50);
     }
 
     @Override
@@ -189,6 +148,32 @@ public class BallDrop extends AGames {
         return null;
     }
 
+    public int setNumberOfBalls() {
+        return numberOfBalls * difficulty;
+    }
+
+    @Override
+    public String playGame() {
+
+        return null;
+    }
+
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public String setHighScore() {
+        return null;
+    }
+
+    @Override
+    public String getHighScore() {
+        return null;
+    }
+
+    //Not used yet, but can be used to demonstrate the way the game is played
     @Override
     public String howToPlay() {
         return null;
@@ -199,8 +184,14 @@ public class BallDrop extends AGames {
         return null;
     }
 
+    //Not used yet, but can be used to display the amount of balls dropped
     @Override
     public String lives() {
         return null;
+    }
+
+    //Not used yet, but can be used to implement bombs in the game
+    public void setNumberOfBombs() {
+        //bombs.update();
     }
 }
