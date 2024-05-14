@@ -6,6 +6,7 @@ public class BallDrop extends AGames {
 
     private PApplet parent;
     FileIO io;
+    TextUI ui;
     GUI gui;
     String name;
     int score;
@@ -49,6 +50,7 @@ public class BallDrop extends AGames {
         if (!gameOver) {
             gameDraw();
         } else {
+            //setHighScore();
             youDied();
         }
         if (startGame) {
@@ -194,6 +196,9 @@ public class BallDrop extends AGames {
 
     @Override
     public String setHighScore() {
+     //   gui.highScoreMsg(parent,parent.height,parent.width);
+     //   ui.promptText(null);
+     //   youDied();
         return null;
     }
 }
