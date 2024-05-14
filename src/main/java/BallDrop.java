@@ -39,8 +39,6 @@ public class BallDrop extends AGames {
 
     public void displayGame() {
         parent.background(255, 255, 237);
-        // score = 0;
-        setNumberOfBombs();
         ballsTimer.startTimer();
 
     }
@@ -95,9 +93,9 @@ public class BallDrop extends AGames {
                 dropBalls.get(i).setY(-10); //Gives the ball a new Y coordinate when it is caught.
                 dropBalls.get(i).setX((int) parent.random(0, parent.width)); //Gives the ball a new X coordinate when it is caught, so it does not run in a loop.
                 if (dropBalls.get(i).getSpeed() >= 5) { //This if/else statement changes the speed of the ball so it is not constant
-                    dropBalls.get(i).setSpeed((parent.random(1,3.5f)));
-                } else if(dropBalls.get(i).getSpeed() < 5) {
-                    dropBalls.get(i).setSpeed((parent.random(0.5f,1f)));
+                    dropBalls.get(i).setSpeed((parent.random(1, 3.5f)));
+                } else if (dropBalls.get(i).getSpeed() < 5) {
+                    dropBalls.get(i).setSpeed((parent.random(0.5f, 1f)));
                 }
 
             }
@@ -148,28 +146,9 @@ public class BallDrop extends AGames {
         return null;
     }
 
-    public int setNumberOfBalls() {
-        return numberOfBalls * difficulty;
-    }
-
     @Override
     public String playGame() {
 
-        return null;
-    }
-
-    @Override
-    public String getTitle() {
-        return null;
-    }
-
-    @Override
-    public String setHighScore() {
-        return null;
-    }
-
-    @Override
-    public String getHighScore() {
         return null;
     }
 
@@ -190,8 +169,31 @@ public class BallDrop extends AGames {
         return null;
     }
 
+    //Getter
+
+    @Override
+    public String getTitle() {
+        return null;
+    }
+
+    @Override
+    public String getHighScore() {
+        return null;
+    }
+
+    //Setter
+
     //Not used yet, but can be used to implement bombs in the game
     public void setNumberOfBombs() {
         //bombs.update();
+    }
+
+    public int setNumberOfBalls() {
+        return numberOfBalls * difficulty;
+    }
+
+    @Override
+    public String setHighScore() {
+        return null;
     }
 }
