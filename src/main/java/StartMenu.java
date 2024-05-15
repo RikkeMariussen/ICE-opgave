@@ -18,7 +18,7 @@ public class StartMenu extends PApplet {
 
     private IGames brickBreaker;
     private IGames ballDrop;
-    private IGames pacman = new PacMan();
+    //private IGames pacman = new PacMan();
 
     private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
     private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
@@ -281,12 +281,12 @@ public class StartMenu extends PApplet {
                 break;
 
             case PACMAN:
-                if (pacman == null) {
+               /* if (pacman == null) {
                   //  pacman = new Snake();
                   //  pacman.playGame();
                 }
                 //pacman.updateGame();
-                //snake.displayGame();
+                //snake.displayGame();*/
                 break;
         }
     }
