@@ -4,12 +4,7 @@ import java.util.ArrayList;
 public class BallDrop extends AGames {
 
     private PApplet parent;
-    private FileIO io;
-    private TextUI ui;
-    private GUI gui;
-    private String name;
     private int score;
-    private int difficulty = 1;
     private int numberOfBalls = 3;
     private int ballsInterval;
     private boolean gameOver;
@@ -26,8 +21,6 @@ public class BallDrop extends AGames {
     public BallDrop(PApplet parent, int width, int height, int diff) {
         this.parent = parent;
         this.diff = diff;
-        this.gui = new GUI();
-        this.ui = new TextUI();
     }
 
     public void gameSettings() {
@@ -45,11 +38,12 @@ public class BallDrop extends AGames {
 
     }
 
+    @Override
     public void updateGame() {
         bombs = new Bombs(parent);
         playerPlate = new PlayerPlate(parent, parent.width / 2, parent.height - 75, 80, 20);
         if (!gameOver) {
-            gameDraw();
+            drawGame();
         } else {
             ((StartMenu) parent).setDeathState("BallDrop", score); // dette kan bruges i stedet for youDied metoden
             restartGame();
@@ -59,7 +53,7 @@ public class BallDrop extends AGames {
         }
     }
 
-    public void gameDraw() {
+    public void drawGame() {
         playerPlate.update();
         playerPlate.display();
         displayScore();
@@ -105,6 +99,7 @@ public class BallDrop extends AGames {
         }
     }
 
+    @Override
     public void restartGame() {
         startGame = true;
         gameOver = false;
@@ -172,22 +167,11 @@ public class BallDrop extends AGames {
     }
 
     public int setNumberOfBalls() {
-        return numberOfBalls * difficulty;
+        return numberOfBalls * diff;
     }
 
     @Override
     public String setHighScore() {
-        parent.fill(0);
-        parent.textSize(25);
-        parent.textAlign(parent.CENTER);
-        parent.text("Type your name to add it to the high score list:", (float) parent.width / 2, (float) parent.height / 2);
-        gui.highScoreMsg(parent,parent.height,parent.width);
-        ui.promptText(null);
-        if (parent.keyCode == parent.ENTER) {
-            parent.keyCode = parent.RETURN;
-            youDied();
-        }
-
         return null;
     }
 }
