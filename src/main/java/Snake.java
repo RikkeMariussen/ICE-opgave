@@ -82,6 +82,15 @@ public class Snake extends AGames {
     }
 
     @Override
+    public String keyPressed() {
+        if (parent.keyCode == parent.UP) snake.setDirection(0, -1);
+        else if (parent.keyCode == parent.DOWN) snake.setDirection(0, 1);
+        else if (parent.keyCode == parent.LEFT) snake.setDirection(-1, 0);
+        else if (parent.keyCode == parent.RIGHT) snake.setDirection(1, 0);
+        return null;
+    }
+
+    @Override
     public String getTitle() {
         return "";
     }
@@ -99,15 +108,6 @@ public class Snake extends AGames {
     @Override
     public String getHighScore() {
         return "";
-    }
-
-    @Override
-    public String keyPressed() {
-        if (parent.keyCode == parent.UP) snake.setDirection(0, -1);
-        else if (parent.keyCode == parent.DOWN) snake.setDirection(0, 1);
-        else if (parent.keyCode == parent.LEFT) snake.setDirection(-1, 0);
-        else if (parent.keyCode == parent.RIGHT) snake.setDirection(1, 0);
-        return null;
     }
 
     @Override
