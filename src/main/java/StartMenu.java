@@ -13,7 +13,7 @@ public class StartMenu extends PApplet {
     private FileIO fileIO;
     private GamesButton gameButton;
     private static DeathScreen deathScreen;
-    private IGames snake = new Snake();
+    private IGames snake;
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
     private IGames brickBreaker;
@@ -252,11 +252,11 @@ public class StartMenu extends PApplet {
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake();
+                    snake = new Snake(this,selectedDifficulty.getValue());
                     snake.playGame();
                 }
-                //snake.updateGame();
-                //snake.displayGame();
+                snake.updateGame();
+                snake.displayGame();
                 break;
 
             case BRICKBREAKER:
@@ -282,8 +282,8 @@ public class StartMenu extends PApplet {
 
             case PACMAN:
                 if (pacman == null) {
-                    pacman = new Snake();
-                    pacman.playGame();
+                  //  pacman = new Snake();
+                  //  pacman.playGame();
                 }
                 //pacman.updateGame();
                 //snake.displayGame();
