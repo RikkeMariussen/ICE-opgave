@@ -47,14 +47,14 @@ public class FileIO {
 
     // Finder den laveste score for spillet, for nemt at kunne kontrollere om en spiller kan komme med på high scoren
     public int getLowestScore(String gameTitle){
-        return Integer.parseInt(getGameHighScore(gameTitle).getLast()[1]);
+        return Integer.parseInt(getGameHighScore(gameTitle).getLast()[1].trim());
     }
 
     // Giver positionen af spillerens score i high scoren. Det er ikke en god ide at bruge denne metode direkte, men i
     // stedet gemme retur værdien i en variabel, og tjekker om den er større eller lig med 0.
     public int getScoreIndex(String gameTitle, int score){
         for(int i = 0; i < getGameHighScore(gameTitle).size(); i++){
-            if(score > Integer.parseInt(getGameHighScore(gameTitle).get(i)[1])){
+            if(score > Integer.parseInt(getGameHighScore(gameTitle).get(i)[1].trim())){
                 return i;
             }
         }
@@ -160,7 +160,7 @@ public class FileIO {
         // Sætter player score ind på sidste plads, hvis player score er mindre end tidligere mindste score
         if(
                 Integer.parseInt(gameData.getLast().split(";")[1].trim()) < score &&
-                Integer.parseInt(gameData.get(gameData.size() - 2).split(";")[1].trim()) > score) {
+                        Integer.parseInt(gameData.get(gameData.size() - 2).split(";")[1].trim()) > score) {
             gameData.removeLast();
             gameData.addLast(gameTitle + "; " + score + "; " + playerName);
         }
@@ -176,8 +176,8 @@ public class FileIO {
             for (int i = 0; i < gameData.size() - 1; i++) {
                 if (
                         Integer.parseInt(gameData.get(i).split(";")[1].trim()) > score &&
-                        Integer.parseInt(gameData.get(i + 1).split(";")[1].trim()) < score ||
-                        Integer.parseInt(gameData.get(i).split(";")[1].trim()) == score) {
+                                Integer.parseInt(gameData.get(i + 1).split(";")[1].trim()) < score ||
+                                Integer.parseInt(gameData.get(i).split(";")[1].trim()) == score) {
                     gameData.removeLast();
                     gameData.add(i+1, gameTitle + "; " + score + "; " + playerName);
                     return gameData;
