@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import PacMan.*;
 
 import java.util.ArrayList;
 
@@ -14,11 +15,9 @@ public class StartMenu extends PApplet {
     private GamesButton gameButton;
     private static DeathScreen deathScreen;
     private IGames snake;
-    //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
-
     private IGames brickBreaker;
     private IGames ballDrop;
-    //private IGames pacman = new PacMan();
+    private PacMan pacman;
 
     private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
     private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
@@ -99,22 +98,15 @@ public class StartMenu extends PApplet {
     }
 
     public void draw() {
-
-        // For testing
-        //if(frameCount % 20 == 0){
-        //    System.out.println();
-        //    System.out.println(currentState);
-        //    System.out.println(selectedGame);
-        //    System.out.println(selectedDifficulty);
-        //}
-
         if (currentState != AppState.GAMING) {
             background(100);
         }
         if (currentState != AppState.GAMING && selectedGame == SelectedGame.NONE && selectedDifficulty == Difficulty.NONE) {
             windowResize(800, 600);
         }
-
+        if (selectedGame == SelectedGame.PACMAN && currentState == AppState.GAMING) {
+            windowResize(1140 / 2, 1140 / 2);
+        }
         switch (currentState) {
             case START_MENU:
                 runDialog();
@@ -252,7 +244,7 @@ public class StartMenu extends PApplet {
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake(this,selectedDifficulty.getValue());
+                    snake = new Snake(this, selectedDifficulty.getValue());
                     snake.playGame();
                 }
                 snake.updateGame();
@@ -262,7 +254,7 @@ public class StartMenu extends PApplet {
             case BRICKBREAKER:
 
                 if (brickBreaker == null) {
-                    brickBreaker = new BrickBreaker(this,width,height, selectedDifficulty.getValue());
+                    brickBreaker = new BrickBreaker(this, width, height, selectedDifficulty.getValue());
                     brickBreaker.playGame();
                 }
                 brickBreaker.updateGame();
@@ -281,12 +273,10 @@ public class StartMenu extends PApplet {
                 break;
 
             case PACMAN:
-               /* if (pacman == null) {
-                  //  pacman = new Snake();
-                  //  pacman.playGame();
+                if (pacman == null) {
+                    pacman = new PacMan(this);
                 }
-                //pacman.updateGame();
-                //snake.displayGame();*/
+                pacman.PacManDraw();
                 break;
         }
     }
