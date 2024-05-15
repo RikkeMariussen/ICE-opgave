@@ -16,10 +16,11 @@ public class Snake extends AGames {
         snake = new SnakeObject(parent);
         apple = new PointObject(parent, 100, 100, 15, 15, 0, 0, parent.color(255, 0, 0));
     }
+
     @Override
     public void updateGame() {
         if (!gameover) {
-            if (parent.frameCount % (12 / difficulty)  == 0) {
+            if (parent.frameCount % (12 / difficulty) == 0) {
                 snake.update();
                 keyPressed();
                 if (snake.checkSelfCollision(snake.body.getFirst().x, snake.body.getFirst().y, snake.body)) {
@@ -31,7 +32,7 @@ public class Snake extends AGames {
                 }
             }
         }
-        if(startGame){
+        if (startGame) {
             startGame = false;
         }
     }
@@ -41,62 +42,42 @@ public class Snake extends AGames {
         parent.background(0);
         displaySnake();
         apple.displaySquareObject();
-        if(!gameover) {
+        if (!gameover) {
             displayScore();
-        }else if(gameover){
-            displayGameover();
-            resetGameKey();
+        } else if (gameover) {
+            ((StartMenu) parent).setDeathState("Snake", snakeScore);
+            restartGame();
         }
     }
 
 
     public void placeFood() {
-        apple.setX((int) (parent.random(parent.width/scl))*scl);
-        apple.setY((int) (parent.random(parent.height/scl))*scl);
+        apple.setX((int) (parent.random(parent.width / scl)) * scl);
+        apple.setY((int) (parent.random(parent.height / scl)) * scl);
     }
 
     public void incrementScore() {
         snakeScore++;
     }
 
-    public void resetGameKey(){
-        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
-            restartGame();
-        } else if ((parent.key == 'b' || parent.key == 'B') && parent.keyPressed) {
-            //parent.keyCode = parent.RETURN;
-            this.gameover = false;
-            this.startGame = true;
-            restartGame();
-            StartMenu.endCurrentGame();
-        }
-
-    }
-
-    public void displayGameover(){
-        parent.fill(255);
-        parent.textSize(50);
-        parent.text("your final score: " + snakeScore, parent.width/2, parent.height/2);
-        parent.text("Press R to try again or B to go back", parent.width/2, parent.height/2+80);
-    }
-
-    public void displayScore(){
+    public void displayScore() {
         parent.fill(255);
         parent.textSize(20);
         parent.text("Score: " + snakeScore, 40, 30);
     }
 
-    public void displaySnake(){
-        for (SnakeSegment snakeSegment : snake.body){
+    public void displaySnake() {
+        for (SnakeSegment snakeSegment : snake.body) {
             parent.fill(0, 255, 0);
             parent.rect(snakeSegment.x, snakeSegment.y, 18, 18);
         }
     }
 
-    public void restartGame(){
+    public void restartGame() {
         gameover = false;
         snakeScore = 0;
         snake.body.clear();
-        snake.body.add(0, new SnakeSegment(parent, 0,0));
+        snake.body.add(0, new SnakeSegment(parent, 0, 0));
     }
 
     @Override
@@ -146,5 +127,26 @@ public class Snake extends AGames {
     @Override
     public String lives() {
         return "";
+    }
+
+    //Kept old methods, to see how we did it when deathScreen was individual for each game.
+    public void resetGameKey() {
+        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
+            restartGame();
+        } else if ((parent.key == 'b' || parent.key == 'B') && parent.keyPressed) {
+            //parent.keyCode = parent.RETURN;
+            this.gameover = false;
+            this.startGame = true;
+            restartGame();
+            StartMenu.endCurrentGame();
+        }
+
+    }
+
+    public void displayGameover() {
+        parent.fill(255);
+        parent.textSize(50);
+        parent.text("your final score: " + snakeScore, parent.width / 2, parent.height / 2);
+        parent.text("Press R to try again or B to go back", parent.width / 2, parent.height / 2 + 80);
     }
 }
