@@ -25,6 +25,7 @@ public class PlayerPlate{
     }
 
     public void display() {
+        parent.strokeWeight(1);
         parent.fill(color);
         parent.rectMode(PConstants.CENTER);
         parent.rect(x, y, w, h); //Rect for avoiding
