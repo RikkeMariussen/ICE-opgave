@@ -8,6 +8,7 @@ public interface IGames {
     String youDied();
     String difficulties();
     String lives();
+    void restartGame();
 
     void updateGame();
 

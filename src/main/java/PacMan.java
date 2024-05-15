@@ -44,9 +44,15 @@ public class PacMan extends AGames {
         return null;
     }
 
+    @Override
     public void updateGame() {
     }
 
+    @Override
     public void displayGame() {
+    }
+
+    @Override
+    public void restartGame() {
     }
 }
