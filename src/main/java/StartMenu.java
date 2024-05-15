@@ -9,22 +9,23 @@ public class StartMenu extends PApplet {
     private static Difficulty selectedDifficulty = Difficulty.NONE;
 
 
-    GUI gui = new GUI();
-    FileIO fileIO;
-    GamesButton gameButton;
-    IGames snake;
+    private GUI gui = new GUI();
+    private FileIO fileIO;
+    private GamesButton gameButton;
+    private static DeathScreen deathScreen;
+    private IGames snake = new Snake();
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
-    IGames brickBreaker;
-    IGames ballDrop;
-    IGames pacman = new PacMan();
+    private IGames brickBreaker;
+    private IGames ballDrop;
+    private IGames pacman = new PacMan();
 
-    ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
-    ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
-    ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
+    private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
+    private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
+    private ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
 
     // Initialisering af variablerne i setup metoden
-    GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
+    private GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
 
     // Enums til at styre programmet
     // Enum er "states" som programmet kan være i, fx starter vi i state "START_MENU", hvor vi bliver vist en velkommen
@@ -32,7 +33,7 @@ public class StartMenu extends PApplet {
     // det nemmere at håndtere forskellige situationer i programmet, og undgå store mængder kode, samt at gøre
     // koden clean.
     enum AppState {
-        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING
+        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING, DEATH_SCREEN
     }
 
     enum SelectedGame {
@@ -99,6 +100,14 @@ public class StartMenu extends PApplet {
 
     public void draw() {
 
+        // For testing
+        //if(frameCount % 20 == 0){
+        //    System.out.println();
+        //    System.out.println(currentState);
+        //    System.out.println(selectedGame);
+        //    System.out.println(selectedDifficulty);
+        //}
+
         if (currentState != AppState.GAMING) {
             background(100);
         }
@@ -148,8 +157,11 @@ public class StartMenu extends PApplet {
                     mousePressed = false;
                 }
                 break;
-
-            // Handle other states similarly...
+            case DEATH_SCREEN:
+                if (deathScreen != null) {
+                    deathScreen.display();
+                }
+                break;
         }
     }
 
@@ -240,11 +252,11 @@ public class StartMenu extends PApplet {
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake(this, selectedDifficulty.getValue());
+                    snake = new Snake();
                     snake.playGame();
                 }
-                snake.updateGame();
-                snake.displayGame();
+                //snake.updateGame();
+                //snake.displayGame();
                 break;
 
             case BRICKBREAKER:
@@ -270,7 +282,7 @@ public class StartMenu extends PApplet {
 
             case PACMAN:
                 if (pacman == null) {
-                    //pacman = new Snake();
+                    pacman = new Snake();
                     pacman.playGame();
                 }
                 //pacman.updateGame();
@@ -284,7 +296,17 @@ public class StartMenu extends PApplet {
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;
+    }
 
+    public void setDeathState(String gameTitle, int score) {
+        currentState = AppState.DEATH_SCREEN;
+        deathScreen = new DeathScreen(this, gameTitle, score, fileIO); // Pass the current instance of StartMenu
+    }
+
+    public void keyPressed() {
+        if (currentState == AppState.DEATH_SCREEN && deathScreen != null) {
+            deathScreen.keyPressed();
+        }
     }
 
     public void showHighScores(SelectedGame game) {

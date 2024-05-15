@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 public class BallDrop extends AGames {
@@ -53,8 +52,9 @@ public class BallDrop extends AGames {
         if (!gameOver) {
             gameDraw();
         } else {
-            //setHighScore();
-            youDied();
+            ((StartMenu) parent).setDeathState("BallDrop", score); // dette kan bruges i stedet for youDied metoden
+            restartGame();
+            //youDied();
         }
         if (startGame) {
             startGame = false;
