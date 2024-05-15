@@ -259,6 +259,16 @@ class Bricks{
 + void reset()
 }
 package PacMan <<Folder>> {
+class DefNotMain{
+- PApplet parent
+- boolean gameStart
+- Map map
+- Cherry cherry
+- Cheese cheese
+- PacManPlayer pacManPlayer
+- Score score
++ void pacManDraw()
+}
 class PacManPlayer{
 - boolean god
 - PApplet parent
@@ -318,16 +328,6 @@ class Score{
 + void setScore(int score)
 }
 
-class DefNotMain{
-- PApplet parent
-- boolean gameStart
-- Map map
-- Cherry cherry
-- Cheese cheese
-- PacManPlayer pacManPlayer
-- Score score
-+ void pacManDraw()
-}
 
 class Cherry{
 - PApplet parent
@@ -377,7 +377,13 @@ Snake <-- PointObject
 Snake <-- SnakeSegment
 Snake <-- DeathScreen
 
-Games <-- PacMan
-
+StartMenu <-- DefNotMain
+DefNotMain <-- PacManGame
+PacManGame <-- PacManPlayer
+PacManGame <-- Map
+Map <-- Cheese
+Map <-- Cherry
+Map <-- Ghosts
+PacManPlayer <-- Score
 
 @enduml
