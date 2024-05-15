@@ -1,3 +1,4 @@
+import PacMan.PacMan;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class StartMenu extends PApplet {
 
     private IGames brickBreaker;
     private IGames ballDrop;
-    private IGames pacman = new PacMan();
+    private PacMan pacman;
 
     private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
     private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
@@ -282,11 +283,9 @@ public class StartMenu extends PApplet {
 
             case PACMAN:
                 if (pacman == null) {
-                  //  pacman = new Snake();
-                  //  pacman.playGame();
+                    pacman = new PacMan(this);
                 }
-                //pacman.updateGame();
-                //snake.displayGame();
+                pacman.PacManDraw();
                 break;
         }
     }

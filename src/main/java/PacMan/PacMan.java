@@ -2,17 +2,16 @@ package PacMan;
 import processing.core.PApplet;
 
 
-public class DefNotMain{
+public class PacMan {
     private PApplet parent;
     private boolean gameStart = true;
-
     private Map map;
     private Cherry cherry;
     private Cheese cheese;
     private PacManPlayer pacManPlayer;
     private Score score;
 
-    public DefNotMain(PApplet parent){
+    public PacMan(PApplet parent){
         this.parent = parent;
 
         this.map = new Map(parent);
