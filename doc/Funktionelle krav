@@ -9,6 +9,6 @@ Brugeren vælger ved at trykke op og ned via piltasterne og så enter.
 - Når spilleren dør, så skal der vises en skærm med "You died" og score nedenunder, samt best score under dette.
 Der skal endvidere være to knapper "Try Again" "Menu", hvor spilleren enten kan gå tilbage til startmenuen
  eller spille igen på samme sværhedsgrad.
-- Vores mål er at have snake, ball drop og brickBreaker klar, og PacMan undervejs.
-Såfremt vi når at lave PacMan og de andre spil, skal der laves en pil i start menuen som går hen
+- Vores mål er at have snake, ball drop og brickBreaker klar, og PacMan.PacMan undervejs.
+Såfremt vi når at lave PacMan.PacMan og de andre spil, skal der laves en pil i start menuen som går hen
  og viser en anden side af spil "Coming soon..." med en pil tilbage.

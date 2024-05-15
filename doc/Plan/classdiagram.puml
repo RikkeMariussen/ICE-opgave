@@ -143,7 +143,7 @@ class SnakeObject{
 }
 
 class PointObject{
-'Apples, cheese and cherries for Snake and PacMan
+'Apples, cheese and cherries for Snake and PacMan.PacMan
 - size
 - color
 + String drawPointObject()
@@ -183,11 +183,11 @@ AGames <-- Games
 'AGames <|-- Snake
 'AGames <|-- BrickBreaker
 'AGames <|-- BallDrop
-'AGames <|-- PacMan
+'AGames <|-- PacMan.PacMan
 
 startMenu <-- Utility
-'startMenu <-- GUI
-'startMenu <-- TextUI
+'startMenu <-- MainPack.GUI
+'startMenu <-- MainPack.TextUI
 'startMenu <-- FileIO
 
 BrickBreaker <-- Bricks
