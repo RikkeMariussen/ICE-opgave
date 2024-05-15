@@ -55,7 +55,8 @@ public class BrickBreaker extends AGames {
         if (!gameOver) {
             drawGame();
         } else {
-            drawGameOverScreen();
+            ((StartMenu) parent).setDeathState("BrickBreaker", score); // dette kan bruges i stedet for youDied metoden
+            restartGame();
         }
     }
 
@@ -121,30 +122,8 @@ public class BrickBreaker extends AGames {
         parent.ellipse(ballPosition.x, ballPosition.y, ballRadius * 2, ballRadius * 2);
     }
 
-
-    public void drawGameOverScreen() {
-        parent.fill(255, 0, 0);
-        parent.textSize(50);
-        parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text("Game Over", parent.width / 2, parent.height / 2);
-        parent.textSize(32);
-        parent.text("Your score: " + score, parent.width / 2, parent.height / 2 + -100);
-        parent.text("Press 'R' to restart \n or ENTER to go back to the menu", parent.width / 2, parent.height / 2 + 75);
-        parent.textSize(60);
-        keyPressed();
-    }
-
     @Override
     public String keyPressed() {
-        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
-            restartGame();
-        } else if (parent.keyCode == parent.ENTER) {
-            parent.keyCode = parent.RETURN;
-            this.gameOver = false;
-            this.gameStart = true;
-            restartGame();
-            StartMenu.endCurrentGame();
-        }
             return null;
     }
 

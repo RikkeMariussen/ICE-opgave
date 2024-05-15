@@ -15,7 +15,6 @@ public class BallDrop extends AGames {
     private boolean gameOver;
     private boolean startGame = true;
     private int diff;
-    private String type = "";
 
     //Objects used for the game:
     private PlayerPlate playerPlate;
@@ -54,25 +53,10 @@ public class BallDrop extends AGames {
         } else {
             ((StartMenu) parent).setDeathState("BallDrop", score); // dette kan bruges i stedet for youDied metoden
             restartGame();
-            //youDied();
         }
         if (startGame) {
             startGame = false;
         }
-    }
-
-    @Override
-    public String youDied() {
-        parent.fill(255, 0, 0);
-        parent.textSize(50);
-        parent.textAlign(parent.CENTER, parent.CENTER);
-        parent.text("Game Over", parent.width / 2, parent.height / 2);
-        parent.textSize(32);
-        parent.text("Press 'R' to restart \n or ENTER to go back to the menu", parent.width / 2, parent.height / 2 + 75);
-        parent.textSize(60);
-        parent.text("Your score: " + score, parent.width / 2, parent.height / 2 + -100);
-        keyPressed();
-        return null;
     }
 
     public void gameDraw() {
@@ -135,43 +119,20 @@ public class BallDrop extends AGames {
         parent.textAlign(parent.RIGHT);
         parent.text("Score: " + score, parent.width - 50, parent.height - 50);
     }
-    public void typeName() {
-        parent.fill(0);
-        parent.textSize(25);
-        parent.textAlign(parent.RIGHT);
-        parent.text("Type your name here:", parent.width - 50, parent.height - 50);
-        parent.text(type,parent.width - 75, parent.height - 75);
-        type += parent.key;
-    }
-
-
-    @Override
-    public String keyPressed() {
-        if ((parent.key == 'r' || parent.key == 'R') && parent.keyPressed) {
-            restartGame();
-        } else if (parent.keyCode == parent.ENTER) {
-            parent.keyCode = parent.RETURN;
-            this.gameOver = false;
-            this.startGame = true;
-            restartGame();
-            StartMenu.endCurrentGame();
-        } else if((parent.key == 'h' || parent.key == 'H') && parent.keyPressed){
-            typeName();
-           // type += parent.key;
-        }
-
-        return null;
-    }
 
     @Override
     public String playGame() {
-
         return null;
     }
 
     //Not used yet, but can be used to demonstrate the way the game is played
     @Override
     public String howToPlay() {
+        return null;
+    }
+
+    @Override
+    public String youDied() {
         return null;
     }
 
@@ -195,6 +156,11 @@ public class BallDrop extends AGames {
 
     @Override
     public String getHighScore() {
+        return null;
+    }
+
+    @Override
+    public String keyPressed() {
         return null;
     }
 
