@@ -9,22 +9,22 @@ public class StartMenu extends PApplet {
     private static Difficulty selectedDifficulty = Difficulty.NONE;
 
 
-    private GUI gui = new GUI();
-    private FileIO fileIO;
-    private GamesButton gameButton;
-    private IGames snake = new Snake();
+    GUI gui = new GUI();
+    FileIO fileIO;
+    GamesButton gameButton;
+    IGames snake;
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
-    private IGames brickBreaker;
-    private IGames ballDrop;
-    private IGames pacman = new PacMan();
+    IGames brickBreaker;
+    IGames ballDrop;
+    IGames pacman = new PacMan();
 
-    private ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
-    private ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
-    private ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
+    ArrayList<GamesButton> buttonsFrontPage = new ArrayList<>();
+    ArrayList<GamesButton> buttonGameOption = new ArrayList<>();
+    ArrayList<GamesButton> buttonsDifficulties = new ArrayList<>();
 
     // Initialisering af variablerne i setup metoden
-    private GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
+    GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon;
 
     // Enums til at styre programmet
     // Enum er "states" som programmet kan være i, fx starter vi i state "START_MENU", hvor vi bliver vist en velkommen
@@ -240,11 +240,11 @@ public class StartMenu extends PApplet {
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake();
+                    snake = new Snake(this, selectedDifficulty.getValue());
                     snake.playGame();
                 }
-                //snake.updateGame();
-                //snake.displayGame();
+                snake.updateGame();
+                snake.displayGame();
                 break;
 
             case BRICKBREAKER:
@@ -270,7 +270,7 @@ public class StartMenu extends PApplet {
 
             case PACMAN:
                 if (pacman == null) {
-                    pacman = new Snake();
+                    //pacman = new Snake();
                     pacman.playGame();
                 }
                 //pacman.updateGame();
