@@ -73,6 +73,7 @@ public class Snake extends AGames {
         }
     }
 
+    @Override
     public void restartGame() {
         gameover = false;
         snakeScore = 0;
