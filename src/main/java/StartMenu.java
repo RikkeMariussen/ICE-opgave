@@ -12,6 +12,7 @@ public class StartMenu extends PApplet {
     private GUI gui = new GUI();
     private FileIO fileIO;
     private GamesButton gameButton;
+    private static DeathScreen deathScreen;
     private IGames snake = new Snake();
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
@@ -32,7 +33,7 @@ public class StartMenu extends PApplet {
     // det nemmere at håndtere forskellige situationer i programmet, og undgå store mængder kode, samt at gøre
     // koden clean.
     enum AppState {
-        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING
+        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING, DEATH_SCREEN
     }
 
     enum SelectedGame {
@@ -99,6 +100,14 @@ public class StartMenu extends PApplet {
 
     public void draw() {
 
+        // For testing
+        //if(frameCount % 20 == 0){
+        //    System.out.println();
+        //    System.out.println(currentState);
+        //    System.out.println(selectedGame);
+        //    System.out.println(selectedDifficulty);
+        //}
+
         if (currentState != AppState.GAMING) {
             background(100);
         }
@@ -148,8 +157,11 @@ public class StartMenu extends PApplet {
                     mousePressed = false;
                 }
                 break;
-
-            // Handle other states similarly...
+            case DEATH_SCREEN:
+                if (deathScreen != null) {
+                    deathScreen.display();
+                }
+                break;
         }
     }
 
@@ -284,7 +296,17 @@ public class StartMenu extends PApplet {
         currentState = AppState.GAME_SELECTION;
         selectedGame = SelectedGame.NONE;
         selectedDifficulty = Difficulty.NONE;
+    }
 
+    public void setDeathState(String gameTitle, int score) {
+        currentState = AppState.DEATH_SCREEN;
+        deathScreen = new DeathScreen(this, gameTitle, score, fileIO); // Pass the current instance of StartMenu
+    }
+
+    public void keyPressed() {
+        if (currentState == AppState.DEATH_SCREEN && deathScreen != null) {
+            deathScreen.keyPressed();
+        }
     }
 
     public void showHighScores(SelectedGame game) {
