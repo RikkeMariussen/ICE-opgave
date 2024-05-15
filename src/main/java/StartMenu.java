@@ -12,7 +12,7 @@ public class StartMenu extends PApplet {
     GUI gui = new GUI();
     FileIO fileIO;
     GamesButton gameButton;
-    IGames snake = new Snake(this);
+    IGames snake;
     //IGames brickBreaker = new BrickBreaker(); //virker ikke grundet forket extension
 
     IGames brickBreaker;
@@ -240,7 +240,7 @@ public class StartMenu extends PApplet {
         switch (selectedGame) {
             case SNAKE:
                 if (snake == null) {
-                    snake = new Snake(this);
+                    snake = new Snake(this, selectedDifficulty.getValue());
                     snake.playGame();
                 }
                 snake.updateGame();

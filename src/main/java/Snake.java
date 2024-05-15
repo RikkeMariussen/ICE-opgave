@@ -8,8 +8,10 @@ public class Snake extends AGames {
     private int scl = 20;
     private boolean gameover = false;
     private boolean startGame = true;
+    int difficulty;
 
-    public Snake(PApplet parent) {
+    public Snake(PApplet parent, int difficulty) {
+        this.difficulty = difficulty;
         this.parent = parent;
         snake = new SnakeObject(parent);
         apple = new PointObject(parent, 100, 100, 15, 15, 0, 0, parent.color(255, 0, 0));
@@ -17,7 +19,7 @@ public class Snake extends AGames {
     @Override
     public void updateGame() {
         if (!gameover) {
-            if (parent.frameCount % 5 == 0) {
+            if (parent.frameCount % (12 / difficulty)  == 0) {
                 snake.update();
                 keyPressed();
                 if (snake.checkSelfCollision(snake.body.getFirst().x, snake.body.getFirst().y, snake.body)) {
@@ -37,20 +39,12 @@ public class Snake extends AGames {
     @Override
     public void displayGame() {
         parent.background(0);
-        for (SnakeSegment snakeSegment : snake.body){
-            parent.fill(0, 255, 0);
-            parent.rect(snakeSegment.x, snakeSegment.y, 18, 18);
-        }
+        displaySnake();
         apple.displaySquareObject();
         if(!gameover) {
-            parent.fill(255);
-            parent.textSize(20);
-            parent.text("Score: " + snakeScore, 40, 30);
+            displayScore();
         }else if(gameover){
-            parent.fill(255);
-            parent.textSize(50);
-            parent.text("your final score: " + snakeScore, parent.width/2, parent.height/2);
-            parent.text("Press R to try again or B to go back", parent.width/2, parent.height/2+80);
+            displayGameover();
             resetGameKey();
         }
     }
@@ -76,6 +70,26 @@ public class Snake extends AGames {
             StartMenu.endCurrentGame();
         }
 
+    }
+
+    public void displayGameover(){
+        parent.fill(255);
+        parent.textSize(50);
+        parent.text("your final score: " + snakeScore, parent.width/2, parent.height/2);
+        parent.text("Press R to try again or B to go back", parent.width/2, parent.height/2+80);
+    }
+
+    public void displayScore(){
+        parent.fill(255);
+        parent.textSize(20);
+        parent.text("Score: " + snakeScore, 40, 30);
+    }
+
+    public void displaySnake(){
+        for (SnakeSegment snakeSegment : snake.body){
+            parent.fill(0, 255, 0);
+            parent.rect(snakeSegment.x, snakeSegment.y, 18, 18);
+        }
     }
 
     public void restartGame(){
