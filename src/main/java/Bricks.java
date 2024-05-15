@@ -3,7 +3,6 @@ import processing.core.PVector;
 
 public class Bricks {
     private PApplet brick;
-    private int size;
     private int brickX;
     private int brickY;
     private int width;
