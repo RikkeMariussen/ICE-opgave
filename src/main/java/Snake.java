@@ -4,7 +4,7 @@ public class Snake extends AGames {
     private PApplet parent;
     private SnakeObject snake;
     private PointObject apple;
-    private int snakeScore = 0;
+    private int score = 0;
     private int scl = 20;
     private boolean gameover = false;
     private boolean startGame = true;
@@ -45,7 +45,7 @@ public class Snake extends AGames {
         if (!gameover) {
             displayScore();
         } else if (gameover) {
-            ((StartMenu) parent).setDeathState("Snake", snakeScore);
+            ((StartMenu) parent).setDeathState("Snake", score);
             restartGame();
         }
     }
@@ -57,13 +57,13 @@ public class Snake extends AGames {
     }
 
     public void incrementScore() {
-        snakeScore++;
+        score++;
     }
 
     public void displayScore() {
         parent.fill(255);
         parent.textSize(20);
-        parent.text("Score: " + snakeScore, 40, 30);
+        parent.text("Score: " + score, 40, 30);
     }
 
     public void displaySnake() {
@@ -73,11 +73,21 @@ public class Snake extends AGames {
         }
     }
 
+    @Override
     public void restartGame() {
         gameover = false;
-        snakeScore = 0;
+        score = 0;
         snake.body.clear();
         snake.body.add(0, new SnakeSegment(parent, 0, 0));
+    }
+
+    @Override
+    public String keyPressed() {
+        if (parent.keyCode == parent.UP) snake.setDirection(0, -1);
+        else if (parent.keyCode == parent.DOWN) snake.setDirection(0, 1);
+        else if (parent.keyCode == parent.LEFT) snake.setDirection(-1, 0);
+        else if (parent.keyCode == parent.RIGHT) snake.setDirection(1, 0);
+        return null;
     }
 
     @Override
@@ -98,15 +108,6 @@ public class Snake extends AGames {
     @Override
     public String getHighScore() {
         return "";
-    }
-
-    @Override
-    public String keyPressed() {
-        if (parent.keyCode == parent.UP) snake.setDirection(0, -1);
-        else if (parent.keyCode == parent.DOWN) snake.setDirection(0, 1);
-        else if (parent.keyCode == parent.LEFT) snake.setDirection(-1, 0);
-        else if (parent.keyCode == parent.RIGHT) snake.setDirection(1, 0);
-        return null;
     }
 
     @Override
@@ -146,7 +147,7 @@ public class Snake extends AGames {
     public void displayGameover() {
         parent.fill(255);
         parent.textSize(50);
-        parent.text("your final score: " + snakeScore, parent.width / 2, parent.height / 2);
+        parent.text("your final score: " + score, parent.width / 2, parent.height / 2);
         parent.text("Press R to try again or B to go back", parent.width / 2, parent.height / 2 + 80);
     }
 }

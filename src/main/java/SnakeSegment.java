@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 
 public class SnakeSegment {
-    int x, y;
+    protected int x, y;
     private PApplet parent;
     private int scl = 20;
 

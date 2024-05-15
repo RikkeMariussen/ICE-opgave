@@ -1,14 +1,51 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-class main{
+class Main{
 + static void main(String[] args)
 }
-class startMenu{
+class StartMenu{
+- static AppState currentState
+- static SelectedGame selectedGame
+- static Difficulty selectedDifficulty
+- GUI gui
+- FileIO io
+- GamesButton gameButton
+- static DeathScreen deathScreen
+- boolean testing
+- IGames snake
+- IGames brickBreaker
+- IGames ballDrop
+- IGames pacMan
+- ArrayList<GamesButton> buttonsFrontPage
+- ArrayList<GamesButton> buttonGameOption
+- ArrayList<GamesButton> buttonsDifficulties
+- GamesButton butt1, butt2, butt3, butt4, butt5, playGame, highScore, goBack, easy, medium, hard, goBack2, moreGamesComingSoon
+enum AppState
+enum SelectedGame
+enum Difficulty
++ void settings()
++ void setup()
++ void draw()
+- void checkGameSelection()
+- void checkOptionSelection()
+- void checkDifficultySelection()
+- void checkHighScoreSelection()
++ void showGames()
++ void showOptions()
++ void showDifficulties()
++ void gaming()
++ static synchronized void endCurrentGame()
++ void setDeathState(String gameTitle, int score)
++ void keyPressed()
++ void showHighScores(SelectedGame game)
 + runDialog()
 }
 
 interface IGames{
+void updateGame()
+void displayGame()
+void restartGame()
 String getTitle()
 String playGame()
 String setHighScore()
@@ -29,66 +66,80 @@ abstract class AGames{
 package Games <<Folder>> {
 
 class BrickBreaker{
-- playerPlate
-- bricks
-- balls
-+ String playerPlate()
-+ String getBall
-+ String move()
-+ String getRandomBricks()
+- PApplet parent
+- PVector ballPosition
+- PVector ballVelocity
+- float ballSpeed
+- float ballRadius
+- Bricks[] bricks
+- int numBricks
+- int score
+- boolean gameOver
+- int diff
+- PlayerPlate playerPlate
+- boolean gameStart
++ void logic()
++ void drawGame()
++ void drawText()
++ void displayGame()
 }
 
 class BallDrop{
-- playerPlate
-- balls
-- timer
-- bombs
-+ String playerPlate()
-+ String getBalls()
-+ String getBombs()
-+ String timer()
+- PApplet parent
+- int score
+- int numberOfBalls
+- int ballsInterval
+- boolean gameOver
+- boolean startGame
+- int diff
+- PlayerPlate playerPlate
+- Bombs bombs
+- PointObject ball
+- ArrayList<PointObject> dropBalls
+- Timer ballsTimer
++ void gameSettings()
++ void displayGame()
++ void drawGame()
++ boolean intersect()
++ void displayScore()
 }
 
 class Snake{
-- snake
-- apples
-- ArrayList(whereSnakeAtX)
-- ArrayList(whereSnakeAtY)
-+ String snake()
-+ String getRandomApples()
-+ String eatenApple()
-+ String eatenSnake()
+- PApplet parent
+- SnakeObject snake
+- PointObject apple
+- int score
+- int scl
+- boolean gameover
+- boolean startGame
+- int difficulty
++ void placeFood()
++ void incrementScore()
++ void resetGameKey()
++ void displayScore()
++ void displaySnake()
 }
 
 class PacMan{
-- title
-- dots
-- ghosts
-- lives
-- score
-+ String pacMan()
-+ String move()
-+ String getRandomGhosts()
+'Kan den slettes
 }
 }
 
 package Utility <<Folder>> {
 class GUI{
++ void startScreen()
 }
-class TextUI{
-- Scanner scanner
-+ void displayList(ArrayList<String> list)
-+ void displayList(ArrayList<String> list, String msg)
-+ String promptText(String msg)
-+ boolean promptBinary(String msg, String accept, String reject)
-+ int promptNumeric(String msg)
-+ int promptChoice(ArrayList<String> optionslist, String msg)
-+ static void displayMsg(String s)
-}
+
 class FileIO{
-- ArrayList<String> gameList
-- String highScorePath
+- ArrayList<String[]> gameList
+- final String highScorePath
 + ArrayList<String[]> getGameHighScore(String gameTitle)
++ ArrayList<String> getScoresOnly(String gameTitle)
++ ArrayList<String> getNamesOnly(String gameTitle)
+- ArrayList<String> getEntryOnly(String gameTitle, int index)
++ int getHighestScore(String gameTitle)
++ int getLowestScore(String gameTitle)
++ int getScoreIndex(String gameTitle, int score)
 + void loadHighScoreCSV()
 - void loadFromCSV()
 + void saveHighScore(String gameTitle, int score, String playerName)
@@ -96,86 +147,206 @@ class FileIO{
 - List<String> modifyScore(String gameTitle, int score, String playerName, List<String> gameData)
 - List<String> isGamePresent(List<String> data, String gameTitle)
 
-
-}
-class Input{
 }
 }
 
 class Balls{
-- size
-- int x, y, w, h;
-- color
-+ String drawBalls()
-+ String ballsColor()
+# PVector position
+# PVector velocity
+# float radius
+# Bricks bricks
++ void settings()
++ void setup()
++ void draw()
 }
 
 class Bombs{
-- size
-- int x, y, w, h;
-- float speed;
-- color
+- PApplet parent
+- int x, y, w, h
+- float speed
+- int color
 + void update()
 + void display()
 + void boom()
-+ String drawBombs()
 }
 
 class Timer{
 - int startTimer
 - int interval
 + void startTimer()
-+ boolean complete()}
++ boolean complete()
+}
 
 class PlayerPlate{
-- size
-- float x, y, w, h;
-- color
-+ String playerPlate()
+- PApplet parent
+- int size
+- int x, y, w, h
+- int color
 + void update()
-+ void displayPlayerPlate()
++ void display()
 }
 
 class SnakeObject{
-- size
-- color
-+ String drawSnake()
+- PApplet parent
++ ArrayList<SnakeSegment> body
+- int xDir, yDir
+- int scl
+
++ void setDirection()
++ void update()
++ boolean eat(int foodX, int foodY)
++ boolean checkSelfCollision(int headX, int headY, ArrayList<SnakeSegment> body)
+}
+
+class SnakeSegment{
+- PApplet parent
+# int x, y
+- int scl
++ void show()
+}
+
+class DeathScreen{
+- FileIO io
+- PApplet parent
+- String playerName
+- int score
+- String gameTitle
++ void display()
+- void displayScoreNotHighEnough()
+- void displayEnterScore()
++ void keyPressed()
+- void saveScore(String playerName)
 }
 
 class PointObject{
-'Apples, cheese and cherries for Snake and PacMan.PacMan
-- size
-- color
-+ String drawPointObject()
+'Apples, cheese and cherries for Snake and PacMan
+- PApplet parent
+- int x, y, w, h
+- float speed, minSpeed, maxSpeed
+- int color
+- int score
 
++ void displayRoundObject()
++ void displaySquareObject()
++ void updateRoundObject()
++ void setSpeed(float speed)
++ float getSpeed()
++ int getX()
++ int getY()
++ void setX()
++ void setY()
++ int getW()
++ int getH()
 }
 
 class Bricks{
-- size
-- durability
-- color
-+ String drawBricks()
-+ String bricksColor()
-+ String bricksDurability()
-}
+- PApplet parent
+- int brickX, brickY
+- int width, height
+- int color
+- int durability
+- int initialDurability
 
-class PacManObject{
-- size
-- color
-+ String drawPacMan()
-+ String pacManColor()
++ void display()
++ boolean checkCollision(PVector ballPosition, float ballRadius)
+- float clamp(float value, float min, float max)
++ void decreaseDurability()
++ int getDurability()
++ void remove()
++ int getBrickX()
++ int getBrickY()
++ int getColor()
++ void reset()
+}
+package PacMan <<Folder>> {
+class DefNotMain{
+- PApplet parent
+- boolean gameStart
+- Map map
+- Cherry cherry
+- Cheese cheese
+- PacManPlayer pacManPlayer
+- Score score
++ void pacManDraw()
+}
+class PacManPlayer{
+- boolean god
+- PApplet parent
+- int hP
+- Score score
+- int start
+- int xPos
+- int yPos
+- Timer timer
+
++ void drawPacMan()
++ void movePacMan()
+- void godTimer()
++ void setHP()
++ int getHP()
 }
 
 class Ghosts{
-- size
-- color
-+ void drawGhosts()
-+ String ghostsColor()
-+ Boolean ghostsKillable()
 }
 
-main <-- startMenu
-startMenu <- IGames
+class PacManGame{
++ static empty
++ static wall
++ static cheese
++ static cherry
++ static player
++ static int int[][] map
+
++ static void populateMap()
++ static void printMap()
++ static void populateMapCherry()
++ static void clearGhostPit()
+}
+
+class Map{
+# static int wallSpacing
+- PApplet parent
++ void setupUp()
++ void createMap()
+- void createBorder()
+- void createUpperWallSkeleton()
+- void createLowerWallSkeleton()
+- void createGhostPit()
+- void horizontalBlockConstructor(int xPos, int yPos, int width)
+- void verticalBlockConstructor(int xPos, int yPos, int height)
++ static int getWallSpacing()
+}
+
+class Score{
+- PApplet parent
+- static int currentAmountOfCheese
+- int score
++ void setCurrentAmountOfCheese()
++ void checkScore()
++ void drawScore()
++ int getScore()
++ void setScore(int score)
+}
+
+
+class Cherry{
+- PApplet parent
++ void createCherry(int xPos, int yPos)
++ void spawnCherry()
++ void spawnCherry1()
++ void spawnCherry2()
++ void spawnCherry3()
++ void spawnCherry4()
+}
+
+class Cheese{
+- PApplet parent
++ void spawnCheese()
+- void createCheese(int xPos, int yPos)
+}
+}
+Main <-- StartMenu
+StartMenu <- IGames
 
 IGames <|-- AGames
 
@@ -183,26 +354,36 @@ AGames <-- Games
 'AGames <|-- Snake
 'AGames <|-- BrickBreaker
 'AGames <|-- BallDrop
-'AGames <|-- PacMan.PacMan
+'AGames <|-- PacMan
 
-startMenu <-- Utility
-'startMenu <-- MainPack.GUI
-'startMenu <-- MainPack.TextUI
+StartMenu <-- Utility
+'startMenu <-- GUI
+'startMenu <-- TextUI
 'startMenu <-- FileIO
 
 BrickBreaker <-- Bricks
 BrickBreaker <-- PlayerPlate
 BrickBreaker <-- Balls
+BrickBreaker <-- DeathScreen
 
 BallDrop <-- PlayerPlate
 BallDrop <-- PointObject
 BallDrop <-- Bombs
+BallDrop <-- Timer
+BallDrop <-- DeathScreen
 
 Snake <-- SnakeObject
 Snake <-- PointObject
+Snake <-- SnakeSegment
+Snake <-- DeathScreen
 
-PacMan <-- PacManObject
-PacMan <-- Ghosts
-PacMan <-- PointObject
+StartMenu <-- DefNotMain
+DefNotMain <-- PacManGame
+PacManGame <-- PacManPlayer
+PacManGame <-- Map
+Map <-- Cheese
+Map <-- Cherry
+Map <-- Ghosts
+PacManPlayer <-- Score
 
 @enduml

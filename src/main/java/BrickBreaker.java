@@ -127,6 +127,7 @@ public class BrickBreaker extends AGames {
             return null;
     }
 
+    @Override
     public void restartGame() {
         gameStart = true;
         score = 0;
