@@ -32,6 +32,7 @@ public class PointObject extends PApplet {
     //Methods for displaying the point objects
 
     public void displayRoundObject() {
+        parent.strokeWeight(0.5f);
         parent.fill(color);
         parent.ellipse(x, y, w, h);
     }
