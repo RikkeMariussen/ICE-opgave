@@ -42,8 +42,8 @@ public void setCurrentAmountOfCheese(){
 
     public void drawScore(){
         parent.fill(0);
-        parent.textSize(32);
-        parent.text("Score: " + getScore(),10,25);
+        parent.textSize(16);
+        parent.text("Score: " + getScore(),30,12);
     }
 
     public int getScore() {

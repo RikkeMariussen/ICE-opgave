@@ -1,0 +1,97 @@
+Index: src/main/java/PacMan/DefNotMain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PacMan;\r\nimport processing.core.PApplet;\r\n\r\n\r\npublic class DefNotMain{\r\n    private PApplet parent;\r\n    boolean gameStart = true;\r\n\r\n    private Map map;\r\n    private Cherry cherry;\r\n    private Cheese cheese;\r\n    private PacManPlayer pacManPlayer;\r\n    private Score score;\r\n\r\n    public DefNotMain(PApplet parent){\r\n        this.parent = parent;\r\n\r\n        this.map = new Map(parent);\r\n        this.cherry = new Cherry(parent);\r\n        this.cheese = new Cheese(parent);\r\n        this.pacManPlayer = new PacManPlayer(parent,3,9,9,false,new Score(parent,0));\r\n        this.score = new Score(parent,0);\r\n    }\r\n\r\n\r\n    public void PacManDraw(){\r\n        if(gameStart){\r\n            PacManGame.populateMap();\r\n            PacManGame.PopulateMapCherry();\r\n            score.setCurrentAmountOfCheese();\r\n            gameStart = false;\r\n        }\r\n        map.createMap();\r\n        cherry.spawnCherry();\r\n        cheese.spawnCheese();\r\n        pacManPlayer.movePacMan();\r\n        pacManPlayer.drawPacMan();\r\n        score.checkScore();\r\n        score.drawScore();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/PacMan/DefNotMain.java b/src/main/java/PacMan/DefNotMain.java
+--- a/src/main/java/PacMan/DefNotMain.java	(revision c6dd8b89c4ea2341bbc8b215c0bf9cdaf5c2f4ae)
++++ b/src/main/java/PacMan/DefNotMain.java	(date 1715772124593)
+@@ -4,7 +4,7 @@
+ 
+ public class DefNotMain{
+     private PApplet parent;
+-    boolean gameStart = true;
++    private boolean gameStart = true;
+ 
+     private Map map;
+     private Cherry cherry;
+Index: src/main/java/PacMan/Map.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PacMan;\r\nimport processing.core.PApplet;\r\n\r\n\r\npublic class Map {\r\n\r\n    static int wallSpacing = 60;\r\n    private PApplet parent;\r\n\r\n    public Map(PApplet parent) {\r\n        this.parent = parent;\r\n    }\r\n\r\npublic void setupUp(){\r\n    parent.background(0,0,0);\r\n    parent.blendMode(parent.REPLACE);\r\n    parent.strokeWeight(3);\r\n    parent.noStroke();\r\n    parent.fill(135, 206, 250);\r\n    parent.rectMode(parent.CENTER);\r\n}\r\n\r\n    public void createMap() {\r\n        setupUp();\r\n        createBorder();\r\n        createUpperWallSkeleton();\r\n        createLowerWallSkeleton();\r\n        createGhostPit();\r\n    }\r\n\r\n    private void createBorder() {\r\n        horizontalBlockConstructor(0,0,20);\r\n        horizontalBlockConstructor(0,19,20);\r\n        verticalBlockConstructor(0,1,18);\r\n        verticalBlockConstructor(19,1,18);\r\n    }\r\n\r\n    private void createUpperWallSkeleton() {\r\n        horizontalBlockConstructor(2, 2, 2);\r\n        horizontalBlockConstructor(16, 2, 2);\r\n\r\n        horizontalBlockConstructor(2, 4, 2);\r\n        horizontalBlockConstructor(16, 4, 2);\r\n\r\n        horizontalBlockConstructor(5, 2, 3);\r\n        horizontalBlockConstructor(12, 2, 3);\r\n\r\n        verticalBlockConstructor(5, 4, 5);\r\n        verticalBlockConstructor(14, 4, 5);\r\n\r\n        horizontalBlockConstructor(7, 4, 6);\r\n\r\n        verticalBlockConstructor(9, 1, 2);\r\n        verticalBlockConstructor(10, 1, 2);\r\n\r\n        horizontalBlockConstructor(6, 6, 2);\r\n        horizontalBlockConstructor(12, 6, 2);\r\n\r\n        verticalBlockConstructor(9, 5, 2);\r\n        verticalBlockConstructor(10, 5, 2);\r\n\r\n\r\n        horizontalBlockConstructor(1, 6, 3);\r\n        horizontalBlockConstructor(1, 7, 3);\r\n        horizontalBlockConstructor(16, 6, 3);\r\n        horizontalBlockConstructor(16, 7, 3);\r\n    }\r\n\r\n    private void createLowerWallSkeleton() {\r\n        horizontalBlockConstructor(2, 17, 2);\r\n        horizontalBlockConstructor(16, 17, 2);\r\n\r\n        horizontalBlockConstructor(2, 15, 2);\r\n        horizontalBlockConstructor(16, 15, 2);\r\n\r\n        horizontalBlockConstructor(5, 17, 3);\r\n        horizontalBlockConstructor(12, 17, 3);\r\n\r\n        verticalBlockConstructor(5, 11, 5);\r\n        verticalBlockConstructor(14, 11, 5);\r\n\r\n        horizontalBlockConstructor(7, 15, 6);\r\n\r\n        verticalBlockConstructor(9, 17, 2);\r\n        verticalBlockConstructor(10, 17, 2);\r\n\r\n        horizontalBlockConstructor(6, 13, 2);\r\n        horizontalBlockConstructor(12, 13, 2);\r\n\r\n        verticalBlockConstructor(9, 13, 2);\r\n        verticalBlockConstructor(10, 13, 2);\r\n\r\n        horizontalBlockConstructor(1, 12, 3);\r\n        horizontalBlockConstructor(1, 13, 3);\r\n        horizontalBlockConstructor(16, 12, 3);\r\n        horizontalBlockConstructor(16, 13, 3);\r\n    }\r\n\r\n    private void createGhostPit() {\r\n        horizontalBlockConstructor(7, 8, 2);\r\n        horizontalBlockConstructor(11, 8, 2);\r\n        horizontalBlockConstructor(7, 11, 6);\r\n        verticalBlockConstructor(7, 9, 2);\r\n        verticalBlockConstructor(12, 8, 3);\r\n\r\n        //Middle block on left and right side\r\n        horizontalBlockConstructor(2, 9, 2);\r\n        horizontalBlockConstructor(2, 10, 2);\r\n\r\n        horizontalBlockConstructor(16, 9, 2);\r\n        horizontalBlockConstructor(16, 10, 2);\r\n\r\n    }\r\n\r\n    private void horizontalBlockConstructor(int xPos, int yPos, int width) {\r\n        int currentX = xPos;\r\n        for (int i = 0; i < width; i++) {\r\n            parent.rect(wallSpacing * currentX, wallSpacing * yPos, wallSpacing, wallSpacing);\r\n            PacManGame.map[yPos][currentX] = PacManGame.WALL;\r\n            currentX++;\r\n        }\r\n    }\r\n\r\n    private void verticalBlockConstructor(int xPos, int yPos, int height) {\r\n        int currentY = yPos;\r\n        for (int i = 0; i < height; i++) {\r\n            parent.rect(wallSpacing * xPos, wallSpacing * currentY, wallSpacing, wallSpacing);\r\n            PacManGame.map[currentY][xPos] = PacManGame.WALL;\r\n            currentY++;\r\n        }\r\n    }\r\n\r\n    public static int getWallSpacing() {\r\n        return wallSpacing;\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/PacMan/Map.java b/src/main/java/PacMan/Map.java
+--- a/src/main/java/PacMan/Map.java	(revision c6dd8b89c4ea2341bbc8b215c0bf9cdaf5c2f4ae)
++++ b/src/main/java/PacMan/Map.java	(date 1715769308008)
+@@ -4,7 +4,7 @@
+ 
+ public class Map {
+ 
+-    static int wallSpacing = 60;
++    protected static int wallSpacing = 60;
+     private PApplet parent;
+ 
+     public Map(PApplet parent) {
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"96208804-5630-4d11-83de-47bb1c3facff\" name=\"Changes\" comment=\"HEEELP\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"PacManDev\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2g5hTrmJs8TMpXd5K9NH4hoAc1X\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"WebServerToolWindowFactoryState\": \"false\",\r\n    \"git-widget-placeholder\": \"PacManDev2\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/lukas/Desktop/processing-4.3/core/library/core.jar\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"preferences.lookFeel\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Unnamed\" type=\"Application\" factoryName=\"Application\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Main\" />\r\n      <module name=\"ICE-opgave\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"96208804-5630-4d11-83de-47bb1c3facff\" name=\"Changes\" comment=\"\" />\r\n      <created>1714993357746</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1714993357746</updated>\r\n      <workItem from=\"1714993358834\" duration=\"3000\" />\r\n      <workItem from=\"1715674281494\" duration=\"7314000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"HEEELP\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715681201655</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715681201655</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"PacManDev2\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"HEEELP\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"HEEELP\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c6dd8b89c4ea2341bbc8b215c0bf9cdaf5c2f4ae)
++++ b/.idea/workspace.xml	(date 1715772126528)
+@@ -4,9 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="HEEELP">
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="96208804-5630-4d11-83de-47bb1c3facff" name="Changes" comment="yep sdk 21">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/DefNotMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/DefNotMain.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/PacMan/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PacMan/Map.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -75,7 +76,7 @@
+       <option name="presentableId" value="Default" />
+       <updated>1714993357746</updated>
+       <workItem from="1714993358834" duration="3000" />
+-      <workItem from="1715674281494" duration="7314000" />
++      <workItem from="1715674281494" duration="12212000" />
+     </task>
+     <task id="LOCAL-00001" summary="HEEELP">
+       <option name="closed" value="true" />
+@@ -85,7 +86,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1715681201655</updated>
+     </task>
+-    <option name="localTasksCounter" value="2" />
++    <task id="LOCAL-00002" summary="yep sdk 21">
++      <option name="closed" value="true" />
++      <created>1715682672008</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1715682672008</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -116,7 +125,8 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="HEEELP" />
+-    <option name="LAST_COMMIT_MESSAGE" value="HEEELP" />
++    <MESSAGE value="yep sdk 21" />
++    <option name="LAST_COMMIT_MESSAGE" value="yep sdk 21" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>

@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public class DefNotMain{
     private PApplet parent;
-    boolean gameStart = true;
+    private boolean gameStart = true;
 
     private Map map;
     private Cherry cherry;
