@@ -159,8 +159,6 @@ public class BallDrop extends AGames {
         return null;
     }
 
-    //Setter
-
     //Not used yet, but can be used to implement bombs in the game
     public void setNumberOfBombs() {
         //bombs.update();
