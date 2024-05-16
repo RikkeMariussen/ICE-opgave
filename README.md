@@ -1,3 +1,5 @@
+ICE-gruppe: Christoffer, Daniel, Lasse, Lucas og Rikke
+
 Funktionelle krav til ICE
 - Startside med forskellige spil
 - Knap til at skifte side - så der kan tilføjes flere spil
