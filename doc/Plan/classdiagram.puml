@@ -43,10 +43,8 @@ enum Difficulty
 }
 
 interface IGames{
-void updateGame()
-void displayGame()
-void restartGame()
 String getTitle()
+void setDiff(int value)
 String playGame()
 String setHighScore()
 String getHighScore()
@@ -55,6 +53,9 @@ String howToPlay()
 String youDied()
 String difficulties()
 String lives()
+void restartGame()
+void updateGame()
+void displayGame()
 }
 
 abstract class AGames{
@@ -74,12 +75,14 @@ class BrickBreaker{
 - Bricks[] bricks
 - int numBricks
 - int score
+- int scorePerBrick
 - boolean gameOver
 - int diff
 - PlayerPlate playerPlate
 - boolean gameStart
 + void logic()
 + void drawGame()
++ void addBricks()
 + void drawText()
 + void displayGame()
 }
@@ -118,10 +121,6 @@ class Snake{
 + void resetGameKey()
 + void displayScore()
 + void displaySnake()
-}
-
-class PacMan{
-'Kan den slettes
 }
 }
 
