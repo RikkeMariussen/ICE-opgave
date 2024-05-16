@@ -150,6 +150,16 @@ public class FileIO {
 
     private List<String> modifyScore(String gameTitle, int score, String playerName, List<String> gameData){
 
+        for(int i = 0; i < gameData.size(); i++){
+            if(score >= Integer.parseInt(gameData.get(i).split(";")[1].trim())){
+                gameData.add(i, gameTitle + "; " + score + "; " + playerName);
+                gameData.removeLast();
+                return gameData;
+            }
+        }
+        return gameData;
+
+        /*
         // Sætter player score in på linjen under en anden tidligere score som er lige stor
         if (Integer.parseInt(gameData.getFirst().split(";")[1].trim()) == score) {
             gameData.removeLast();
@@ -185,6 +195,7 @@ public class FileIO {
             }
         }
         return gameData;
+        */
     }
 
     private List<String> isGamePresent(List<String> data, String gameTitle){

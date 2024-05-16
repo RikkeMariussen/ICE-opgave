@@ -20,6 +20,15 @@ public class DeathScreen {
     }
 
     public void display() {
+        if(score > io.getLowestScore(gameTitle)){
+            validScore();
+        }else{
+            noScore();
+        }
+
+    }
+
+    private void validScore(){
         parent.background(0); // Black background for death screen
         parent.fill(255, 0, 0);
         parent.textSize(50);
@@ -34,15 +43,39 @@ public class DeathScreen {
         parent.text("Press ENTER to submit", parent.width / 2, parent.height / 2 + 150);
     }
 
+    private void noScore(){
+        parent.background(0); // Black background for death screen
+        parent.fill(255, 0, 0);
+        parent.textSize(50);
+        parent.textAlign(parent.CENTER, parent.CENTER);
+        parent.text("Game Over", parent.width / 2, parent.height / 2 - 100);
+        parent.textSize(32);
+        parent.text("Your score: " + score, parent.width / 2, parent.height / 2 - 50);
+        parent.text("Lowest score to beat: " + io.getLowestScore(gameTitle), parent.width / 2, parent.height / 2 + 50);
+        parent.textSize(24);
+        parent.text(playerName, parent.width / 2, parent.height / 2 + 100);
+        parent.textSize(18);
+        parent.text("Press ENTER to git gud", parent.width / 2, parent.height / 2 + 150);
+    }
+
     public void keyPressed() {
-        if (parent.key == PApplet.ENTER) {
-            // Submit the score with the player's name
-            saveScore(playerName);
-            StartMenu.endCurrentGame();
-        } else if (parent.key == PApplet.BACKSPACE && playerName.length() > 0) {
-            playerName = playerName.substring(0, playerName.length() - 1);
-        } else if (parent.key != PApplet.CODED) {
-            playerName += parent.key;
+
+        if(score > io.getLowestScore(gameTitle)){
+            if (parent.key == PApplet.ENTER) {
+                // Submit the score with the player's name
+                saveScore(playerName);
+                StartMenu.endCurrentGame();
+            } else if (parent.key == PApplet.BACKSPACE && playerName.length() > 0) {
+                playerName = playerName.substring(0, playerName.length() - 1);
+            } else if (parent.key != PApplet.CODED) {
+                playerName += parent.key;
+            }
+        }else{
+            if (parent.key == PApplet.ENTER) {
+                // Submit the score with the player's name
+                saveScore(playerName);
+                StartMenu.endCurrentGame();
+            }
         }
     }
 
