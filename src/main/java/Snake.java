@@ -96,6 +96,11 @@ public class Snake extends AGames {
     }
 
     @Override
+    public void setDiff(int diff) {
+        this.difficulty = diff;
+    }
+
+    @Override
     public String playGame() {
         return "";
     }

@@ -23,7 +23,7 @@ public class BrickBreaker extends AGames {
 
     public void logic() {
         playerPlate = new PlayerPlate(parent, parent.width / 2, parent.height-75, 80, 20);
-        ballPosition = new PVector(parent.width / 2, parent.height - 50);
+        ballPosition = new PVector(parent.width / 2, parent.height - 100);
         ballVelocity = new PVector(0, (float) -((ballBaseSpeed - 1) * diff));
         bricks = new Bricks[numBricks];
         for (int i = 0; i < numBricks; i++) {
@@ -144,6 +144,11 @@ public class BrickBreaker extends AGames {
         parent.textAlign(parent.CENTER, parent.CENTER);
         parent.fill(255);
         parent.text(text, x, y);
+    }
+
+    @Override
+    public void setDiff(int diff){
+        this.diff = diff;
     }
 
     public void displayGame() {

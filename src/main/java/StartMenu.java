@@ -101,6 +101,22 @@ public class StartMenu extends PApplet {
         if (currentState != AppState.GAMING) {
             background(100);
         }
+
+        boolean testing = true;
+
+        textSize(20);
+        if(testing){
+            text(currentState.toString(), 75,height-25);
+            text(selectedGame.toString(), 75,height-50);
+            text(selectedDifficulty.toString(), 75,height-75);
+            if(frameCount % 50 == 0) {
+                System.out.println("");
+                System.out.println("");
+                System.out.println(selectedDifficulty);
+            }
+        }
+
+
         if (currentState != AppState.GAMING && selectedGame == SelectedGame.NONE && selectedDifficulty == Difficulty.NONE) {
             windowResize(800, 600);
         }
@@ -247,6 +263,7 @@ public class StartMenu extends PApplet {
                     snake = new Snake(this, selectedDifficulty.getValue());
                     snake.playGame();
                 }
+                snake.setDiff(selectedDifficulty.getValue());
                 snake.updateGame();
                 snake.displayGame();
                 break;
@@ -257,6 +274,7 @@ public class StartMenu extends PApplet {
                     brickBreaker = new BrickBreaker(this, width, height, selectedDifficulty.getValue());
                     brickBreaker.playGame();
                 }
+                brickBreaker.setDiff(selectedDifficulty.getValue());
                 brickBreaker.updateGame();
                 brickBreaker.displayGame();
                 break;
@@ -268,6 +286,7 @@ public class StartMenu extends PApplet {
                     ballDrop = new BallDrop(this, width, height, selectedDifficulty.getValue());
                     ballDrop.playGame();
                 }
+                ballDrop.setDiff(selectedDifficulty.getValue());
                 ballDrop.displayGame();
                 ballDrop.updateGame();
                 break;

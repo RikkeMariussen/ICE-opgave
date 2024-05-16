@@ -1,5 +1,6 @@
 public interface IGames {
     String getTitle();
+    void setDiff(int value);
     String playGame();
     String setHighScore();
     String getHighScore();
