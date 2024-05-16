@@ -32,7 +32,7 @@ public class StartMenu extends PApplet {
     // det nemmere at håndtere forskellige situationer i programmet, og undgå store mængder kode, samt at gøre
     // koden clean.
     enum AppState {
-        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING, DEATH_SCREEN
+        START_MENU, GAME_SELECTION, GAME_OPTIONS, DIFFICULTY_SELECTION, SHOW_HIGHSCORE, GAMING, DEATH_SCREEN, COPING_SOON
     }
 
     enum SelectedGame {
@@ -64,7 +64,7 @@ public class StartMenu extends PApplet {
         butt1 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 2) / 5, "Snake", this);
         butt2 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 2) / 5, "Brick Breaker", this);
         butt3 = new GamesButton(250, 100, (float) (width * 3) / 10, (float) (height * 3) / 5, "Ball drop", this);
-        butt4 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 3) / 5, "PacMan", this);
+        butt4 = new GamesButton(250, 100, (float) (width * 7) / 10, (float) (height * 3) / 5, "PacMan\nBETA!", this);
         butt5 = new GamesButton(250, 100, (float) (width * 5) / 10, (float) (height * 4) / 5, "NEXT PAGE", this);
 
         playGame = new GamesButton(250, 100, (float) width / 2, 160, "Choose difficulty", this);
@@ -101,6 +101,22 @@ public class StartMenu extends PApplet {
         if (currentState != AppState.GAMING) {
             background(100);
         }
+
+        boolean testing = false;
+
+        textSize(20);
+        if(testing){
+            text(currentState.toString(), 75,height-25);
+            text(selectedGame.toString(), 75,height-50);
+            text(selectedDifficulty.toString(), 75,height-75);
+            if(frameCount % 50 == 0) {
+                System.out.println("");
+                System.out.println("");
+                System.out.println(selectedDifficulty);
+            }
+        }
+
+
         if (currentState != AppState.GAMING && selectedGame == SelectedGame.NONE && selectedDifficulty == Difficulty.NONE) {
             windowResize(800, 600);
         }
@@ -154,6 +170,13 @@ public class StartMenu extends PApplet {
                     deathScreen.display();
                 }
                 break;
+            case COPING_SOON:
+                gui.comingSoon(height,width,this);
+                if (mousePressed) {
+                    currentState = AppState.GAME_SELECTION;
+                    mousePressed = false;  // Sørger for at man ikke kan komme til at klike forkert ved at holde musse knappen nede.
+                }
+                break;
         }
     }
 
@@ -180,7 +203,7 @@ public class StartMenu extends PApplet {
 
             //Next page
         } else if (butt5.check_click()) {
-            currentState = AppState.GAME_OPTIONS;
+            currentState = AppState.COPING_SOON;
         }
     }
 
@@ -247,6 +270,7 @@ public class StartMenu extends PApplet {
                     snake = new Snake(this, selectedDifficulty.getValue());
                     snake.playGame();
                 }
+                snake.setDiff(selectedDifficulty.getValue());
                 snake.updateGame();
                 snake.displayGame();
                 break;
@@ -257,6 +281,7 @@ public class StartMenu extends PApplet {
                     brickBreaker = new BrickBreaker(this, width, height, selectedDifficulty.getValue());
                     brickBreaker.playGame();
                 }
+                brickBreaker.setDiff(selectedDifficulty.getValue());
                 brickBreaker.updateGame();
                 brickBreaker.displayGame();
                 break;
@@ -268,6 +293,7 @@ public class StartMenu extends PApplet {
                     ballDrop = new BallDrop(this, width, height, selectedDifficulty.getValue());
                     ballDrop.playGame();
                 }
+                ballDrop.setDiff(selectedDifficulty.getValue());
                 ballDrop.displayGame();
                 ballDrop.updateGame();
                 break;

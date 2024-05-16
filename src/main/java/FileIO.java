@@ -150,38 +150,11 @@ public class FileIO {
 
     private List<String> modifyScore(String gameTitle, int score, String playerName, List<String> gameData){
 
-        // Sætter player score in på linjen under en anden tidligere score som er lige stor
-        if (Integer.parseInt(gameData.getFirst().split(";")[1].trim()) == score) {
-            gameData.removeLast();
-            gameData.add(1, gameTitle + "; " + score + "; " + playerName);
-            return gameData;
-        }
-
-        // Sætter player score ind på sidste plads, hvis player score er mindre end tidligere mindste score
-        if(
-                Integer.parseInt(gameData.getLast().split(";")[1].trim()) < score &&
-                Integer.parseInt(gameData.get(gameData.size() - 2).split(";")[1].trim()) > score) {
-            gameData.removeLast();
-            gameData.addLast(gameTitle + "; " + score + "; " + playerName);
-        }
-
-        // Sætter player score ind på første plads, hvis player score er højere end tidligere største score
-        else if (Integer.parseInt(gameData.getFirst().split(";")[1].trim()) < score) {
-            gameData.removeLast();
-            gameData.addFirst(gameTitle + "; " + score + "; " + playerName);
-        }
-
-        // Sætter player score ind på imellem to tidligere scores
-        else {
-            for (int i = 0; i < gameData.size() - 1; i++) {
-                if (
-                        Integer.parseInt(gameData.get(i).split(";")[1].trim()) > score &&
-                        Integer.parseInt(gameData.get(i + 1).split(";")[1].trim()) < score ||
-                        Integer.parseInt(gameData.get(i).split(";")[1].trim()) == score) {
-                    gameData.removeLast();
-                    gameData.add(i+1, gameTitle + "; " + score + "; " + playerName);
-                    return gameData;
-                }
+        for(int i = 0; i < gameData.size(); i++){
+            if(score >= Integer.parseInt(gameData.get(i).split(";")[1].trim())){
+                gameData.add(i, gameTitle + "; " + score + "; " + playerName);
+                gameData.removeLast();
+                return gameData;
             }
         }
         return gameData;

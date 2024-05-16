@@ -11,6 +11,7 @@ public class BrickBreaker extends AGames {
     private Bricks[] bricks;
     private int numBricks = 50;
     private int score = 0;
+    private int scorePerBrick = 10;
     private boolean gameOver;
     private int diff;
     private PlayerPlate playerPlate;
@@ -22,27 +23,11 @@ public class BrickBreaker extends AGames {
     }
 
     public void logic() {
-        playerPlate = new PlayerPlate(parent, parent.width / 2, parent.height-75, 80, 20);
-        ballPosition = new PVector(parent.width / 2, parent.height - 50);
+        playerPlate = new PlayerPlate(parent, parent.width / 2, parent.height - 75, 80, 20);
+        ballPosition = new PVector(parent.width / 2, parent.height - 100);
         ballVelocity = new PVector(0, (float) -((ballBaseSpeed - 1) * diff));
         bricks = new Bricks[numBricks];
-        for (int i = 0; i < numBricks; i++) {
-            int x = ((i % 10) * 82) + 40;
-            int y = (i / 10) * 30 + 50;
-            int brickColor = parent.color(255);
-            int durability = 1;
-
-            // Check if it's the 3rd row
-            if (i / 10 == 2) {
-                // Check if it's the 3rd or 8th brick
-                if (i % 10 == 2 || i % 10 == 7) {
-                    brickColor = parent.color(255, 165, 0);
-                    durability = 5;
-                }
-            }
-
-            bricks[i] = new Bricks(parent, x, y, 80, 15, brickColor, durability);
-        }
+        addBricks();
     }
 
     @Override
@@ -61,7 +46,7 @@ public class BrickBreaker extends AGames {
     }
 
     public void drawGame() {
-        drawText("Score: " + score, parent.width / 2, parent.height -25);
+        drawText("Score: " + score, parent.width / 2, parent.height - 25);
         playerPlate.display();
         playerPlate.update();
 
@@ -109,22 +94,49 @@ public class BrickBreaker extends AGames {
                 bricks[i].decreaseDurability();
                 if (bricks[i].getDurability() == 0) {
                     bricks[i].remove();
-                    score += 10;
+                    score += scorePerBrick*diff;
                 }
                 break;
             }
         }
         // Check collision with brick
-        if (!collisionDetected) {
-            collisionDetected = false;
-        }
+        //if (!collisionDetected) {
+        //    collisionDetected = false;
+        //}
         parent.fill(0, 150, 255);
         parent.ellipse(ballPosition.x, ballPosition.y, ballRadius * 2, ballRadius * 2);
+
+        if ((score) % (scorePerBrick * numBricks) == (scorePerBrick*numBricks)-(scorePerBrick*diff)) {
+            addBricks();
+            ballVelocity.y += scorePerBrick;
+        }
     }
+
+    public void addBricks() {
+        bricks = new Bricks[numBricks];
+        for (int i = 0; i < numBricks; i++) {
+            int x = ((i % 10) * 82) + 40;
+            int y = (i / 10) * 30 + 50;
+            int brickColor = parent.color(255);
+            int durability = 1;
+
+            // Check if it's the 3rd row
+            if (i / 10 == 2) {
+                // Check if it's the 3rd or 8th brick
+                if (i % 10 == 2 || i % 10 == 7) {
+                    brickColor = parent.color(255, 165, 0);
+                    durability = 5;
+                }
+            }
+
+            bricks[i] = new Bricks(parent, x, y, 80, 15, brickColor, durability);
+        }
+    }
+
 
     @Override
     public String keyPressed() {
-            return null;
+        return null;
     }
 
     @Override
@@ -144,6 +156,11 @@ public class BrickBreaker extends AGames {
         parent.textAlign(parent.CENTER, parent.CENTER);
         parent.fill(255);
         parent.text(text, x, y);
+    }
+
+    @Override
+    public void setDiff(int diff) {
+        this.diff = diff;
     }
 
     public void displayGame() {

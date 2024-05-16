@@ -36,7 +36,6 @@ public class GamesButton {
             app.rectMode(3);
             app.rect(buttonLocation.x, buttonLocation.y, buttonSize.x, buttonSize.y);
             app.fill(0);
-            app.textAlign(PConstants.CENTER);
             app.push();
             app.text(nameOfGame, buttonLocation.x, buttonLocation.y);
             app.pop();

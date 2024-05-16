@@ -150,6 +150,11 @@ public class BallDrop extends AGames {
     }
 
     @Override
+    public void setDiff(int diff) {
+        this.diff = diff;
+    }
+
+    @Override
     public String getHighScore() {
         return null;
     }
