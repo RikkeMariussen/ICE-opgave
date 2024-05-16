@@ -102,7 +102,7 @@ public class StartMenu extends PApplet {
             background(100);
         }
 
-        boolean testing = true;
+        boolean testing = false;
 
         textSize(20);
         if(testing){
