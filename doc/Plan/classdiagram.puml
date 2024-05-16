@@ -126,7 +126,8 @@ class Snake{
 
 package Utility <<Folder>> {
 class GUI{
-+ void startScreen()
++ void startScreen(int height, int width, PApplet app)
++ void comingSoon(int height, int width, PApplet app)
 }
 
 class FileIO{
