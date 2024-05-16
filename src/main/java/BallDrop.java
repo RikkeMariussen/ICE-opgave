@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+
 import java.util.ArrayList;
 
 public class BallDrop extends AGames {
@@ -91,8 +92,9 @@ public class BallDrop extends AGames {
     }
 
     public boolean intersect(PlayerPlate playerPlate, PointObject pointObject) {
-        float distance = parent.dist(playerPlate.getX(), playerPlate.getY(), pointObject.getX(), pointObject.getY());
-        if (distance < (playerPlate.getWidth() / 2 + pointObject.getW() / 2)) {
+        if (pointObject.getY() >= (playerPlate.getY() - playerPlate.getHeight()) &&
+                pointObject.getX() >= playerPlate.getX() - playerPlate.getWidth() / 2 &&
+                pointObject.getX() <= playerPlate.getX() + playerPlate.getWidth() / 2) {
             return true;
         } else {
             return false;
