@@ -211,8 +211,8 @@ class DeathScreen{
 - int score
 - String gameTitle
 + void display()
-- void displayScoreNotHighEnough()
-- void displayEnterScore()
+- void validScore()
+- void noScore()
 + void keyPressed()
 - void saveScore(String playerName)
 }
