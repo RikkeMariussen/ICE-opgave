@@ -172,7 +172,7 @@ public class BallDrop extends AGames {
     }
 
     public int setNumberOfBalls() {
-        return numberOfBalls * diff;
+        return numberOfBalls;
     }
 
     @Override
